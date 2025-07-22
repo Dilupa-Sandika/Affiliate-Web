@@ -1,0 +1,31 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {%- for page in collections.all %}
+        {%- if not page.data.eleventyExcludeFromCollections %}
+    <url>
+        <loc>{{ page.url | url | absoluteUrl(metadata.url) }}</loc>
+        <lastmod>{{ page.date | isoDate }}</lastmod>
+        {%- if page.url == "/" %}
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        {%- elif page.inputPath.includes("/reviews/") %}
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        {%- elif page.inputPath.includes("/services/") %}
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+        {%- elif page.inputPath.includes("/smart-") %}
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        {%- else %}
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        {%- endif %}
+    </url>
+        {%- endif %}
+    {%- endfor %}
+</urlset>

@@ -1,0 +1,63 @@
+---
+layout: base.njk
+---
+
+<div class="container">
+    <article class="section">
+        <h1 class="text-center mb-4">{{ title }}</h1>
+        
+        {% if featuredImage %}
+        <div class="text-center mb-4">
+            <img src="{{ featuredImage }}" alt="{{ title }}" style="max-width: 100%; height: auto; border-radius: 0.5rem;">
+        </div>
+        {% endif %}
+        
+        <div class="grid grid-2 mb-4">
+            <div>
+                <h3 style="color: var(--success-color);">✅ Pros</h3>
+                {% if pros %}
+                <ul>
+                {% for pro in pros %}
+                    <li>{{ pro }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            
+            <div>
+                <h3 style="color: var(--danger-color);">❌ Cons</h3>
+                {% if cons %}
+                <ul>
+                {% for con in cons %}
+                    <li>{{ con }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        
+        {% if amazonLink %}
+        <div class="text-center mb-4">
+            <a href="{{ amazonLink }}" class="btn btn-primary" target="_blank" rel="nofollow">
+                🛒 Buy on Amazon
+            </a>
+        </div>
+        {% endif %}
+        
+        <div class="content">
+            {{ content | safe }}
+        </div>
+        
+        <div class="mt-5" style="border-top: 1px solid var(--border-color); padding-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
+            {% if author %}
+            <p><strong>Author:</strong> {{ author }}</p>
+            {% endif %}
+            {% if date %}
+            <p><strong>Published:</strong> {{ date | date("LLLL dd, yyyy") }}</p>
+            {% endif %}
+            {% if lastModified %}
+            <p><strong>Last Updated:</strong> {{ lastModified | date("LLLL dd, yyyy") }}</p>
+            {% endif %}
+        </div>
+    </article>
+</div>

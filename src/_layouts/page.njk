@@ -1,0 +1,13 @@
+---
+layout: base.njk
+---
+
+<div class="container">
+    <article class="section">
+        {% if title %}
+        <h1 class="text-center mb-4">{{ title }}</h1>
+        {% endif %}
+        
+        {{ content | safe }}
+    </article>
+</div>

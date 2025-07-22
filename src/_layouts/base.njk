@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }} | {% endif %}Smart Home Authority & Las Vegas Installation Services</title>
+    <meta name="description" content="{{ description or 'Expert smart home device reviews and professional installation services in Las Vegas. Find the best smart cameras, locks, and lighting solutions.' }}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}Smart Home Authority">
+    <meta property="og:description" content="{{ description or 'Expert smart home device reviews and professional installation services in Las Vegas.' }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | url | absoluteUrl(metadata.url) }}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    
+    <!-- Structured Data -->
+    {% include "structured-data.njk" %}
+    {% if structuredData %}
+    <script type="application/ld+json">{{ structuredData | safe }}</script>
+    {% endif %}
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">Smart Home Authority</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/smart-cameras/">Cameras</a></li>
+                <li><a href="/smart-locks/">Smart Locks</a></li>
+                <li><a href="/smart-lighting/">Lighting</a></li>
+                <li><a href="/services/">Las Vegas Services</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {{ content | safe }}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h4>Smart Home Reviews</h4>
+                    <ul>
+                        <li><a href="/smart-cameras/">Security Cameras</a></li>
+                        <li><a href="/smart-locks/">Smart Locks</a></li>
+                        <li><a href="/smart-lighting/">Smart Lighting</a></li>
+                        <li><a href="/guides/">Buying Guides</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Las Vegas Services</h4>
+                    <ul>
+                        <li><a href="/services/camera-installation/">Camera Installation</a></li>
+                        <li><a href="/services/smart-lock-installation/">Smart Lock Installation</a></li>
+                        <li><a href="/services/lighting-installation/">Lighting Installation</a></li>
+                        <li><a href="/contact/">Get Quote</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/privacy/">Privacy Policy</a></li>
+                        <li><a href="/terms/">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Service Areas</h4>
+                    <ul>
+                        <li>Las Vegas, NV</li>
+                        <li>Henderson, NV</li>
+                        <li>North Las Vegas, NV</li>
+                        <li>Boulder City, NV</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{ "now" | date("yyyy") }} Smart Home Authority. All rights reserved. As an Amazon Associate, we earn from qualifying purchases.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

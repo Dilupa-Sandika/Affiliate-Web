@@ -1,0 +1,107 @@
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Smart Home Authority",
+  "url": "{{ metadata.url }}",
+  "description": "{{ metadata.description }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Las Vegas",
+    "addressRegion": "Nevada",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-702-555-0123",
+    "contactType": "Customer Service",
+    "areaServed": ["Las Vegas", "Henderson", "North Las Vegas", "Boulder City"]
+  },
+  "sameAs": []
+}
+</script>
+
+<!-- Website Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ metadata.title }}",
+  "url": "{{ metadata.url }}",
+  "description": "{{ metadata.description }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Smart Home Authority"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ metadata.url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{% if page.url == "/" %}
+<!-- LocalBusiness Schema for homepage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Smart Home Authority",
+  "image": "{{ metadata.url }}/assets/images/logo.jpg",
+  "url": "{{ metadata.url }}",
+  "telephone": "+1-702-555-0123",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Las Vegas",
+    "addressRegion": "Nevada",
+    "postalCode": "89101",
+    "addressCountry": "US"
+  },
+  "description": "Professional smart home device installation services in Las Vegas including smart locks, security cameras, and lighting systems.",
+  "priceRange": "$149-$499",
+  "openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-16:00"],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 36.1699,
+      "longitude": -115.1398
+    },
+    "geoRadius": 50000
+  },
+  "areaServed": ["Las Vegas", "Henderson", "North Las Vegas", "Boulder City", "Summerlin", "Green Valley"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Smart Home Installation Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Smart Lock Installation",
+          "description": "Professional installation of smart locks in Las Vegas"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Security Camera Installation",
+          "description": "Expert security camera mounting and setup in Las Vegas"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service", 
+          "name": "Smart Lighting Installation",
+          "description": "Smart lighting system setup and automation in Las Vegas"
+        }
+      }
+    ]
+  }
+}
+</script>
+{% endif %}

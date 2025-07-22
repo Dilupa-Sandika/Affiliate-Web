@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Disallow admin and temporary files
+Disallow: /admin/
+Disallow: /.well-known/
+Disallow: /404.html
+Disallow: /thank-you.html
+
+# Allow important pages for SEO
+Allow: /
+Allow: /smart-cameras/
+Allow: /smart-locks/
+Allow: /smart-lighting/
+Allow: /services/
+Allow: /reviews/
+Allow: /contact/
