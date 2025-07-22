@@ -5,9 +5,21 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
+  eleventyConfig.addPassthroughCopy({ "node_modules/three/build/three.module.js": "assets/js/three.module.js" });
+  eleventyConfig.addPassthroughCopy({ "node_modules/gsap/dist/gsap.min.js": "assets/js/gsap.min.js" });
   
-  // Watch CSS files for changes
+  // Generate optimized CSS using a transform
+  eleventyConfig.addTransform("tailwindcss", async function(content, outputPath) {
+    if (outputPath && outputPath.endsWith(".html")) {
+      // This is a placeholder - in production, you'd use PostCSS to process Tailwind
+      return content;
+    }
+    return content;
+  });
+  
+  // Watch files for changes
   eleventyConfig.addWatchTarget("./src/assets/css/");
+  eleventyConfig.addWatchTarget("./src/assets/js/");
   
   // Date filters
   eleventyConfig.addFilter("date", (dateObj, format) => {

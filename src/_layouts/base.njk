@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +11,27 @@
     <meta property="og:description" content="{{ description or 'Expert smart home device reviews and professional installation services in Las Vegas.' }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ page.url | url | absoluteUrl(metadata.url) }}">
+    <meta property="og:image" content="{{ metadata.url }}/assets/images/og-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if title %}{{ title }} | {% endif %}Smart Home Authority">
+    <meta name="twitter:description" content="{{ description or 'Expert smart home device reviews and professional installation services in Las Vegas.' }}">
+    <meta name="twitter:image" content="{{ metadata.url }}/assets/images/og-image.jpg">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#3b82f6">
     
     <!-- Structured Data -->
     {% include "structured-data.njk" %}
@@ -24,69 +39,253 @@
     <script type="application/ld+json">{{ structuredData | safe }}</script>
     {% endif %}
 </head>
-<body>
-    <header class="header">
-        <nav class="nav">
-            <a href="/" class="logo">Smart Home Authority</a>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/smart-cameras/">Cameras</a></li>
-                <li><a href="/smart-locks/">Smart Locks</a></li>
-                <li><a href="/smart-lighting/">Lighting</a></li>
-                <li><a href="/services/">Las Vegas Services</a></li>
-                <li><a href="/contact/">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="bg-neutral-50 antialiased">
+    <!-- Modern Navigation -->
+    <nav class="nav-modern" id="main-nav">
+        <div class="container-custom">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <a href="/" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center text-white font-bold text-lg transform group-hover:scale-110 transition-transform duration-200">
+                        S
+                    </div>
+                    <span class="text-white font-display font-bold text-xl">Smart Home Authority</span>
+                </a>
 
-    <main>
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="/" class="nav-item">Home</a>
+                    <div class="relative group">
+                        <button class="nav-item flex items-center space-x-1">
+                            <span>Reviews</span>
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-64 glass rounded-2xl p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+                            <div class="space-y-3">
+                                <a href="/smart-cameras/" class="flex items-center space-x-3 text-white/90 hover:text-white transition-colors">
+                                    <div class="w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center">📹</div>
+                                    <span>Security Cameras</span>
+                                </a>
+                                <a href="/smart-locks/" class="flex items-center space-x-3 text-white/90 hover:text-white transition-colors">
+                                    <div class="w-8 h-8 bg-secondary-500/20 rounded-lg flex items-center justify-center">🔒</div>
+                                    <span>Smart Locks</span>
+                                </a>
+                                <a href="/smart-lighting/" class="flex items-center space-x-3 text-white/90 hover:text-white transition-colors">
+                                    <div class="w-8 h-8 bg-accent-500/20 rounded-lg flex items-center justify-center">💡</div>
+                                    <span>Smart Lighting</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/services/" class="nav-item">Las Vegas Services</a>
+                    <a href="/contact/" class="nav-item">Contact</a>
+                    <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-white" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu">
+            <div class="glass-dark mx-4 rounded-2xl p-6 mb-4">
+                <div class="space-y-4">
+                    <a href="/" class="block text-white/90 hover:text-white transition-colors">Home</a>
+                    <a href="/smart-cameras/" class="block text-white/90 hover:text-white transition-colors">Security Cameras</a>
+                    <a href="/smart-locks/" class="block text-white/90 hover:text-white transition-colors">Smart Locks</a>
+                    <a href="/smart-lighting/" class="block text-white/90 hover:text-white transition-colors">Smart Lighting</a>
+                    <a href="/services/" class="block text-white/90 hover:text-white transition-colors">Las Vegas Services</a>
+                    <a href="/contact/" class="block text-white/90 hover:text-white transition-colors">Contact</a>
+                    <a href="/contact/" class="btn-primary text-sm mt-4 inline-block">Get Free Quote</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="min-h-screen">
         {{ content | safe }}
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
+    <!-- Modern Footer -->
+    <footer class="bg-neutral-900 text-white relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-500 rounded-full filter blur-3xl"></div>
+        </div>
+
+        <div class="relative container-custom section-padding">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                            S
+                        </div>
+                        <span class="text-white font-display font-bold text-xl">Smart Home Authority</span>
+                    </div>
+                    <p class="text-neutral-400 mb-6">Expert smart home device reviews and professional installation services throughout Las Vegas and Nevada.</p>
+                    <div class="flex space-x-4">
+                        <a href="tel:+1-702-555-0123" class="w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center text-primary-400 hover:bg-primary-500/30 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                            </svg>
+                        </a>
+                        <a href="mailto:info@smarthomeauthority.com" class="w-10 h-10 bg-secondary-500/20 rounded-lg flex items-center justify-center text-secondary-400 hover:bg-secondary-500/30 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Smart Home Reviews -->
                 <div>
-                    <h4>Smart Home Reviews</h4>
-                    <ul>
-                        <li><a href="/smart-cameras/">Security Cameras</a></li>
-                        <li><a href="/smart-locks/">Smart Locks</a></li>
-                        <li><a href="/smart-lighting/">Smart Lighting</a></li>
-                        <li><a href="/guides/">Buying Guides</a></li>
+                    <h4 class="font-display font-semibold text-lg mb-6 text-gradient">Smart Home Reviews</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/smart-cameras/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
+                            <span>📹</span><span>Security Cameras</span>
+                        </a></li>
+                        <li><a href="/smart-locks/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
+                            <span>🔒</span><span>Smart Locks</span>
+                        </a></li>
+                        <li><a href="/smart-lighting/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
+                            <span>💡</span><span>Smart Lighting</span>
+                        </a></li>
+                        <li><a href="/guides/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
+                            <span>📚</span><span>Buying Guides</span>
+                        </a></li>
                     </ul>
                 </div>
+
+                <!-- Las Vegas Services -->
                 <div>
-                    <h4>Las Vegas Services</h4>
-                    <ul>
-                        <li><a href="/services/camera-installation/">Camera Installation</a></li>
-                        <li><a href="/services/smart-lock-installation/">Smart Lock Installation</a></li>
-                        <li><a href="/services/lighting-installation/">Lighting Installation</a></li>
-                        <li><a href="/contact/">Get Quote</a></li>
+                    <h4 class="font-display font-semibold text-lg mb-6 text-gradient">Las Vegas Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/services/camera-installation/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
+                            <span>🔧</span><span>Camera Installation</span>
+                        </a></li>
+                        <li><a href="/services/smart-lock-installation/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
+                            <span>🔧</span><span>Smart Lock Setup</span>
+                        </a></li>
+                        <li><a href="/services/lighting-installation/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
+                            <span>🔧</span><span>Lighting Installation</span>
+                        </a></li>
+                        <li><a href="/contact/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
+                            <span>💬</span><span>Get Quote</span>
+                        </a></li>
                     </ul>
                 </div>
+
+                <!-- Service Areas -->
                 <div>
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="/about/">About Us</a></li>
-                        <li><a href="/contact/">Contact</a></li>
-                        <li><a href="/privacy/">Privacy Policy</a></li>
-                        <li><a href="/terms/">Terms of Service</a></li>
+                    <h4 class="font-display font-semibold text-lg mb-6 text-gradient">Service Areas</h4>
+                    <ul class="space-y-3">
+                        <li class="text-neutral-400 flex items-center space-x-2">
+                            <span>📍</span><span>Las Vegas, NV</span>
+                        </li>
+                        <li class="text-neutral-400 flex items-center space-x-2">
+                            <span>📍</span><span>Henderson, NV</span>
+                        </li>
+                        <li class="text-neutral-400 flex items-center space-x-2">
+                            <span>📍</span><span>North Las Vegas, NV</span>
+                        </li>
+                        <li class="text-neutral-400 flex items-center space-x-2">
+                            <span>📍</span><span>Summerlin & Green Valley</span>
+                        </li>
                     </ul>
-                </div>
-                <div>
-                    <h4>Service Areas</h4>
-                    <ul>
-                        <li>Las Vegas, NV</li>
-                        <li>Henderson, NV</li>
-                        <li>North Las Vegas, NV</li>
-                        <li>Boulder City, NV</li>
-                    </ul>
+                    <div class="mt-6">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs bg-green-500/20 text-green-400">
+                            ✅ Licensed & Insured
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; {{ "now" | date("yyyy") }} Smart Home Authority. All rights reserved. As an Amazon Associate, we earn from qualifying purchases.</p>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-neutral-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p class="text-neutral-400 text-sm">
+                    &copy; {{ "now" | date("yyyy") }} Smart Home Authority. All rights reserved. As an Amazon Associate, we earn from qualifying purchases.
+                </p>
+                <div class="flex items-center space-x-6 text-sm text-neutral-400">
+                    <a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="/terms/" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="/sitemap.xml" class="hover:text-white transition-colors">Sitemap</a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- JavaScript -->
+    <script type="module">
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            const isVisible = !mobileMenu.classList.contains('opacity-0');
+            
+            if (isVisible) {
+                mobileMenu.classList.add('opacity-0', 'invisible');
+            } else {
+                mobileMenu.classList.remove('opacity-0', 'invisible');
+            }
+        });
+
+        // Navbar scroll effect
+        const nav = document.getElementById('main-nav');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                nav.classList.add('backdrop-blur-xl');
+                nav.style.background = 'rgba(15, 23, 42, 0.9)';
+            } else {
+                nav.classList.remove('backdrop-blur-xl');
+                nav.style.background = 'rgba(15, 23, 42, 0.8)';
+            }
+            
+            // Hide/show navbar based on scroll direction
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Three.js and animations -->
+    {% if page.url == "/" %}
+    <script type="module" src="/assets/js/hero-animation.js"></script>
+    {% endif %}
+    
+    <!-- Load product showcases if present -->
+    <script type="module" src="/assets/js/product-showcase.js"></script>
 </body>
 </html>
