@@ -3,6 +3,7 @@ const { DateTime } = require("luxon");
 module.exports = function(eleventyConfig) {
   // Passthrough copy for static assets that don't need processing
   eleventyConfig.addPassthroughCopy("src/assets/images");
+  eleventyConfig.addPassthroughCopy("src/assets/js"); // Correctly copies your JS files
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   
@@ -31,7 +32,7 @@ module.exports = function(eleventyConfig) {
     }
   });
   
-  // Collections (No changes needed here)
+  // Collections
   eleventyConfig.addCollection("reviews", function(collectionApi) {
     return collectionApi.getFilteredByGlob("./src/reviews/*.md");
   });
@@ -42,16 +43,16 @@ module.exports = function(eleventyConfig) {
     });
   });
   
-  // Global data (No changes needed here)
+  // Global data
   eleventyConfig.addGlobalData("metadata", {
     title: "Smart Home Authority & Las Vegas Installation Services",
-    url: "https://yourdomain.com",
+    url: "https://yourdomain.com", // Remember to change this to your actual domain
     description: "Expert smart home device reviews and professional installation services in Las Vegas.",
     language: "en",
     author: "Smart Home Authority"
   });
   
-  // Set directories (No changes needed here)
+  // Set directories
   return {
     dir: {
       input: "src",

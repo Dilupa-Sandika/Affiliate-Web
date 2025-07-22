@@ -5,10 +5,10 @@
   "scripts": {
     "watch:css": "postcss ./src/assets/css/style.css -o ./_site/assets/css/style.css --watch",
     "watch:eleventy": "eleventy --serve",
-    "build:css": "postcss ./src/assets/css/style.css -o ./_site/assets/css/style.css",
+    "build:css": "NODE_ENV=production postcss ./src/assets/css/style.css -o ./_site/assets/css/style.css",
     "build:eleventy": "eleventy",
     "start": "npm-run-all --parallel watch:*",
-    "build": "npm-run-all build:css build:eleventy"
+    "build": "npm-run-all build:eleventy build:css"
   },
   "keywords": [],
   "author": "",
