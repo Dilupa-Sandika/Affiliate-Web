@@ -9,7 +9,12 @@
       "Bash(git config:*)",
       "Bash(npx tailwindcss init:*)",
       "Bash(npm remove:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(NODE_ENV=production postcss ./src/assets/css/style.css -o ./_site/assets/css/style.css)",
+      "Bash(npx postcss:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(node build-css-manual.js)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }
