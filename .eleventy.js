@@ -1,25 +1,13 @@
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
-  // Copy static files
-  eleventyConfig.addPassthroughCopy("src/assets");
+  // Passthrough copy for static assets that don't need processing
+  eleventyConfig.addPassthroughCopy("src/assets/images");
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
-  eleventyConfig.addPassthroughCopy({ "node_modules/three/build/three.module.js": "assets/js/three.module.js" });
-  eleventyConfig.addPassthroughCopy({ "node_modules/gsap/dist/gsap.min.js": "assets/js/gsap.min.js" });
   
-  // Generate optimized CSS using a transform
-  eleventyConfig.addTransform("tailwindcss", async function(content, outputPath) {
-    if (outputPath && outputPath.endsWith(".html")) {
-      // This is a placeholder - in production, you'd use PostCSS to process Tailwind
-      return content;
-    }
-    return content;
-  });
-  
-  // Watch files for changes
-  eleventyConfig.addWatchTarget("./src/assets/css/");
-  eleventyConfig.addWatchTarget("./src/assets/js/");
+  // Watch for changes in the compiled CSS file for live browser refreshes
+  eleventyConfig.addWatchTarget("./_site/assets/css/");
   
   // Date filters
   eleventyConfig.addFilter("date", (dateObj, format) => {
@@ -43,7 +31,7 @@ module.exports = function(eleventyConfig) {
     }
   });
   
-  // Collections
+  // Collections (No changes needed here)
   eleventyConfig.addCollection("reviews", function(collectionApi) {
     return collectionApi.getFilteredByGlob("./src/reviews/*.md");
   });
@@ -54,7 +42,7 @@ module.exports = function(eleventyConfig) {
     });
   });
   
-  // Global data
+  // Global data (No changes needed here)
   eleventyConfig.addGlobalData("metadata", {
     title: "Smart Home Authority & Las Vegas Installation Services",
     url: "https://yourdomain.com",
@@ -63,7 +51,7 @@ module.exports = function(eleventyConfig) {
     author: "Smart Home Authority"
   });
   
-  // Set directories
+  // Set directories (No changes needed here)
   return {
     dir: {
       input: "src",
