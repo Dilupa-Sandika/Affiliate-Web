@@ -364,11 +364,19 @@
        (-webkit-min-device-pixel-ratio: 2) and (max-width: 375px),
        (device-width: 375px) and (device-height: 667px) {
   
-  /* Ensure hamburger is visible on iPhone 8 */
+  /* Ensure hamburger is visible and clickable on iPhone 8 */
   #mobile-menu-btn {
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    border: 2px solid rgba(255, 255, 255, 0.4) !important;
     padding: 0.75rem !important;
+    border-radius: 0.5rem !important;
+    position: relative !important;
+    z-index: 1000 !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
   }
   
   #mobile-menu-btn > div > div {
@@ -376,6 +384,7 @@
     width: 1.5rem !important;
     height: 0.125rem !important;
     margin: 0.1875rem 0 !important;
+    display: block !important;
   }
   
   #floating-nav {
@@ -409,30 +418,78 @@
     pointer-events: none !important;
     line-height: 1 !important;
   }
-}
-
-/* Mobile-first optimizations (phones only, not tablets) */
-@media (max-width: 767px) {
-  /* Clean mobile navigation - no hamburger needed */
-  .nav-modern {
-    min-height: auto;
-    padding: 0.5rem 0;
+  
+  /* Ensure mobile menu works on iPhone 8 */
+  #mobile-menu {
+    display: block !important;
+    z-index: 99999 !important;
   }
   
-  /* Force floating navigation to be the primary navigation on mobile */
+  #mobile-menu a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2) !important;
+    touch-action: manipulation !important;
+  }
+}
+
+/* Mobile optimizations - compact navigation */
+@media (max-width: 767px) {
+  /* Ultra-compact mobile navbar */
+  .nav-modern {
+    min-height: auto;
+    padding: 0;
+  }
+  
+  .nav-modern .container-custom {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  
+  /* Ensure hamburger button is visible and properly styled */
+  #mobile-menu-btn {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    padding: 0.5rem !important;
+    border-radius: 0.5rem !important;
+  }
+  
+  #mobile-menu-btn > div > div {
+    background-color: white !important;
+    width: 1.5rem !important;
+    height: 0.125rem !important;
+    border-radius: 9999px !important;
+    display: block !important;
+  }
+  
+  /* Mobile menu positioning and interaction */
+  #mobile-menu {
+    z-index: 99999 !important;
+    display: block !important;
+  }
+  
+  /* Ensure mobile menu links are clickable */
+  #mobile-menu a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1) !important;
+    display: flex !important;
+    text-decoration: none !important;
+  }
+  
+  #mobile-menu-panel {
+    pointer-events: auto !important;
+  }
+  
+  /* Force floating navigation to be visible on mobile */
   body #floating-nav {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-  }
-  
-  /* Hide hamburger menu completely on mobile phones */
-  #mobile-menu-btn {
-    display: none !important;
-  }
-  
-  #mobile-menu {
-    display: none !important;
   }
   
   .three-container {
@@ -458,8 +515,20 @@
     padding-bottom: 0;
   }
   
-  /* Mobile menu is hidden on phones, so no overlay needed */
-  /* #mobile-menu is display: none on mobile phones */
+  /* Ensure mobile menu overlay works properly */
+  #mobile-menu {
+    z-index: 99999 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+  }
+  
+  /* When menu is closed, make it completely non-interactive */
+  #mobile-menu.opacity-0 {
+    pointer-events: none !important;
+  }
   
   /* When menu is closed, make it completely non-interactive */
   #mobile-menu.opacity-0 {
@@ -574,34 +643,12 @@
   }
 }
 
-/* Tablet-specific styles (768px - 1024px) - Keep hamburger menu for tablets */
+/* Tablet and medium screens */
 @media (min-width: 768px) and (max-width: 1024px) {
-  /* Ensure hamburger menu works properly on tablets */
+  /* Both hamburger and floating nav available on tablets */
   #mobile-menu-btn {
-    display: block !important;
-    visibility: visible !important;
-    z-index: 999 !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  }
-  
-  #mobile-menu-btn > div > div {
-    background-color: white !important;
-    width: 1.5rem !important;
-    height: 0.125rem !important;
-  }
-  
-  #mobile-menu {
-    z-index: 99997 !important;
-  }
-  
-  /* Floating nav still available on tablets but less prominent */
-  #floating-nav {
-    opacity: 0.8 !important;
-  }
-  
-  #floating-nav:hover {
-    opacity: 1 !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
   }
 }
 

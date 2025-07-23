@@ -19,7 +19,8 @@
       "Bash(ls:*)",
       "Bash(npx eleventy:*)",
       "Bash(grep:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npx @11ty/eleventy:*)"
     ],
     "deny": []
   }

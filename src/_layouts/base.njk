@@ -77,19 +77,14 @@
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
 
-                <!-- Mobile Menu Button - Hidden on mobile, visible on tablet -->
-                <button type="button" class="hidden md:block lg:hidden text-white p-3 hover:bg-white/10 rounded-lg transition-colors focus:outline-none" id="mobile-menu-btn">
+                <!-- Mobile Menu Button - Visible on mobile -->
+                <button type="button" class="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors focus:outline-none" id="mobile-menu-btn">
                     <div class="w-6 h-6 flex flex-col justify-center space-y-1.5">
                         <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
                         <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
                         <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
                     </div>
                 </button>
-                
-                <!-- Mobile-only: Clean hint text -->
-                <div class="md:hidden text-right">
-                    <span class="text-xs text-white/70 font-medium">Use floating menu →</span>
-                </div>
             </div>
         </div>
     </nav>
@@ -120,8 +115,8 @@
         </a>
     </div>
     
-    <!-- Right-to-Left Sliding Mobile Menu - Only for tablets (768px-1024px) -->
-    <div class="fixed inset-0 hidden md:block lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
+    <!-- Right-to-Left Sliding Mobile Menu -->
+    <div class="fixed inset-0 lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300" id="mobile-menu-backdrop"></div>
         
@@ -284,13 +279,8 @@
     </footer>
 
     <script>
-        // Tablet menu (hamburger menu is hidden on mobile phones)
+        // Right-to-left sliding mobile menu
         window.addEventListener('load', function() {
-            // Only initialize hamburger menu on tablets and desktop (768px+)
-            if (window.innerWidth < 768) {
-                return; // Skip hamburger menu on mobile phones - use floating circles instead
-            }
-            
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
             const panel = document.getElementById('mobile-menu-panel');
@@ -298,12 +288,16 @@
             const closeBtn = document.getElementById('mobile-menu-close');
             
             if (!btn || !menu || !panel || !backdrop) {
-                return; // Elements not available or needed on mobile
+                console.error('Mobile menu elements missing');
+                return;
             }
             
             function openMenu() {
+                console.log('Opening mobile menu');
                 menu.classList.remove('opacity-0', 'invisible');
                 menu.style.pointerEvents = 'auto';
+                menu.style.visibility = 'visible';
+                panel.style.pointerEvents = 'auto';
                 setTimeout(() => {
                     panel.classList.remove('translate-x-full');
                 }, 10);
@@ -320,23 +314,24 @@
             }
             
             // Open menu
-            btn.onclick = openMenu;
+            btn.onclick = function(e) {
+                console.log('Hamburger button clicked');
+                e.preventDefault();
+                openMenu();
+            };
             
             // Close menu handlers
             if (closeBtn) closeBtn.onclick = closeMenu;
             backdrop.onclick = closeMenu;
             
-            // Close on menu link click and allow navigation
+            // Close menu on link click but allow natural navigation
             menu.querySelectorAll('a').forEach(function(link) {
                 link.addEventListener('click', function(e) {
-                    // Don't prevent default - allow navigation
-                    closeMenu();
-                    // Small delay to ensure menu closes before navigation
+                    console.log('Menu link clicked:', this.href);
+                    // Close menu after a very short delay to allow click to register
                     setTimeout(() => {
-                        if (this.href && !this.href.includes('#')) {
-                            window.location.href = this.href;
-                        }
-                    }, 100);
+                        closeMenu();
+                    }, 50);
                 });
             });
         });
