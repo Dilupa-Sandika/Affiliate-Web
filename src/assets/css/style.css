@@ -290,6 +290,9 @@
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   user-select: none !important;
+  /* Force above any potential overlays */
+  will-change: transform !important;
+  -webkit-transform: translateY(-50%) !important;
 }
 
 #floating-nav a {
@@ -309,56 +312,102 @@
   }
 }
 
-/* Small mobile screens */
+/* Small mobile screens - iPhone 8 and similar */
 @media (max-width: 640px) {
+  /* Hide any bottom navigation that might be interfering */
+  .bottom-nav, .footer-nav, [class*="bottom"] {
+    display: none !important;
+  }
+  
   #floating-nav {
     right: 0.75rem !important;
-    gap: 0.75rem !important;
+    gap: 0.5rem !important;
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
     position: fixed !important;
     z-index: 99998 !important;
     pointer-events: auto !important;
-  }
-  
-  #floating-nav a {
-    width: 3rem !important;
-    height: 3rem !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 1rem !important;
-    touch-action: manipulation !important;
-    -webkit-tap-highlight-color: transparent !important;
-    cursor: pointer !important;
-  }
-  
-  #floating-nav a span {
-    font-size: 1rem !important;
-    pointer-events: none !important;
-  }
-}
-
-/* Extra small mobile screens */
-@media (max-width: 480px) {
-  #floating-nav {
-    right: 0.5rem !important;
-    gap: 0.5rem !important;
-    z-index: 99998 !important;
+    /* iOS Safari specific */
+    -webkit-transform: translate3d(0, -50%, 0) !important;
+    transform: translate3d(0, -50%, 0) !important;
   }
   
   #floating-nav a {
     width: 2.75rem !important;
     height: 2.75rem !important;
+    min-width: 2.75rem !important;
+    min-height: 2.75rem !important;
+    border-radius: 50% !important;
+    border-radius: 1.375rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.875rem !important;
     touch-action: manipulation !important;
     -webkit-tap-highlight-color: transparent !important;
+    cursor: pointer !important;
+    /* Ensure proper circular shape on iPhone */
+    -webkit-border-radius: 1.375rem !important;
+    overflow: hidden !important;
   }
   
   #floating-nav a span {
-    font-size: 0.875rem !important;
+    font-size: 0.75rem !important;
     pointer-events: none !important;
+    line-height: 1 !important;
+  }
+}
+
+/* iPhone 8 and older iOS devices specific */
+@media (max-width: 480px), 
+       (-webkit-min-device-pixel-ratio: 2) and (max-width: 375px),
+       (device-width: 375px) and (device-height: 667px) {
+  
+  /* Ensure hamburger is visible on iPhone 8 */
+  #mobile-menu-btn {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    padding: 0.75rem !important;
+  }
+  
+  #mobile-menu-btn > div > div {
+    background-color: white !important;
+    width: 1.5rem !important;
+    height: 0.125rem !important;
+    margin: 0.1875rem 0 !important;
+  }
+  
+  #floating-nav {
+    right: 0.5rem !important;
+    gap: 0.4rem !important;
+    z-index: 99998 !important;
+    /* Force visibility on iPhone 8 */
+    display: flex !important;
+    position: fixed !important;
+    top: 50% !important;
+    -webkit-transform: translate3d(0, -50%, 0) !important;
+    transform: translate3d(0, -50%, 0) !important;
+  }
+  
+  #floating-nav a {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    min-width: 2.5rem !important;
+    min-height: 2.5rem !important;
+    border-radius: 1.25rem !important;
+    -webkit-border-radius: 1.25rem !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    /* Force hardware acceleration */
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+  
+  #floating-nav a span {
+    font-size: 0.7rem !important;
+    pointer-events: none !important;
+    line-height: 1 !important;
   }
 }
 
@@ -418,9 +467,21 @@
   }
   
   /* Make sure hamburger lines are visible */
-  #mobile-menu-btn div div {
+  #mobile-menu-btn > div > div {
     background-color: white !important;
     display: block !important;
+    width: 1.5rem !important;
+    height: 0.125rem !important;
+    border-radius: 9999px !important;
+  }
+  
+  /* Ensure hamburger button is visible and clickable on iPhone */
+  #mobile-menu-btn {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
   }
   
   /* Remove any unwanted spacing between nav and content */
@@ -449,7 +510,7 @@
     line-height: 1.1 !important;
   }
   
-  /* Ensure floating circles are visible and properly styled on mobile */
+  /* iPhone/iOS specific floating circles fix */
   #floating-nav {
     display: flex !important;
     visibility: visible !important;
@@ -458,32 +519,49 @@
     right: 0.75rem !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
+    -webkit-transform: translateY(-50%) !important;
     z-index: 99998 !important;
     flex-direction: column !important;
     gap: 0.75rem !important;
     pointer-events: auto !important;
     -webkit-user-select: none !important;
     user-select: none !important;
+    /* Force hardware acceleration for iOS */
+    -webkit-transform: translate3d(0, -50%, 0) !important;
+    transform: translate3d(0, -50%, 0) !important;
+    will-change: transform !important;
   }
   
   #floating-nav a {
     width: 3rem !important;
     height: 3rem !important;
+    min-width: 3rem !important;
+    min-height: 3rem !important;
+    max-width: 3rem !important;
+    max-height: 3rem !important;
     border-radius: 50% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
     touch-action: manipulation !important;
     -webkit-tap-highlight-color: transparent !important;
     cursor: pointer !important;
     position: relative !important;
     z-index: 1 !important;
+    /* iOS specific fixes */
+    -webkit-appearance: none !important;
+    -webkit-touch-callout: none !important;
+    /* Force circular shape on iOS */
+    border-radius: 1.5rem !important;
+    overflow: hidden !important;
   }
   
   #floating-nav a span {
     font-size: 0.875rem !important;
     pointer-events: none !important;
+    line-height: 1 !important;
+    display: block !important;
   }
 }
 

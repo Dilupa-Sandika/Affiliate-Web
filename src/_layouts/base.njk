@@ -317,9 +317,18 @@
             if (closeBtn) closeBtn.onclick = closeMenu;
             backdrop.onclick = closeMenu;
             
-            // Close on menu link click
+            // Close on menu link click and allow navigation
             menu.querySelectorAll('a').forEach(function(link) {
-                link.onclick = closeMenu;
+                link.addEventListener('click', function(e) {
+                    // Don't prevent default - allow navigation
+                    closeMenu();
+                    // Small delay to ensure menu closes before navigation
+                    setTimeout(() => {
+                        if (this.href && !this.href.includes('#')) {
+                            window.location.href = this.href;
+                        }
+                    }, 100);
+                });
             });
         });
 
@@ -341,33 +350,72 @@
             nav.style.transform = 'translateY(0)';
         });
 
-        // Ensure floating navigation works on mobile
+        // Ensure floating navigation works on mobile - iPhone 8 specific fixes
         const floatingNav = document.getElementById('floating-nav');
         if (floatingNav) {
-            // Force visibility on mobile
+            // Force visibility and positioning on mobile/iPhone
             floatingNav.style.display = 'flex';
             floatingNav.style.visibility = 'visible';
             floatingNav.style.opacity = '1';
             floatingNav.style.pointerEvents = 'auto';
+            floatingNav.style.position = 'fixed';
+            floatingNav.style.zIndex = '99998';
+            floatingNav.style.right = window.innerWidth <= 480 ? '0.5rem' : '0.75rem';
+            floatingNav.style.top = '50%';
+            floatingNav.style.transform = 'translateY(-50%)';
+            floatingNav.style.webkitTransform = 'translate3d(0, -50%, 0)';
+            floatingNav.style.flexDirection = 'column';
+            floatingNav.style.gap = window.innerWidth <= 480 ? '0.4rem' : '0.75rem';
             
-            // Add touch-friendly behavior for mobile
-            floatingNav.querySelectorAll('a').forEach(link => {
+            // Force circular shape on each link
+            floatingNav.querySelectorAll('a').forEach((link, index) => {
+                const size = window.innerWidth <= 480 ? '2.5rem' : '3rem';
+                link.style.width = size;
+                link.style.height = size;
+                link.style.minWidth = size;
+                link.style.minHeight = size;
+                link.style.borderRadius = '50%';
+                link.style.webkitBorderRadius = '50%';
+                link.style.display = 'flex';
+                link.style.alignItems = 'center';
+                link.style.justifyContent = 'center';
                 link.style.touchAction = 'manipulation';
                 link.style.webkitTapHighlightColor = 'transparent';
+                link.style.webkitTouchCallout = 'none';
+                link.style.webkitUserSelect = 'none';
+                link.style.overflow = 'hidden';
                 
-                // Add touch event handling
+                // Add touch event handling for iPhone
                 link.addEventListener('touchstart', function(e) {
-                    this.style.transform = 'scale(0.95)';
+                    this.style.transform = 'scale(0.9)';
+                    this.style.webkitTransform = 'scale(0.9)';
                 }, { passive: true });
                 
                 link.addEventListener('touchend', function(e) {
                     this.style.transform = 'scale(1)';
+                    this.style.webkitTransform = 'scale(1)';
                 }, { passive: true });
                 
                 link.addEventListener('touchcancel', function(e) {
                     this.style.transform = 'scale(1)';
+                    this.style.webkitTransform = 'scale(1)';
                 }, { passive: true });
+                
+                // Ensure span inside has proper styling
+                const span = link.querySelector('span');
+                if (span) {
+                    span.style.fontSize = window.innerWidth <= 480 ? '0.7rem' : '0.875rem';
+                    span.style.lineHeight = '1';
+                    span.style.pointerEvents = 'none';
+                }
             });
+            
+            // Force repaint on iPhone
+            setTimeout(() => {
+                floatingNav.style.display = 'none';
+                floatingNav.offsetHeight; // Trigger reflow
+                floatingNav.style.display = 'flex';
+            }, 100);
         }
 
         // Smooth scroll for anchor links
