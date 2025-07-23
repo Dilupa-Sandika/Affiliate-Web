@@ -45,15 +45,23 @@ class HeroAnimation {
   }
 
   createRenderer() {
+    // Detect mobile devices for performance optimization
+    const isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
     this.renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
+      antialias: !isMobile, // Disable antialiasing on mobile for better performance
       alpha: true,
-      powerPreference: "high-performance"
+      powerPreference: isMobile ? "low-power" : "high-performance"
     });
     this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 2));
+    
+    // Disable shadows on mobile for better performance
+    if (!isMobile) {
+      this.renderer.shadowMap.enabled = true;
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    }
+    
     this.container.appendChild(this.renderer.domElement);
   }
 
@@ -81,7 +89,10 @@ class HeroAnimation {
   }
 
   createSmartDevices() {
-    const deviceTypes = [
+    // Reduce device count on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    
+    const allDeviceTypes = [
       { type: 'camera', color: 0x3b82f6, position: [-20, 15, 0] },
       { type: 'lock', color: 0xeab308, position: [0, 20, -10] },
       { type: 'light', color: 0xec4899, position: [20, 10, 5] },
@@ -89,6 +100,9 @@ class HeroAnimation {
       { type: 'hub', color: 0x8b5cf6, position: [0, 0, 0] },
       { type: 'thermostat', color: 0xf59e0b, position: [15, -15, -5] }
     ];
+    
+    // Use fewer devices on mobile
+    const deviceTypes = isMobile ? allDeviceTypes.slice(0, 4) : allDeviceTypes;
 
     deviceTypes.forEach((device, index) => {
       const geometry = this.getDeviceGeometry(device.type);
@@ -331,10 +345,17 @@ class HeroAnimation {
   }
 }
 
-// Auto-initialize on page load
+// Auto-initialize on page load with error handling
 document.addEventListener('DOMContentLoaded', () => {
   const heroContainer = document.getElementById('hero-3d');
   if (heroContainer) {
-    new HeroAnimation(heroContainer);
+    try {
+      new HeroAnimation(heroContainer);
+    } catch (error) {
+      console.warn('3D animation failed to load, falling back to static background:', error);
+      // Add fallback styling if 3D fails
+      heroContainer.style.background = 'linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #7c3aed 100%)';
+      heroContainer.style.opacity = '0.3';
+    }
   }
 });

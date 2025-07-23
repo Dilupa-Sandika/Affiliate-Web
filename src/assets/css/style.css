@@ -60,7 +60,7 @@
   }
 
   .card-premium {
-    @apply bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-8 border border-neutral-100;
+    @apply bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-6 sm:p-8 border border-neutral-100;
   }
   
   .card-glass {
@@ -80,7 +80,7 @@
   }
 
   .section-padding {
-    @apply py-20 lg:py-32;
+    @apply py-12 sm:py-16 lg:py-20 xl:py-32;
   }
   
   .container-custom {
@@ -161,7 +161,7 @@
   }
 
   .review-card {
-    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-neutral-100 hover:border-primary-200;
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 border border-neutral-100 hover:border-primary-200;
   }
 
   .timeline-item {
@@ -249,6 +249,37 @@
 
 .animation-delay-600 {
   animation-delay: 600ms;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 767px) {
+  .three-container {
+    display: none; /* Hide 3D on very small screens if needed */
+  }
+  
+  .card-premium {
+    transform: none !important; /* Disable hover transforms on mobile */
+  }
+  
+  .service-card {
+    transform: none !important;
+  }
+  
+  /* Ultra-compact mobile navbar */
+  .nav-modern {
+    min-height: auto;
+    padding: 0;
+  }
+  
+  .nav-modern .container-custom {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  /* Ensure mobile menu overlay is above everything */
+  #mobile-menu {
+    z-index: 9999;
+  }
 }
 
 /* Print styles */

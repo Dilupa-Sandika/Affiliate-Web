@@ -33,16 +33,19 @@
     {% endif %}
 </head>
 <body class="bg-neutral-50 antialiased">
+    <!-- Ultra-compact mobile navbar -->
     <nav class="nav-modern" id="main-nav">
         <div class="container-custom">
-            <div class="flex items-center justify-between py-3 lg:py-4">
-                <a href="/" class="flex items-center space-x-3 group">
-                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center text-white font-bold text-lg transform group-hover:scale-110 transition-transform duration-200">
+            <div class="flex items-center justify-between py-1 sm:py-3 lg:py-4">
+                <!-- Logo - responsive sizing -->
+                <a href="/" class="flex items-center space-x-1.5 sm:space-x-3 group">
+                    <div class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold text-xs sm:text-base lg:text-lg transform group-hover:scale-110 transition-transform duration-200">
                         S
                     </div>
-                    <span class="text-white font-display font-bold text-xl">Smart Home Authority</span>
+                    <span class="text-white font-display font-bold text-sm sm:text-lg lg:text-xl">Smart Home Authority</span>
                 </a>
 
+                <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <a href="/" class="nav-item">Home</a>
                     <div class="relative group">
@@ -74,28 +77,37 @@
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
 
-                <button class="lg:hidden text-white" id="mobile-menu-btn">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-white p-0.5 hover:bg-white/10 rounded-lg transition-colors" id="mobile-menu-btn">
+                    <svg class="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
         </div>
-
-        <div class="lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu">
-            <div class="glass-dark mx-4 rounded-2xl p-6 mb-4">
-                <div class="space-y-4">
-                    <a href="/" class="block text-white/90 hover:text-white transition-colors">Home</a>
-                    <a href="/smart-cameras/" class="block text-white/90 hover:text-white transition-colors">Security Cameras</a>
-                    <a href="/smart-locks/" class="block text-white/90 hover:text-white transition-colors">Smart Locks</a>
-                    <a href="/smart-lighting/" class="block text-white/90 hover:text-white transition-colors">Smart Lighting</a>
-                    <a href="/services/" class="block text-white/90 hover:text-white transition-colors">Las Vegas Services</a>
-                    <a href="/contact/" class="block text-white/90 hover:text-white transition-colors">Contact</a>
-                    <a href="/contact/" class="btn-primary text-sm mt-4 inline-block">Get Free Quote</a>
+    </nav>
+    
+    <!-- Separate Mobile Menu Overlay -->
+    <div class="lg:hidden fixed inset-0 z-40 opacity-0 invisible transition-all duration-300" id="mobile-menu">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
+        <div class="relative flex flex-col h-full">
+            <div class="flex-1 flex items-center justify-center">
+                <div class="glass-dark rounded-2xl p-8 mx-4 w-full max-w-sm">
+                    <div class="space-y-6 text-center">
+                        <a href="/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Home</a>
+                        <a href="/smart-cameras/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Security Cameras</a>
+                        <a href="/smart-locks/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Smart Locks</a>
+                        <a href="/smart-lighting/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Smart Lighting</a>
+                        <a href="/services/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Las Vegas Services</a>
+                        <a href="/contact/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Contact</a>
+                        <div class="pt-4 border-t border-white/20">
+                            <a href="/contact/" class="btn-primary text-base px-8 py-3 inline-block">Get Free Quote</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </nav>
+    </div>
 
     <main class="min-h-screen">
         {{ content | safe }}
@@ -209,15 +221,32 @@
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
         
-        mobileMenuBtn.addEventListener('click', () => {
+        function toggleMobileMenu() {
             const isVisible = !mobileMenu.classList.contains('opacity-0');
             
             if (isVisible) {
                 mobileMenu.classList.add('opacity-0', 'invisible');
+                document.body.style.overflow = '';
             } else {
                 mobileMenu.classList.remove('opacity-0', 'invisible');
+                document.body.style.overflow = 'hidden';
             }
+        }
+        
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        
+        // Close menu when clicking backdrop
+        mobileMenuBackdrop.addEventListener('click', toggleMobileMenu);
+        
+        // Close menu when clicking any menu link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                document.body.style.overflow = '';
+            });
         });
 
         // Navbar scroll effect
