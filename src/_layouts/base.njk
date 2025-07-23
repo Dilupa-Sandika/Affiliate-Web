@@ -77,14 +77,19 @@
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
 
-                <!-- Mobile Menu Button -->
-                <button type="button" class="lg:hidden text-white p-3 hover:bg-white/10 rounded-lg transition-colors focus:outline-none" id="mobile-menu-btn">
+                <!-- Mobile Menu Button - Hidden on mobile, visible on tablet -->
+                <button type="button" class="hidden md:block lg:hidden text-white p-3 hover:bg-white/10 rounded-lg transition-colors focus:outline-none" id="mobile-menu-btn">
                     <div class="w-6 h-6 flex flex-col justify-center space-y-1.5">
                         <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
                         <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
                         <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
                     </div>
                 </button>
+                
+                <!-- Mobile-only: Clean hint text -->
+                <div class="md:hidden text-right">
+                    <span class="text-xs text-white/70 font-medium">Use floating menu →</span>
+                </div>
             </div>
         </div>
     </nav>
@@ -115,8 +120,8 @@
         </a>
     </div>
     
-    <!-- Right-to-Left Sliding Mobile Menu -->
-    <div class="fixed inset-0 lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
+    <!-- Right-to-Left Sliding Mobile Menu - Only for tablets (768px-1024px) -->
+    <div class="fixed inset-0 hidden md:block lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300" id="mobile-menu-backdrop"></div>
         
@@ -279,8 +284,13 @@
     </footer>
 
     <script>
-        // Right-to-left sliding mobile menu
+        // Tablet menu (hamburger menu is hidden on mobile phones)
         window.addEventListener('load', function() {
+            // Only initialize hamburger menu on tablets and desktop (768px+)
+            if (window.innerWidth < 768) {
+                return; // Skip hamburger menu on mobile phones - use floating circles instead
+            }
+            
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
             const panel = document.getElementById('mobile-menu-panel');
@@ -288,8 +298,7 @@
             const closeBtn = document.getElementById('mobile-menu-close');
             
             if (!btn || !menu || !panel || !backdrop) {
-                console.error('Mobile menu elements missing');
-                return;
+                return; // Elements not available or needed on mobile
             }
             
             function openMenu() {
