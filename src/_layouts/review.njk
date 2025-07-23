@@ -2,62 +2,147 @@
 layout: base.njk
 ---
 
-<div class="container">
-    <article class="section">
-        <h1 class="text-center mb-4">{{ title }}</h1>
+<!-- Hero Section with Product Image -->
+<section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+    <!-- Animated Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="10" cy="10" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] animate-pulse"></div>
         
-        {% if featuredImage %}
-        <div class="text-center mb-4">
-            <img src="{{ featuredImage }}" alt="{{ title }}" style="max-width: 100%; height: auto; border-radius: 0.5rem;">
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-float"></div>
+        <div class="absolute top-40 right-20 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl animate-float-delayed"></div>
+        <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-blue-500/15 rounded-full blur-xl animate-float-slow"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
+        <div class="backdrop-blur-lg bg-white/10 rounded-3xl p-8 border border-white/20 shadow-2xl">
+            {% if featuredImage %}
+            <div class="mb-8">
+                <img src="{{ featuredImage }}" alt="{{ title }}" 
+                     class="w-full max-w-md mx-auto rounded-2xl shadow-2xl border border-white/20">
+            </div>
+            {% endif %}
+            
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                {{ title }}
+            </h1>
+            
+            <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+                {{ description }}
+            </p>
+            
+            {% if amazonLink %}
+            <a href="{{ amazonLink }}" 
+               class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-white/20" 
+               target="_blank" rel="nofollow">
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                </svg>
+                Buy on Amazon
+            </a>
+            {% endif %}
         </div>
-        {% endif %}
-        
-        <div class="grid grid-2 mb-4">
-            <div>
-                <h3 style="color: var(--success-color);">✅ Pros</h3>
-                {% if pros %}
-                <ul>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="max-w-6xl mx-auto px-6 py-16">
+    <!-- Pros and Cons Section -->
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+        <!-- Pros -->
+        <div class="backdrop-blur-lg bg-white/10 rounded-3xl p-8 border border-white/20 shadow-xl">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-green-500/20 rounded-2xl flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white">Pros</h3>
+            </div>
+            {% if pros %}
+            <ul class="space-y-3">
                 {% for pro in pros %}
-                    <li>{{ pro }}</li>
+                <li class="flex items-start text-gray-200">
+                    <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                    {{ pro }}
+                </li>
                 {% endfor %}
-                </ul>
+            </ul>
+            {% endif %}
+        </div>
+        
+        <!-- Cons -->
+        <div class="backdrop-blur-lg bg-white/10 rounded-3xl p-8 border border-white/20 shadow-xl">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-red-500/20 rounded-2xl flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-red-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white">Cons</h3>
+            </div>
+            {% if cons %}
+            <ul class="space-y-3">
+                {% for con in cons %}
+                <li class="flex items-start text-gray-200">
+                    <svg class="w-5 h-5 text-red-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                    {{ con }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Review Content -->
+    <article class="backdrop-blur-lg bg-white/10 rounded-3xl p-8 md:p-12 border border-white/20 shadow-xl mb-16">
+        <div class="prose prose-lg prose-invert max-w-none">
+            {{ content | safe }}
+        </div>
+    </article>
+    
+    <!-- Author and Date Info -->
+    <div class="backdrop-blur-lg bg-white/10 rounded-3xl p-8 border border-white/20 shadow-xl">
+        <div class="flex flex-wrap items-center justify-between text-gray-300">
+            <div class="flex items-center space-x-6 mb-4 md:mb-0">
+                {% if author %}
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                    <span class="font-medium">{{ author }}</span>
+                </div>
+                {% endif %}
+                
+                {% if date %}
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                    </svg>
+                    <span>{{ date | date("LLLL dd, yyyy") }}</span>
+                </div>
                 {% endif %}
             </div>
             
-            <div>
-                <h3 style="color: var(--danger-color);">❌ Cons</h3>
-                {% if cons %}
-                <ul>
-                {% for con in cons %}
-                    <li>{{ con }}</li>
-                {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-        </div>
-        
-        {% if amazonLink %}
-        <div class="text-center mb-4">
-            <a href="{{ amazonLink }}" class="btn btn-primary" target="_blank" rel="nofollow">
-                🛒 Buy on Amazon
-            </a>
-        </div>
-        {% endif %}
-        
-        <div class="content">
-            {{ content | safe }}
-        </div>
-        
-        <div class="mt-5" style="border-top: 1px solid var(--border-color); padding-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
-            {% if author %}
-            <p><strong>Author:</strong> {{ author }}</p>
-            {% endif %}
-            {% if date %}
-            <p><strong>Published:</strong> {{ date | date("LLLL dd, yyyy") }}</p>
-            {% endif %}
             {% if lastModified %}
-            <p><strong>Last Updated:</strong> {{ lastModified | date("LLLL dd, yyyy") }}</p>
+            <div class="flex items-center text-sm">
+                <svg class="w-4 h-4 text-gray-400 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                Last updated: {{ lastModified | date("LLLL dd, yyyy") }}
+            </div>
             {% endif %}
         </div>
-    </article>
+    </div>
 </div>
+
+<!-- Structured Data -->
+{% if structuredData %}
+<script type="application/ld+json">
+{{ structuredData | safe }}
+</script>
+{% endif %}
