@@ -20,6 +20,19 @@
     margin: 0;
     padding: 0;
   }
+  
+  /* Ensure hero sections have proper spacing on all devices */
+  section[class*="min-h-"] {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  @media (min-width: 1024px) {
+    section[class*="min-h-"] {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
 
   ::-webkit-scrollbar {
     width: 8px;
@@ -305,32 +318,24 @@
     padding-top: 0 !important;
   }
   
-  /* Override any remaining full-screen heroes on mobile */
-  section[class*="min-h-screen"] {
-    min-height: 80vh !important;
+  /* Increase hero section size for mobile to fit all content */
+  section[class*="min-h-screen"],
+  section[class*="min-h-[80vh]"] {
+    min-height: 100vh !important;
     padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    padding-bottom: 3rem !important;
   }
   
   /* Mobile hero content adjustments */
   section[class*="min-h-"] .container-custom {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
   
   /* Ensure hero text is readable on mobile */
   .heading-xl {
     font-size: 2rem !important;
     line-height: 1.2 !important;
-  }
-  
-  /* Mobile hero text spacing optimizations */
-  section[class*="min-h-"] h1 {
-    margin-bottom: 1rem !important;
-  }
-  
-  section[class*="min-h-"] p {
-    margin-bottom: 1.5rem !important;
   }
 }
 
