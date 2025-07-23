@@ -78,11 +78,11 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button type="button" class="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors focus:outline-none" id="mobile-menu-btn">
-                    <div class="w-6 h-6 flex flex-col justify-center space-y-1">
-                        <div class="w-6 h-0.5 bg-white rounded-full"></div>
-                        <div class="w-6 h-0.5 bg-white rounded-full"></div>
-                        <div class="w-6 h-0.5 bg-white rounded-full"></div>
+                <button type="button" class="lg:hidden text-white p-3 hover:bg-white/10 rounded-lg transition-colors focus:outline-none" id="mobile-menu-btn">
+                    <div class="w-6 h-6 flex flex-col justify-center space-y-1.5">
+                        <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                        <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                        <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
                     </div>
                 </button>
             </div>
@@ -93,45 +93,82 @@
         {{ content | safe }}
     </main>
     
-    <!-- Floating Navigation Circles (Alternative Option) -->
-    <div class="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden lg:flex flex-col space-y-3" id="floating-nav">
-        <a href="/" class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Home">
-            🏠
+    <!-- Fixed Floating Navigation Circles - Always visible in same screen position -->
+    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4" style="z-index: 9998;" id="floating-nav">
+        <a href="/" class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Home">
+            <span class="text-xl">🏠</span>
         </a>
-        <a href="/smart-cameras/" class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Security Cameras">
-            📹
+        <a href="/smart-cameras/" class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Security Cameras">
+            <span class="text-xl">📹</span>
         </a>
-        <a href="/smart-locks/" class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Smart Locks">
-            🔒
+        <a href="/smart-locks/" class="w-14 h-14 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Smart Locks">
+            <span class="text-xl">🔒</span>
         </a>
-        <a href="/smart-lighting/" class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Smart Lighting">
-            💡
+        <a href="/smart-lighting/" class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Smart Lighting">
+            <span class="text-xl">💡</span>
         </a>
-        <a href="/services/" class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Las Vegas Services">
-            🔧
+        <a href="/services/" class="w-14 h-14 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Las Vegas Services">
+            <span class="text-xl">🔧</span>
         </a>
-        <a href="/contact/" class="w-12 h-12 bg-gradient-to-br from-slate-500 to-gray-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Contact">
-            📞
+        <a href="/contact/" class="w-14 h-14 bg-gradient-to-br from-slate-500 to-gray-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Contact">
+            <span class="text-xl">📞</span>
         </a>
     </div>
     
-    <!-- Mobile Menu Overlay - Positioned AFTER main content to be true overlay -->
-    <div class="fixed inset-0 opacity-0 invisible transition-all duration-300 lg:hidden" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
-        <div class="relative flex flex-col h-full">
-            <div class="flex-1 flex items-center justify-center">
-                <div class="glass-dark rounded-2xl p-8 mx-4 w-full max-w-sm">
-                    <div class="space-y-6 text-center">
-                        <a href="/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Home</a>
-                        <a href="/smart-cameras/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Security Cameras</a>
-                        <a href="/smart-locks/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Smart Locks</a>
-                        <a href="/smart-lighting/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Smart Lighting</a>
-                        <a href="/services/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Las Vegas Services</a>
-                        <a href="/contact/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Contact</a>
-                        <div class="pt-4 border-t border-white/20">
-                            <a href="/contact/" class="btn-primary text-base px-8 py-3 inline-block">Get Free Quote</a>
-                        </div>
+    <!-- Right-to-Left Sliding Mobile Menu -->
+    <div class="fixed inset-0 lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300" id="mobile-menu-backdrop"></div>
+        
+        <!-- Sliding Menu Panel -->
+        <div class="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300" id="mobile-menu-panel">
+            <!-- Menu Header -->
+            <div class="flex items-center justify-between p-6 border-b border-white/10">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                        S
                     </div>
+                    <span class="text-white font-display font-bold text-lg">Menu</span>
+                </div>
+                <button type="button" class="text-white/60 hover:text-white p-2" id="mobile-menu-close">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Menu Items -->
+            <div class="p-6 space-y-4">
+                <a href="/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
+                    <span class="w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center text-lg">🏠</span>
+                    <span class="font-medium text-lg">Home</span>
+                </a>
+                <a href="/smart-cameras/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
+                    <span class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center text-lg">📹</span>
+                    <span class="font-medium text-lg">Security Cameras</span>
+                </a>
+                <a href="/smart-locks/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
+                    <span class="w-8 h-8 bg-yellow-500/20 rounded-lg flex items-center justify-center text-lg">🔒</span>
+                    <span class="font-medium text-lg">Smart Locks</span>
+                </a>
+                <a href="/smart-lighting/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
+                    <span class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center text-lg">💡</span>
+                    <span class="font-medium text-lg">Smart Lighting</span>
+                </a>
+                <a href="/services/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
+                    <span class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center text-lg">🔧</span>
+                    <span class="font-medium text-lg">Las Vegas Services</span>
+                </a>
+                <a href="/contact/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
+                    <span class="w-8 h-8 bg-slate-500/20 rounded-lg flex items-center justify-center text-lg">📞</span>
+                    <span class="font-medium text-lg">Contact</span>
+                </a>
+                
+                <!-- CTA Button -->
+                <div class="pt-6 border-t border-white/10">
+                    <a href="/contact/" class="btn-primary w-full text-center py-4 text-lg font-semibold">
+                        Get Free Quote
+                    </a>
                 </div>
             </div>
         </div>
@@ -242,46 +279,47 @@
     </footer>
 
     <script>
-        // Ultra-simple mobile menu toggle
+        // Right-to-left sliding mobile menu
         window.addEventListener('load', function() {
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
+            const panel = document.getElementById('mobile-menu-panel');
             const backdrop = document.getElementById('mobile-menu-backdrop');
+            const closeBtn = document.getElementById('mobile-menu-close');
             
-            if (!btn || !menu || !backdrop) {
+            if (!btn || !menu || !panel || !backdrop) {
                 console.error('Mobile menu elements missing');
                 return;
             }
             
-            // Open/close menu
-            btn.onclick = function() {
-                if (menu.classList.contains('opacity-0')) {
-                    // Open menu
-                    menu.classList.remove('opacity-0', 'invisible');
-                    menu.style.pointerEvents = 'auto';
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    // Close menu
+            function openMenu() {
+                menu.classList.remove('opacity-0', 'invisible');
+                menu.style.pointerEvents = 'auto';
+                setTimeout(() => {
+                    panel.classList.remove('translate-x-full');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeMenu() {
+                panel.classList.add('translate-x-full');
+                setTimeout(() => {
                     menu.classList.add('opacity-0', 'invisible');
                     menu.style.pointerEvents = 'none';
                     document.body.style.overflow = '';
-                }
-            };
+                }, 300);
+            }
             
-            // Close on backdrop click
-            backdrop.onclick = function() {
-                menu.classList.add('opacity-0', 'invisible');
-                menu.style.pointerEvents = 'none';
-                document.body.style.overflow = '';
-            };
+            // Open menu
+            btn.onclick = openMenu;
+            
+            // Close menu handlers
+            if (closeBtn) closeBtn.onclick = closeMenu;
+            backdrop.onclick = closeMenu;
             
             // Close on menu link click
             menu.querySelectorAll('a').forEach(function(link) {
-                link.onclick = function() {
-                    menu.classList.add('opacity-0', 'invisible');
-                    menu.style.pointerEvents = 'none';
-                    document.body.style.overflow = '';
-                };
+                link.onclick = closeMenu;
             });
         });
 

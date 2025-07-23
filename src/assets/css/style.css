@@ -272,6 +272,39 @@
   animation-delay: 600ms;
 }
 
+/* Floating circles - always visible at fixed screen position */
+#floating-nav {
+  position: fixed !important;
+  right: 1.5rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 9998 !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure floating circles stay fixed on all screen sizes */
+@media (max-width: 1024px) {
+  #floating-nav {
+    right: 1rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  #floating-nav {
+    right: 0.75rem !important;
+  }
+  
+  #floating-nav .flex {
+    gap: 0.75rem !important;
+  }
+  
+  #floating-nav a {
+    width: 3rem !important;
+    height: 3rem !important;
+    font-size: 1rem !important;
+  }
+}
+
 /* Mobile-specific optimizations */
 @media (max-width: 767px) {
   .three-container {
@@ -322,7 +355,7 @@
   }
   
   /* Make sure hamburger lines are visible */
-  #mobile-menu-btn span {
+  #mobile-menu-btn div div {
     background-color: white !important;
     display: block !important;
   }
