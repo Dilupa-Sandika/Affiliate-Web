@@ -284,9 +284,19 @@
     padding-bottom: 0;
   }
   
-  /* Ensure mobile menu overlay is above everything */
+  /* Ensure mobile menu overlay is above everything and doesn't affect layout */
   #mobile-menu {
     z-index: 9999;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+  }
+  
+  /* When menu is closed, make it completely non-interactive */
+  #mobile-menu.opacity-0 {
+    pointer-events: none !important;
   }
   
   /* Remove any unwanted spacing between nav and content */

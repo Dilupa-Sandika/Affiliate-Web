@@ -87,12 +87,16 @@
         </div>
     </nav>
     
-    <!-- Separate Mobile Menu Overlay -->
-    <div class="lg:hidden fixed inset-0 z-40 opacity-0 invisible transition-all duration-300" id="mobile-menu">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
-        <div class="relative flex flex-col h-full">
+    <main>
+        {{ content | safe }}
+    </main>
+    
+    <!-- Mobile Menu Overlay - Positioned AFTER main content to be true overlay -->
+    <div class="lg:hidden fixed inset-0 z-[9999] opacity-0 invisible transition-all duration-300 pointer-events-none" id="mobile-menu">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm pointer-events-auto" id="mobile-menu-backdrop"></div>
+        <div class="relative flex flex-col h-full pointer-events-none">
             <div class="flex-1 flex items-center justify-center">
-                <div class="glass-dark rounded-2xl p-8 mx-4 w-full max-w-sm">
+                <div class="glass-dark rounded-2xl p-8 mx-4 w-full max-w-sm pointer-events-auto">
                     <div class="space-y-6 text-center">
                         <a href="/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Home</a>
                         <a href="/smart-cameras/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Security Cameras</a>
@@ -108,10 +112,6 @@
             </div>
         </div>
     </div>
-
-    <main>
-        {{ content | safe }}
-    </main>
 
     <footer class="bg-neutral-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
@@ -227,10 +227,10 @@
             const isVisible = !mobileMenu.classList.contains('opacity-0');
             
             if (isVisible) {
-                mobileMenu.classList.add('opacity-0', 'invisible');
+                mobileMenu.classList.add('opacity-0', 'invisible', 'pointer-events-none');
                 document.body.style.overflow = '';
             } else {
-                mobileMenu.classList.remove('opacity-0', 'invisible');
+                mobileMenu.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
                 document.body.style.overflow = 'hidden';
             }
         }
@@ -244,7 +244,7 @@
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('opacity-0', 'invisible');
+                mobileMenu.classList.add('opacity-0', 'invisible', 'pointer-events-none');
                 document.body.style.overflow = '';
             });
         });
