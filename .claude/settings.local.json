@@ -15,7 +15,11 @@
       "Bash(npx tailwindcss:*)",
       "Bash(node build-css-manual.js)",
       "Bash(rm:*)",
-      "Bash(touch:*)"
+      "Bash(touch:*)",
+      "Bash(ls:*)",
+      "Bash(npx eleventy:*)",
+      "Bash(grep:*)",
+      "Bash(curl:*)"
     ],
     "deny": []
   }
