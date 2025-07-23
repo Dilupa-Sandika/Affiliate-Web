@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A modern, performance-optimized website built with Eleventy (11ty) for smart home product reviews and Las Vegas installation services.",
   "scripts": {
-    "watch:css": "npx postcss ./src/assets/css/style.css -o ./_site/assets/css/style.css --watch",
+    "watch:css": "postcss ./src/assets/css/style.css -o ./_site/assets/css/style.css --watch",
     "watch:eleventy": "eleventy --serve",
-    "build:css": "node build-css-manual.js",
+    "build:css": "postcss ./src/assets/css/style.css -o ./_site/assets/css/style.css --env production",
     "build:eleventy": "eleventy",
     "start": "npm-run-all --parallel watch:*",
     "build": "npm-run-all build:css build:eleventy"

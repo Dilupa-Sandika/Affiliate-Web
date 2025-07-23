@@ -14,7 +14,8 @@
       "Bash(npx postcss:*)",
       "Bash(npx tailwindcss:*)",
       "Bash(node build-css-manual.js)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(touch:*)"
     ],
     "deny": []
   }
