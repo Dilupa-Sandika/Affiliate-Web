@@ -316,6 +316,15 @@
   #mobile-menu-btn {
     z-index: 999 !important;
     position: relative !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  
+  /* Make sure hamburger lines are visible */
+  #mobile-menu-btn span {
+    background-color: white !important;
+    display: block !important;
   }
   
   /* Remove any unwanted spacing between nav and content */

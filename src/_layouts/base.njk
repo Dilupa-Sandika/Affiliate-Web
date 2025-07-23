@@ -78,10 +78,13 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button class="lg:hidden text-white p-0.5 hover:bg-white/10 rounded-lg transition-colors" id="mobile-menu-btn">
-                    <svg class="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+                <button type="button" class="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-white/20" id="mobile-menu-btn">
+                    <span class="sr-only">Open menu</span>
+                    <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1">
+                        <span class="block w-5 h-0.5 bg-white"></span>
+                        <span class="block w-5 h-0.5 bg-white"></span>
+                        <span class="block w-5 h-0.5 bg-white"></span>
+                    </div>
                 </button>
             </div>
         </div>
@@ -217,58 +220,87 @@
         </div>
     </footer>
 
-    <script type="module">
-        // Mobile menu toggle - Enhanced version
+    <script>
+        // Simple mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up mobile menu...');
+            
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
             
-            // Check if elements exist
+            console.log('Mobile menu button:', mobileMenuBtn);
+            console.log('Mobile menu:', mobileMenu);
+            console.log('Mobile menu backdrop:', mobileMenuBackdrop);
+            
             if (!mobileMenuBtn || !mobileMenu || !mobileMenuBackdrop) {
-                console.error('Mobile menu elements not found');
+                console.error('Mobile menu elements not found!');
                 return;
             }
             
-            function toggleMobileMenu() {
-                const isVisible = !mobileMenu.classList.contains('opacity-0');
+            function openMenu() {
+                console.log('Opening mobile menu...');
+                mobileMenu.classList.remove('opacity-0', 'invisible');
+                mobileMenu.style.pointerEvents = 'auto';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeMenu() {
+                console.log('Closing mobile menu...');
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                mobileMenu.style.pointerEvents = 'none';
+                document.body.style.overflow = '';
+            }
+            
+            function toggleMenu() {
+                const isOpen = !mobileMenu.classList.contains('opacity-0');
+                console.log('Menu is currently:', isOpen ? 'open' : 'closed');
                 
-                if (isVisible) {
-                    // Close menu
-                    mobileMenu.classList.add('opacity-0', 'invisible');
-                    mobileMenu.style.pointerEvents = 'none';
-                    document.body.style.overflow = '';
+                if (isOpen) {
+                    closeMenu();
                 } else {
-                    // Open menu
-                    mobileMenu.classList.remove('opacity-0', 'invisible');
-                    mobileMenu.style.pointerEvents = 'auto';
-                    document.body.style.overflow = 'hidden';
+                    openMenu();
                 }
             }
             
-            // Add click event to hamburger button
-            mobileMenuBtn.addEventListener('click', function(e) {
+            // Hamburger button click - multiple event types for better mobile support
+            function handleButtonClick(e) {
+                console.log('Hamburger button activated!', e.type);
                 e.preventDefault();
                 e.stopPropagation();
-                toggleMobileMenu();
+                toggleMenu();
+            }
+            
+            mobileMenuBtn.addEventListener('click', handleButtonClick);
+            mobileMenuBtn.addEventListener('touchstart', handleButtonClick);
+            
+            // Also try with the entire button area
+            mobileMenuBtn.addEventListener('mousedown', function(e) {
+                console.log('Mouse down on hamburger button');
             });
             
-            // Close menu when clicking backdrop
+            mobileMenuBtn.addEventListener('touchend', function(e) {
+                console.log('Touch end on hamburger button');
+            });
+            
+            // Backdrop click
             mobileMenuBackdrop.addEventListener('click', function(e) {
+                console.log('Backdrop clicked!');
                 e.preventDefault();
                 e.stopPropagation();
-                toggleMobileMenu();
+                closeMenu();
             });
             
-            // Close menu when clicking any menu link
-            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-            mobileMenuLinks.forEach(link => {
+            // Menu links click
+            const menuLinks = mobileMenu.querySelectorAll('a');
+            menuLinks.forEach((link, index) => {
                 link.addEventListener('click', function() {
-                    mobileMenu.classList.add('opacity-0', 'invisible');
-                    mobileMenu.style.pointerEvents = 'none';
-                    document.body.style.overflow = '';
+                    console.log('Menu link clicked:', index);
+                    closeMenu();
                 });
             });
+            
+            console.log('Mobile menu setup complete!');
         });
 
         // Navbar scroll effect
