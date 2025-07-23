@@ -94,7 +94,7 @@
     </main>
     
     <!-- Fixed Floating Navigation Circles - Always visible in same screen position -->
-    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4" style="z-index: 9998; pointer-events: auto;" id="floating-nav">
+    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4" style="z-index: 99998; pointer-events: auto;" id="floating-nav">
         <a href="/" class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Home">
             <span class="text-xl">🏠</span>
         </a>
@@ -340,6 +340,35 @@
             // Keep navbar always visible (no hiding)
             nav.style.transform = 'translateY(0)';
         });
+
+        // Ensure floating navigation works on mobile
+        const floatingNav = document.getElementById('floating-nav');
+        if (floatingNav) {
+            // Force visibility on mobile
+            floatingNav.style.display = 'flex';
+            floatingNav.style.visibility = 'visible';
+            floatingNav.style.opacity = '1';
+            floatingNav.style.pointerEvents = 'auto';
+            
+            // Add touch-friendly behavior for mobile
+            floatingNav.querySelectorAll('a').forEach(link => {
+                link.style.touchAction = 'manipulation';
+                link.style.webkitTapHighlightColor = 'transparent';
+                
+                // Add touch event handling
+                link.addEventListener('touchstart', function(e) {
+                    this.style.transform = 'scale(0.95)';
+                }, { passive: true });
+                
+                link.addEventListener('touchend', function(e) {
+                    this.style.transform = 'scale(1)';
+                }, { passive: true });
+                
+                link.addEventListener('touchcancel', function(e) {
+                    this.style.transform = 'scale(1)';
+                }, { passive: true });
+            });
+        }
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
