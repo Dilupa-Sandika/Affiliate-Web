@@ -272,7 +272,7 @@
   animation-delay: 600ms;
 }
 
-/* Floating circles - always visible at fixed screen position */
+/* Floating circles - always visible at fixed screen position on all devices */
 #floating-nav {
   position: fixed !important;
   right: 1.5rem !important;
@@ -280,6 +280,18 @@
   transform: translateY(-50%) !important;
   z-index: 9998 !important;
   pointer-events: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#floating-nav a {
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 /* Ensure floating circles stay fixed on all screen sizes */
@@ -289,24 +301,57 @@
   }
 }
 
+/* Small mobile screens */
 @media (max-width: 640px) {
   #floating-nav {
     right: 0.75rem !important;
-  }
-  
-  #floating-nav .flex {
     gap: 0.75rem !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
   }
   
   #floating-nav a {
     width: 3rem !important;
     height: 3rem !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     font-size: 1rem !important;
+  }
+  
+  #floating-nav a span {
+    font-size: 1rem !important;
+  }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 480px) {
+  #floating-nav {
+    right: 0.5rem !important;
+    gap: 0.5rem !important;
+  }
+  
+  #floating-nav a {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+  }
+  
+  #floating-nav a span {
+    font-size: 0.875rem !important;
   }
 }
 
 /* Mobile-specific optimizations */
 @media (max-width: 767px) {
+  /* Force floating navigation to be visible on mobile */
+  body #floating-nav {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
   .three-container {
     display: none; /* Hide 3D on very small screens if needed */
   }
@@ -384,6 +429,35 @@
   .heading-xl {
     font-size: 3rem !important; /* 48px - much larger than before */
     line-height: 1.1 !important;
+  }
+  
+  /* Ensure floating circles are visible and properly styled on mobile */
+  #floating-nav {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    right: 0.75rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 9998 !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    pointer-events: auto !important;
+  }
+  
+  #floating-nav a {
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  #floating-nav a span {
+    font-size: 0.875rem !important;
   }
 }
 
