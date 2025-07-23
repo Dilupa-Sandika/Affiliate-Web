@@ -92,11 +92,11 @@
     </main>
     
     <!-- Mobile Menu Overlay - Positioned AFTER main content to be true overlay -->
-    <div class="fixed inset-0 z-[99999] opacity-0 invisible transition-all duration-300 lg:hidden" id="mobile-menu" style="pointer-events: none;">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop" style="pointer-events: auto;"></div>
+    <div class="fixed inset-0 opacity-0 invisible transition-all duration-300 lg:hidden" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
         <div class="relative flex flex-col h-full">
-            <div class="flex-1 flex items-center justify-center" style="pointer-events: none;">
-                <div class="glass-dark rounded-2xl p-8 mx-4 w-full max-w-sm" style="pointer-events: auto;">
+            <div class="flex-1 flex items-center justify-center">
+                <div class="glass-dark rounded-2xl p-8 mx-4 w-full max-w-sm">
                     <div class="space-y-6 text-center">
                         <a href="/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Home</a>
                         <a href="/smart-cameras/" class="block text-white/90 hover:text-white transition-colors text-lg font-medium">Security Cameras</a>
@@ -218,39 +218,56 @@
     </footer>
 
     <script type="module">
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
-        
-        function toggleMobileMenu() {
-            const isVisible = !mobileMenu.classList.contains('opacity-0');
+        // Mobile menu toggle - Enhanced version
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
             
-            if (isVisible) {
-                // Close menu
-                mobileMenu.classList.add('opacity-0', 'invisible');
-                mobileMenu.style.pointerEvents = 'none';
-                document.body.style.overflow = '';
-            } else {
-                // Open menu
-                mobileMenu.classList.remove('opacity-0', 'invisible');
-                mobileMenu.style.pointerEvents = 'auto';
-                document.body.style.overflow = 'hidden';
+            // Check if elements exist
+            if (!mobileMenuBtn || !mobileMenu || !mobileMenuBackdrop) {
+                console.error('Mobile menu elements not found');
+                return;
             }
-        }
-        
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        
-        // Close menu when clicking backdrop
-        mobileMenuBackdrop.addEventListener('click', toggleMobileMenu);
-        
-        // Close menu when clicking any menu link
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('opacity-0', 'invisible');
-                mobileMenu.style.pointerEvents = 'none';
-                document.body.style.overflow = '';
+            
+            function toggleMobileMenu() {
+                const isVisible = !mobileMenu.classList.contains('opacity-0');
+                
+                if (isVisible) {
+                    // Close menu
+                    mobileMenu.classList.add('opacity-0', 'invisible');
+                    mobileMenu.style.pointerEvents = 'none';
+                    document.body.style.overflow = '';
+                } else {
+                    // Open menu
+                    mobileMenu.classList.remove('opacity-0', 'invisible');
+                    mobileMenu.style.pointerEvents = 'auto';
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            // Add click event to hamburger button
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMobileMenu();
+            });
+            
+            // Close menu when clicking backdrop
+            mobileMenuBackdrop.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMobileMenu();
+            });
+            
+            // Close menu when clicking any menu link
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('opacity-0', 'invisible');
+                    mobileMenu.style.pointerEvents = 'none';
+                    document.body.style.overflow = '';
+                });
             });
         });
 
