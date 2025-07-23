@@ -1,5 +1,5 @@
-import * as THREE from 'three';
-import { gsap } from 'gsap';
+import * as THREE from '/assets/js/three.module.js';
+import { gsap } from '/assets/js/gsap.min.js';
 
 class ProductShowcase {
   constructor(container, productType = 'smartlock') {
