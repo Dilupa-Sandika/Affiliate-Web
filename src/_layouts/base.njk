@@ -6,54 +6,43 @@
     <title>{% if title %}{{ title }} | {% endif %}Smart Home Authority & Las Vegas Installation Services</title>
     <meta name="description" content="{{ description or 'Expert smart home device reviews and professional installation services in Las Vegas. Find the best smart cameras, locks, and lighting solutions.' }}">
     
-    <!-- Open Graph -->
     <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}Smart Home Authority">
     <meta property="og:description" content="{{ description or 'Expert smart home device reviews and professional installation services in Las Vegas.' }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ page.url | url | absoluteUrl(metadata.url) }}">
     <meta property="og:image" content="{{ metadata.url }}/assets/images/og-image.jpg">
     
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% if title %}{{ title }} | {% endif %}Smart Home Authority">
     <meta name="twitter:description" content="{{ description or 'Expert smart home device reviews and professional installation services in Las Vegas.' }}">
     <meta name="twitter:image" content="{{ metadata.url }}/assets/images/og-image.jpg">
     
-    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
     
-    <!-- Theme Color -->
     <meta name="theme-color" content="#3b82f6">
     
-    <!-- Structured Data -->
     {% include "structured-data.njk" %}
     {% if structuredData %}
     <script type="application/ld+json">{{ structuredData | safe }}</script>
     {% endif %}
 </head>
 <body class="bg-neutral-50 antialiased">
-    <!-- Modern Navigation -->
     <nav class="nav-modern" id="main-nav">
         <div class="container-custom">
-            <!-- CHANGED: Much smaller padding and logo for mobile -->
-            <div class="flex items-center justify-between py-1 sm:py-2 lg:py-4">
-                <!-- Logo -->
-                <a href="/" class="flex items-center space-x-2 sm:space-x-3 group">
-                    <div class="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-lg transform group-hover:scale-110 transition-transform duration-200">
+            <div class="flex items-center justify-between py-3 lg:py-4">
+                <a href="/" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center text-white font-bold text-lg transform group-hover:scale-110 transition-transform duration-200">
                         S
                     </div>
-                    <span class="text-white font-display font-bold text-base sm:text-lg lg:text-xl">Smart Home Authority</span>
+                    <span class="text-white font-display font-bold text-xl">Smart Home Authority</span>
                 </a>
 
-                <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <a href="/" class="nav-item">Home</a>
                     <div class="relative group">
@@ -85,16 +74,14 @@
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
 
-                <!-- Mobile Menu Button -->
-                <button class="lg:hidden text-white p-1" id="mobile-menu-btn">
-                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button class="lg:hidden text-white" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Menu -->
         <div class="lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu">
             <div class="glass-dark mx-4 rounded-2xl p-6 mb-4">
                 <div class="space-y-4">
@@ -114,9 +101,7 @@
         {{ content | safe }}
     </main>
 
-    <!-- Modern Footer -->
     <footer class="bg-neutral-900 text-white relative overflow-hidden">
-        <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500 rounded-full filter blur-3xl"></div>
             <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-500 rounded-full filter blur-3xl"></div>
@@ -124,7 +109,6 @@
 
         <div class="relative container-custom section-padding">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Company Info -->
                 <div class="lg:col-span-1">
                     <div class="flex items-center space-x-3 mb-6">
                         <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
@@ -148,7 +132,6 @@
                     </div>
                 </div>
 
-                <!-- Smart Home Reviews -->
                 <div>
                     <h4 class="font-display font-semibold text-lg mb-6 text-gradient">Smart Home Reviews</h4>
                     <ul class="space-y-3">
@@ -167,7 +150,6 @@
                     </ul>
                 </div>
 
-                <!-- Las Vegas Services -->
                 <div>
                     <h4 class="font-display font-semibold text-lg mb-6 text-gradient">Las Vegas Services</h4>
                     <ul class="space-y-3">
@@ -186,7 +168,6 @@
                     </ul>
                 </div>
 
-                <!-- Service Areas -->
                 <div>
                     <h4 class="font-display font-semibold text-lg mb-6 text-gradient">Service Areas</h4>
                     <ul class="space-y-3">
@@ -211,7 +192,6 @@
                 </div>
             </div>
 
-            <!-- Bottom Bar -->
             <div class="border-t border-neutral-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                 <p class="text-neutral-400 text-sm">
                     &copy; {{ "now" | date("yyyy") }} Smart Home Authority. All rights reserved. As an Amazon Associate, we earn from qualifying purchases.
@@ -225,7 +205,6 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script type="module">
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -244,7 +223,7 @@
         // Navbar scroll effect
         const nav = document.getElementById('main-nav');
         let lastScrollY = window.scrollY;
-
+        
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
             
@@ -281,12 +260,10 @@
         });
     </script>
 
-    <!-- Three.js and animations -->
     {% if page.url == "/" %}
     <script type="module" src="/assets/js/hero-animation.js"></script>
     {% endif %}
     
-    <!-- Load product showcases if present -->
     <script type="module" src="/assets/js/product-showcase.js"></script>
 </body>
 </html>
