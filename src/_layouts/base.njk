@@ -78,12 +78,11 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button type="button" class="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-white/20" id="mobile-menu-btn">
-                    <span class="sr-only">Open menu</span>
-                    <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1">
-                        <span class="block w-5 h-0.5 bg-white"></span>
-                        <span class="block w-5 h-0.5 bg-white"></span>
-                        <span class="block w-5 h-0.5 bg-white"></span>
+                <button type="button" class="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors focus:outline-none" id="mobile-menu-btn">
+                    <div class="w-6 h-6 flex flex-col justify-center space-y-1">
+                        <div class="w-6 h-0.5 bg-white rounded-full"></div>
+                        <div class="w-6 h-0.5 bg-white rounded-full"></div>
+                        <div class="w-6 h-0.5 bg-white rounded-full"></div>
                     </div>
                 </button>
             </div>
@@ -93,6 +92,28 @@
     <main>
         {{ content | safe }}
     </main>
+    
+    <!-- Floating Navigation Circles (Alternative Option) -->
+    <div class="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden lg:flex flex-col space-y-3" id="floating-nav">
+        <a href="/" class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Home">
+            🏠
+        </a>
+        <a href="/smart-cameras/" class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Security Cameras">
+            📹
+        </a>
+        <a href="/smart-locks/" class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Smart Locks">
+            🔒
+        </a>
+        <a href="/smart-lighting/" class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Smart Lighting">
+            💡
+        </a>
+        <a href="/services/" class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Las Vegas Services">
+            🔧
+        </a>
+        <a href="/contact/" class="w-12 h-12 bg-gradient-to-br from-slate-500 to-gray-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110" title="Contact">
+            📞
+        </a>
+    </div>
     
     <!-- Mobile Menu Overlay - Positioned AFTER main content to be true overlay -->
     <div class="fixed inset-0 opacity-0 invisible transition-all duration-300 lg:hidden" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
@@ -221,111 +242,65 @@
     </footer>
 
     <script>
-        // Simple mobile menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, setting up mobile menu...');
+        // Ultra-simple mobile menu toggle
+        window.addEventListener('load', function() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
             
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
-            
-            console.log('Mobile menu button:', mobileMenuBtn);
-            console.log('Mobile menu:', mobileMenu);
-            console.log('Mobile menu backdrop:', mobileMenuBackdrop);
-            
-            if (!mobileMenuBtn || !mobileMenu || !mobileMenuBackdrop) {
-                console.error('Mobile menu elements not found!');
+            if (!btn || !menu || !backdrop) {
+                console.error('Mobile menu elements missing');
                 return;
             }
             
-            function openMenu() {
-                console.log('Opening mobile menu...');
-                mobileMenu.classList.remove('opacity-0', 'invisible');
-                mobileMenu.style.pointerEvents = 'auto';
-                document.body.style.overflow = 'hidden';
-            }
-            
-            function closeMenu() {
-                console.log('Closing mobile menu...');
-                mobileMenu.classList.add('opacity-0', 'invisible');
-                mobileMenu.style.pointerEvents = 'none';
-                document.body.style.overflow = '';
-            }
-            
-            function toggleMenu() {
-                const isOpen = !mobileMenu.classList.contains('opacity-0');
-                console.log('Menu is currently:', isOpen ? 'open' : 'closed');
-                
-                if (isOpen) {
-                    closeMenu();
+            // Open/close menu
+            btn.onclick = function() {
+                if (menu.classList.contains('opacity-0')) {
+                    // Open menu
+                    menu.classList.remove('opacity-0', 'invisible');
+                    menu.style.pointerEvents = 'auto';
+                    document.body.style.overflow = 'hidden';
                 } else {
-                    openMenu();
+                    // Close menu
+                    menu.classList.add('opacity-0', 'invisible');
+                    menu.style.pointerEvents = 'none';
+                    document.body.style.overflow = '';
                 }
-            }
+            };
             
-            // Hamburger button click - multiple event types for better mobile support
-            function handleButtonClick(e) {
-                console.log('Hamburger button activated!', e.type);
-                e.preventDefault();
-                e.stopPropagation();
-                toggleMenu();
-            }
+            // Close on backdrop click
+            backdrop.onclick = function() {
+                menu.classList.add('opacity-0', 'invisible');
+                menu.style.pointerEvents = 'none';
+                document.body.style.overflow = '';
+            };
             
-            mobileMenuBtn.addEventListener('click', handleButtonClick);
-            mobileMenuBtn.addEventListener('touchstart', handleButtonClick);
-            
-            // Also try with the entire button area
-            mobileMenuBtn.addEventListener('mousedown', function(e) {
-                console.log('Mouse down on hamburger button');
+            // Close on menu link click
+            menu.querySelectorAll('a').forEach(function(link) {
+                link.onclick = function() {
+                    menu.classList.add('opacity-0', 'invisible');
+                    menu.style.pointerEvents = 'none';
+                    document.body.style.overflow = '';
+                };
             });
-            
-            mobileMenuBtn.addEventListener('touchend', function(e) {
-                console.log('Touch end on hamburger button');
-            });
-            
-            // Backdrop click
-            mobileMenuBackdrop.addEventListener('click', function(e) {
-                console.log('Backdrop clicked!');
-                e.preventDefault();
-                e.stopPropagation();
-                closeMenu();
-            });
-            
-            // Menu links click
-            const menuLinks = mobileMenu.querySelectorAll('a');
-            menuLinks.forEach((link, index) => {
-                link.addEventListener('click', function() {
-                    console.log('Menu link clicked:', index);
-                    closeMenu();
-                });
-            });
-            
-            console.log('Mobile menu setup complete!');
         });
 
-        // Navbar scroll effect
+        // Static navbar scroll effect (no hiding)
         const nav = document.getElementById('main-nav');
-        let lastScrollY = window.scrollY;
         
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
             
             if (currentScrollY > 100) {
                 nav.classList.add('backdrop-blur-xl');
-                nav.style.background = 'rgba(15, 23, 42, 0.9)';
+                nav.style.background = 'rgba(15, 23, 42, 0.95)';
             } else {
                 nav.classList.remove('backdrop-blur-xl');
                 nav.style.background = 'rgba(15, 23, 42, 0.8)';
             }
             
-            // Hide/show navbar based on scroll direction
-            if (currentScrollY > lastScrollY && currentScrollY > 200) {
-                nav.style.transform = 'translateY(-100%)';
-            } else {
-                nav.style.transform = 'translateY(0)';
-            }
-            
-            lastScrollY = currentScrollY;
+            // Keep navbar always visible (no hiding)
+            nav.style.transform = 'translateY(0)';
         });
 
         // Smooth scroll for anchor links
