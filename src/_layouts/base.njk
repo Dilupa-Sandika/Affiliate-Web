@@ -77,12 +77,12 @@
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
 
-                <!-- Mobile Menu Button - 3 HAMBURGER LINES -->
-                <button type="button" class="lg:hidden bg-white/20 border-2 border-white/40 p-3 rounded-lg hover:bg-white/30 focus:outline-none" id="mobile-menu-btn">
-                    <div class="w-6 h-5 flex flex-col justify-between">
-                        <div class="w-6 h-0.5 bg-white rounded"></div>
-                        <div class="w-6 h-0.5 bg-white rounded"></div>
-                        <div class="w-6 h-0.5 bg-white rounded"></div>
+                <!-- Mobile Menu Button - PERFECT HAMBURGER -->
+                <button type="button" class="lg:hidden bg-white/25 border-2 border-white/50 p-4 rounded-lg hover:bg-white/35 focus:outline-none shadow-lg" id="mobile-menu-btn">
+                    <div class="w-6 h-4 flex flex-col justify-between">
+                        <span class="w-6 h-0.5 bg-white rounded-sm block shadow-sm"></span>
+                        <span class="w-6 h-0.5 bg-white rounded-sm block shadow-sm"></span>
+                        <span class="w-6 h-0.5 bg-white rounded-sm block shadow-sm"></span>
                     </div>
                 </button>
             </div>
@@ -115,13 +115,13 @@
         </a>
     </div>
     
-    <!-- Mobile Menu - DROPDOWN STYLE -->
+    <!-- Mobile Menu - COMPLETELY SOLID -->
     <div class="fixed inset-0 lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
-        <!-- Background Overlay -->
-        <div class="absolute inset-0 bg-black bg-opacity-50" id="mobile-menu-backdrop"></div>
+        <!-- Solid Background Overlay -->
+        <div class="absolute inset-0" id="mobile-menu-backdrop" style="background-color: rgba(0, 0, 0, 0.75);"></div>
         
-        <!-- Menu Panel - Slide from Right -->
-        <div class="absolute top-0 right-0 h-full w-80 max-w-[90vw] bg-slate-800 shadow-2xl transform translate-x-full transition-transform duration-300" id="mobile-menu-panel">
+        <!-- Solid Menu Panel -->
+        <div class="absolute top-0 right-0 h-full w-80 max-w-[90vw] shadow-2xl transform translate-x-full transition-transform duration-300" id="mobile-menu-panel" style="background-color: #1e293b; border-left: 4px solid #3b82f6;">
             <!-- Menu Header -->
             <div class="flex items-center justify-between p-6 border-b border-white/10">
                 <div class="flex items-center space-x-3">
@@ -296,14 +296,24 @@
             
             function openMenu() {
                 console.log('Opening mobile menu');
+                
+                // Make menu completely visible
+                menu.style.display = 'block';
                 menu.style.pointerEvents = 'auto';
+                menu.style.visibility = 'visible';
+                menu.style.opacity = '1';
                 menu.classList.remove('opacity-0', 'invisible');
+                
+                // Prevent body scroll
                 document.body.style.overflow = 'hidden';
                 
-                // Trigger slide animation
-                setTimeout(() => {
+                // Force reflow then slide in
+                menu.offsetHeight;
+                requestAnimationFrame(() => {
                     panel.classList.remove('translate-x-full');
-                }, 10);
+                });
+                
+                console.log('Mobile menu should now be visible');
             }
             
             function closeMenu() {
@@ -313,7 +323,11 @@
                 setTimeout(() => {
                     menu.classList.add('opacity-0', 'invisible');
                     menu.style.pointerEvents = 'none';
+                    menu.style.visibility = 'hidden';
+                    menu.style.opacity = '0';
+                    menu.style.display = 'none';
                     document.body.style.overflow = '';
+                    console.log('Mobile menu closed');
                 }, 300);
             }
             

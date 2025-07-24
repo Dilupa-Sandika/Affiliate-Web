@@ -453,42 +453,45 @@
     align-items: center !important;
   }
   
-  /* SIMPLE hamburger button - 3 lines guaranteed */
+  /* PERFECT hamburger button */
   #mobile-menu-btn {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    border: 2px solid rgba(255, 255, 255, 0.4) !important;
-    padding: 0.75rem !important;
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
+    padding: 1rem !important;
     border-radius: 0.5rem !important;
     cursor: pointer !important;
     touch-action: manipulation !important;
     -webkit-tap-highlight-color: transparent !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
   }
   
   #mobile-menu-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3) !important;
+    background-color: rgba(255, 255, 255, 0.35) !important;
+    border-color: rgba(255, 255, 255, 0.7) !important;
   }
   
-  /* Hamburger lines - flex layout for 3 lines */
+  /* Perfect hamburger lines */
   #mobile-menu-btn > div {
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
     width: 1.5rem !important;
-    height: 1.25rem !important;
+    height: 1rem !important;
   }
   
-  #mobile-menu-btn > div > div {
+  #mobile-menu-btn > div > span {
     width: 100% !important;
     height: 0.125rem !important;
     background-color: white !important;
-    border-radius: 0.25rem !important;
+    border-radius: 0.125rem !important;
     display: block !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
   }
   
-  /* Mobile menu - simple and functional */
+  /* Mobile menu - COMPLETELY SOLID */
   #mobile-menu {
     z-index: 99999 !important;
     position: fixed !important;
@@ -496,28 +499,67 @@
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+  
+  #mobile-menu-backdrop {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    width: 100% !important;
+    height: 100% !important;
   }
   
   #mobile-menu-panel {
-    background-color: rgb(30, 41, 59) !important; /* slate-800 */
+    background-color: #1e293b !important; /* Solid slate-800 */
+    border-left: 4px solid #3b82f6 !important;
     pointer-events: auto !important;
+    box-shadow: -10px 0 25px rgba(0, 0, 0, 0.5) !important;
   }
   
-  /* Mobile menu links - simple and working */
+  /* Mobile menu links - FULLY VISIBLE */
   #mobile-menu a {
     display: flex !important;
     align-items: center !important;
     padding: 1rem 1.5rem !important;
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: white !important;
     text-decoration: none !important;
-    transition: background-color 0.3s ease !important;
+    transition: all 0.3s ease !important;
     cursor: pointer !important;
     touch-action: manipulation !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
   
   #mobile-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(59, 130, 246, 0.2) !important;
     color: white !important;
+    padding-left: 2rem !important;
+  }
+  
+  #mobile-menu a:active {
+    background-color: rgba(59, 130, 246, 0.3) !important;
+  }
+  
+  /* Mobile menu header styling */
+  #mobile-menu-panel .border-b {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+  
+  #mobile-menu-panel h3,
+  #mobile-menu-panel span {
+    color: white !important;
+  }
+  
+  /* Mobile menu close button */
+  #mobile-menu-close {
+    color: rgba(255, 255, 255, 0.8) !important;
+    padding: 0.5rem !important;
+    border-radius: 0.5rem !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  #mobile-menu-close:hover {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
   }
   
   /* Force floating navigation to be visible on mobile */
