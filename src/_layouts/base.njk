@@ -77,12 +77,12 @@
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
 
-                <!-- Mobile Menu Button - Visible on mobile -->
-                <button type="button" class="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors focus:outline-none" id="mobile-menu-btn">
-                    <div class="w-6 h-6 flex flex-col justify-center space-y-1.5">
-                        <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
-                        <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
-                        <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                <!-- Mobile Menu Button - HIGHLY VISIBLE -->
+                <button type="button" class="lg:hidden text-white bg-white/20 border-2 border-white/40 p-3 rounded-lg transition-colors focus:outline-none hover:bg-white/30" id="mobile-menu-btn">
+                    <div class="w-7 h-7 flex flex-col justify-center space-y-2">
+                        <div class="w-7 h-1 bg-white rounded-full shadow-lg"></div>
+                        <div class="w-7 h-1 bg-white rounded-full shadow-lg"></div>
+                        <div class="w-7 h-1 bg-white rounded-full shadow-lg"></div>
                     </div>
                 </button>
             </div>
@@ -115,13 +115,13 @@
         </a>
     </div>
     
-    <!-- Right-to-Left Sliding Mobile Menu -->
-    <div class="fixed inset-0 lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
+    <!-- Right-to-Left Sliding Mobile Menu - ENHANCED VISIBILITY -->
+    <div class="fixed inset-0 lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none; display: none;">
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300" id="mobile-menu-backdrop"></div>
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300" id="mobile-menu-backdrop"></div>
         
-        <!-- Sliding Menu Panel -->
-        <div class="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300" id="mobile-menu-panel">
+        <!-- Sliding Menu Panel - SOLID BACKGROUND -->
+        <div class="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300 border-l-4 border-white/20" id="mobile-menu-panel">
             <!-- Menu Header -->
             <div class="flex items-center justify-between p-6 border-b border-white/10">
                 <div class="flex items-center space-x-3">
@@ -309,18 +309,23 @@
                     }
                     
                     console.log('Opening mobile menu...');
+                    
+                    // Ensure menu is visible and interactive
+                    menu.style.display = 'block';
                     menu.classList.remove('opacity-0', 'invisible');
                     menu.style.pointerEvents = 'auto';
-                    menu.style.display = 'block';
+                    menu.style.visibility = 'visible';
+                    menu.style.opacity = '1';
                     
-                    // Force reflow before animation
+                    // Force reflow and trigger animation
                     menu.offsetHeight;
                     
-                    requestAnimationFrame(() => {
+                    setTimeout(() => {
                         panel.classList.remove('translate-x-full');
-                    });
+                    }, 10);
                     
                     document.body.style.overflow = 'hidden';
+                    console.log('Mobile menu opened successfully');
                 }
                 
                 function closeMenu(e) {
@@ -335,7 +340,11 @@
                     setTimeout(() => {
                         menu.classList.add('opacity-0', 'invisible');
                         menu.style.pointerEvents = 'none';
+                        menu.style.visibility = 'hidden';
+                        menu.style.opacity = '0';
+                        menu.style.display = 'none';
                         document.body.style.overflow = '';
+                        console.log('Mobile menu closed successfully');
                     }, 300);
                 }
                 

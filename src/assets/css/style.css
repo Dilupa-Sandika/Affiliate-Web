@@ -365,27 +365,38 @@
        (-webkit-min-device-pixel-ratio: 2) and (max-width: 375px),
        (device-width: 375px) and (device-height: 667px) {
   
-  /* Ensure hamburger is visible and clickable on iPhone 8 */
+  /* ULTRA-VISIBLE hamburger for iPhone 8 */
   #mobile-menu-btn {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    background-color: rgba(255, 255, 255, 0.25) !important;
-    border: 2px solid rgba(255, 255, 255, 0.4) !important;
-    padding: 0.75rem !important;
-    border-radius: 0.5rem !important;
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    border: 3px solid rgba(255, 255, 255, 0.7) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+    padding: 1rem !important;
+    border-radius: 0.75rem !important;
     position: relative !important;
     z-index: 1000 !important;
     cursor: pointer !important;
     touch-action: manipulation !important;
+    min-width: 4rem !important;
+    min-height: 4rem !important;
+    /* Force above everything */
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+    /* High contrast for iPhone 8 */
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
   }
   
   #mobile-menu-btn > div > div {
     background-color: white !important;
-    width: 1.5rem !important;
-    height: 0.125rem !important;
-    margin: 0.1875rem 0 !important;
+    width: 2rem !important;
+    height: 0.25rem !important;
+    margin: 0.25rem 0 !important;
     display: block !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
+    border-radius: 9999px !important;
   }
   
   #floating-nav {
@@ -450,13 +461,14 @@
     align-items: center !important;
   }
   
-  /* PRODUCTION-READY hamburger button */
+  /* ULTRA-VISIBLE hamburger button */
   #mobile-menu-btn {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    border: 3px solid rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
     padding: 0.75rem !important;
     border-radius: 0.5rem !important;
     position: relative !important;
@@ -464,27 +476,29 @@
     cursor: pointer !important;
     touch-action: manipulation !important;
     -webkit-tap-highlight-color: transparent !important;
-    min-width: 3rem !important;
-    min-height: 3rem !important;
+    min-width: 3.5rem !important;
+    min-height: 3.5rem !important;
   }
   
   #mobile-menu-btn:hover {
-    background-color: rgba(255, 255, 255, 0.25) !important;
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    transform: scale(1.05) !important;
   }
   
   #mobile-menu-btn > div > div {
     background-color: white !important;
-    width: 1.5rem !important;
-    height: 0.125rem !important;
+    width: 1.75rem !important;
+    height: 0.25rem !important;
     border-radius: 9999px !important;
     display: block !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
     transition: all 0.3s ease !important;
   }
   
-  /* Mobile menu positioning and interaction - PRODUCTION READY */
+  /* Mobile menu positioning - ENHANCED FUNCTIONALITY */
   #mobile-menu {
     z-index: 99999 !important;
-    display: block !important;
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
@@ -494,18 +508,39 @@
     height: 100vh !important;
   }
   
-  /* Ensure mobile menu links are clickable */
+  #mobile-menu.opacity-0 {
+    display: none !important;
+    pointer-events: none !important;
+  }
+  
+  #mobile-menu:not(.opacity-0) {
+    display: block !important;
+    pointer-events: auto !important;
+  }
+  
+  /* Enhanced mobile menu links - FULLY FUNCTIONAL */
   #mobile-menu a {
     pointer-events: auto !important;
     cursor: pointer !important;
     touch-action: manipulation !important;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1) !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2) !important;
     display: flex !important;
     text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    padding: 1rem !important;
+    border-radius: 0.75rem !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  #mobile-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    transform: translateX(-4px) !important;
   }
   
   #mobile-menu-panel {
     pointer-events: auto !important;
+    background-color: rgb(15, 23, 42) !important; /* Solid slate-900 */
   }
   
   /* Force floating navigation to be visible on mobile */
@@ -629,18 +664,7 @@
     display: block !important;
   }
   
-  /* PRODUCTION DEBUG STYLES - remove after testing */
-  #mobile-menu-btn {
-    outline: 2px solid rgba(255, 0, 0, 0.3) !important; /* Temporary debug outline */
-  }
-  
-  #mobile-menu-btn:hover {
-    outline: 2px solid rgba(0, 255, 0, 0.5) !important; /* Green when hovering */
-  }
-  
-  #mobile-menu.opacity-0 {
-    display: none !important; /* Ensure hidden when closed */
-  }
+  /* REMOVE DEBUG STYLES - PRODUCTION READY */
 }
 
 /* Tablet and medium screens */
