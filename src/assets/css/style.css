@@ -13,36 +13,17 @@
     font-feature-settings: 'cv11', 'ss01';
     margin: 0;
     padding: 0;
-    padding-top: 4rem; /* Space for fixed navigation */
+    /* Ensure floating nav is not clipped on mobile */
     overflow-x: visible;
   }
   
-  /* Responsive body padding for navigation */
-  @media (max-width: 1023px) {
-    body {
-      padding-top: 3.5rem;
-    }
-  }
-  
-  @media (max-width: 767px) {
-    body {
-      padding-top: 3rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    body {
-      padding-top: 2.75rem;
-    }
-  }
-  
+  /* Remove any default spacing between nav and main content */
   main {
-    position: relative;
-    z-index: 1;
     margin: 0;
     padding: 0;
   }
   
+  /* Ensure hero sections have proper spacing on all devices */
   section[class*="min-h-"] {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -153,6 +134,14 @@
     @apply bg-gradient-to-r from-purple-600 via-primary-600 to-accent-600 bg-clip-text text-transparent;
   }
 
+  .nav-modern {
+    @apply glass-dark fixed top-0 left-0 right-0 z-50 transition-all duration-300;
+  }
+  
+  .nav-item {
+    @apply text-white/90 hover:text-white transition-colors duration-200 font-medium;
+  }
+
   .hero-gradient {
     @apply bg-gradient-to-br from-primary-50 via-white to-secondary-50;
   }
@@ -195,258 +184,477 @@
   }
 
   .review-card {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-neutral-100;
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 border border-neutral-100 hover:border-primary-200;
+  }
+
+  .timeline-item {
+    @apply relative pl-8 pb-8 border-l-2 border-neutral-200 last:border-l-0;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .badge-primary {
+    @apply badge bg-primary-100 text-primary-800;
+  }
+  
+  .badge-secondary {
+    @apply badge bg-secondary-100 text-secondary-800;
+  }
+  
+  .badge-success {
+    @apply badge bg-green-100 text-green-800;
+  }
+
+  .three-container {
+    @apply absolute inset-0 overflow-hidden;
+  }
+  
+  .three-canvas {
+    @apply absolute inset-0 w-full h-full;
   }
 }
 
-/* Fixed Navigation Styles */
-.nav-modern {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  min-height: 4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.nav-modern .container-custom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 4rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.nav-item {
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease;
-  font-weight: 500;
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.nav-item:hover {
-  color: white;
-  background-color: rgba(255, 255, 255, 0.1);
+@keyframes bounceSubtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-/* Mobile Menu Button */
-#mobile-menu-btn {
-  display: none;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.5rem;
-  padding: 0.75rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-  z-index: 1001;
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
 }
 
-#mobile-menu-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-#mobile-menu-btn > div > div {
-  width: 1.5rem;
-  height: 0.125rem;
-  background-color: white;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-  margin: 0.25rem 0;
-  display: block;
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
 }
 
-/* Mobile Menu Overlay */
-#mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 99999;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  pointer-events: none;
+.animate-fade-in-down {
+  animation: fadeInDown 0.6s ease-out;
 }
 
-#mobile-menu.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+.animate-bounce-subtle {
+  animation: bounceSubtle 2s ease-in-out infinite;
 }
 
-#mobile-menu-backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
 }
 
-#mobile-menu-panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  max-width: 24rem;
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-  overflow-y: auto;
+.animation-delay-200 {
+  animation-delay: 200ms;
 }
 
-#mobile-menu.active #mobile-menu-panel {
-  transform: translateX(0);
+.animation-delay-400 {
+  animation-delay: 400ms;
 }
 
-/* Floating Navigation */
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+/* Floating circles - bottom of screen horizontal layout */
 #floating-nav {
-  position: fixed;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  z-index: 99998;
-  pointer-events: auto;
+  position: fixed !important;
+  bottom: 1rem !important;
+  right: 1rem !important;
+  top: auto !important;
+  transform: none !important;
+  z-index: 99998 !important;
+  pointer-events: auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 0.75rem !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  user-select: none !important;
+  /* Force above any potential overlays */
+  will-change: transform !important;
+  left: auto !important;
 }
 
 #floating-nav a {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  position: relative;
-  overflow: hidden;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: transparent !important;
+  cursor: pointer !important;
 }
 
-#floating-nav a:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-#floating-nav a span {
-  font-size: 0.875rem;
-  font-weight: 600;
-  pointer-events: none;
-}
-
-/* Hamburger Animation */
-#mobile-menu-btn.active > div > div:nth-child(1) {
-  transform: rotate(45deg) translate(0.25rem, 0.25rem);
-}
-
-#mobile-menu-btn.active > div > div:nth-child(2) {
-  opacity: 0;
-}
-
-#mobile-menu-btn.active > div > div:nth-child(3) {
-  transform: rotate(-45deg) translate(0.25rem, -0.25rem);
-}
-
-/* Mobile Responsive Styles */
-@media (max-width: 1023px) {
-  #mobile-menu-btn {
-    display: block;
-  }
-  
-  .hidden.lg\\:flex {
-    display: none;
-  }
-  
-  .nav-modern {
-    min-height: 3.5rem;
-  }
-  
-  .nav-modern .container-custom {
-    min-height: 3.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+/* Ensure floating circles stay fixed on all screen sizes */
+@media (max-width: 1024px) {
+  #floating-nav {
+    right: 1rem !important;
   }
 }
 
-@media (max-width: 767px) {
-  .nav-modern {
-    min-height: 3rem;
-  }
-  
-  .nav-modern .container-custom {
-    min-height: 3rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+/* Small mobile screens - iPhone 8 and similar */
+@media (max-width: 640px) {
+  /* Hide any bottom navigation that might be interfering */
+  .bottom-nav, .footer-nav, [class*="bottom"] {
+    display: none !important;
   }
   
   #floating-nav {
-    right: 0.75rem;
-    bottom: 1rem;
-    top: auto;
-    transform: none;
-    flex-direction: row;
-    gap: 0.5rem;
+    right: 0.75rem !important;
+    gap: 0.5rem !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    z-index: 99998 !important;
+    pointer-events: auto !important;
+    /* iOS Safari specific */
+    -webkit-transform: translate3d(0, -50%, 0) !important;
+    transform: translate3d(0, -50%, 0) !important;
   }
   
   #floating-nav a {
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 0.875rem;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    min-width: 2.75rem !important;
+    min-height: 2.75rem !important;
+    border-radius: 50% !important;
+    border-radius: 1.375rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.875rem !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    cursor: pointer !important;
+    /* Ensure proper circular shape on iPhone */
+    -webkit-border-radius: 1.375rem !important;
+    overflow: hidden !important;
   }
   
   #floating-nav a span {
-    font-size: 0.75rem;
+    font-size: 0.75rem !important;
+    pointer-events: none !important;
+    line-height: 1 !important;
   }
 }
 
-@media (max-width: 480px) {
+/* iPhone 8 and older iOS devices specific */
+@media (max-width: 480px), 
+       (-webkit-min-device-pixel-ratio: 2) and (max-width: 375px),
+       (device-width: 375px) and (device-height: 667px) {
+  
+  /* Ensure hamburger is visible and clickable on iPhone 8 */
+  #mobile-menu-btn {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    border: 2px solid rgba(255, 255, 255, 0.4) !important;
+    padding: 0.75rem !important;
+    border-radius: 0.5rem !important;
+    position: relative !important;
+    z-index: 1000 !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+  }
+  
+  #mobile-menu-btn > div > div {
+    background-color: white !important;
+    width: 1.5rem !important;
+    height: 0.125rem !important;
+    margin: 0.1875rem 0 !important;
+    display: block !important;
+  }
+  
+  #floating-nav {
+    right: 0.5rem !important;
+    gap: 0.4rem !important;
+    z-index: 99998 !important;
+    /* Force visibility on iPhone 8 */
+    display: flex !important;
+    position: fixed !important;
+    top: 50% !important;
+    -webkit-transform: translate3d(0, -50%, 0) !important;
+    transform: translate3d(0, -50%, 0) !important;
+  }
+  
+  #floating-nav a {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    min-width: 2.5rem !important;
+    min-height: 2.5rem !important;
+    border-radius: 1.25rem !important;
+    -webkit-border-radius: 1.25rem !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    /* Force hardware acceleration */
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+  
+  #floating-nav a span {
+    font-size: 0.7rem !important;
+    pointer-events: none !important;
+    line-height: 1 !important;
+  }
+  
+  /* Ensure mobile menu works on iPhone 8 */
+  #mobile-menu {
+    display: block !important;
+    z-index: 99999 !important;
+  }
+  
+  #mobile-menu a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2) !important;
+    touch-action: manipulation !important;
+  }
+}
+
+/* Mobile optimizations - PRODUCTION READY */
+@media (max-width: 767px) {
+  /* Enhanced mobile navbar - consistent height */
   .nav-modern {
-    min-height: 2.75rem;
+    min-height: 4rem !important;
+    padding: 0 !important;
   }
   
   .nav-modern .container-custom {
-    min-height: 2.75rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    min-height: 4rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  
+  /* PRODUCTION-READY hamburger button */
+  #mobile-menu-btn {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    padding: 0.75rem !important;
+    border-radius: 0.5rem !important;
+    position: relative !important;
+    z-index: 1000 !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    min-width: 3rem !important;
+    min-height: 3rem !important;
+  }
+  
+  #mobile-menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+  }
+  
+  #mobile-menu-btn > div > div {
+    background-color: white !important;
+    width: 1.5rem !important;
+    height: 0.125rem !important;
+    border-radius: 9999px !important;
+    display: block !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  /* Mobile menu positioning and interaction - PRODUCTION READY */
+  #mobile-menu {
+    z-index: 99999 !important;
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+  
+  /* Ensure mobile menu links are clickable */
+  #mobile-menu a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1) !important;
+    display: flex !important;
+    text-decoration: none !important;
   }
   
   #mobile-menu-panel {
-    width: 100%;
-    max-width: none;
+    pointer-events: auto !important;
   }
   
+  /* Force floating navigation to be visible on mobile */
+  body #floating-nav {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .three-container {
+    display: none; /* Hide 3D on very small screens if needed */
+  }
+  
+  .card-premium {
+    transform: none !important; /* Disable hover transforms on mobile */
+  }
+  
+  .service-card {
+    transform: none !important;
+  }
+  
+  /* Remove conflicting duplicate styles - handled above */
+  
+  /* Ensure mobile menu overlay works properly */
+  #mobile-menu {
+    z-index: 99999 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+  }
+  
+  /* When menu is closed, make it completely non-interactive */
+  #mobile-menu.opacity-0 {
+    pointer-events: none !important;
+  }
+  
+  /* When menu is closed, make it completely non-interactive */
+  #mobile-menu.opacity-0 {
+    pointer-events: none !important;
+  }
+  
+  /* Remove duplicate hamburger styles - consolidated above */
+  
+  /* Remove any unwanted spacing between nav and content */
+  main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  /* Increase hero section size for mobile to fit all content */
+  section[class*="min-h-screen"],
+  section[class*="min-h-[80vh]"] {
+    min-height: 100vh !important;
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  /* Mobile hero content adjustments */
+  section[class*="min-h-"] .container-custom {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  /* Ensure hero headings look great on mobile */
+  .heading-xl {
+    font-size: 3rem !important; /* 48px - much larger than before */
+    line-height: 1.1 !important;
+  }
+  
+  /* iPhone/iOS specific floating circles fix - bottom positioning */
   #floating-nav {
-    right: 0.5rem;
-    bottom: 0.75rem;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    bottom: 0.75rem !important;
+    right: 0.75rem !important;
+    top: auto !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    z-index: 99998 !important;
+    flex-direction: row !important;
+    gap: 0.5rem !important;
+    pointer-events: auto !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    left: auto !important;
   }
   
   #floating-nav a {
-    width: 2.25rem;
-    height: 2.25rem;
-    font-size: 0.75rem;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    min-width: 2.5rem !important;
+    min-height: 2.5rem !important;
+    max-width: 2.5rem !important;
+    max-height: 2.5rem !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 1 !important;
+    /* iOS specific fixes */
+    -webkit-appearance: none !important;
+    -webkit-touch-callout: none !important;
+    /* Force circular shape on iOS */
+    border-radius: 1.25rem !important;
+    overflow: hidden !important;
   }
   
   #floating-nav a span {
-    font-size: 0.625rem;
+    font-size: 0.75rem !important;
+    pointer-events: none !important;
+    line-height: 1 !important;
+    display: block !important;
+  }
+  
+  /* PRODUCTION DEBUG STYLES - remove after testing */
+  #mobile-menu-btn {
+    outline: 2px solid rgba(255, 0, 0, 0.3) !important; /* Temporary debug outline */
+  }
+  
+  #mobile-menu-btn:hover {
+    outline: 2px solid rgba(0, 255, 0, 0.5) !important; /* Green when hovering */
+  }
+  
+  #mobile-menu.opacity-0 {
+    display: none !important; /* Ensure hidden when closed */
+  }
+}
+
+/* Tablet and medium screens */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Both hamburger and floating nav available on tablets */
+  #mobile-menu-btn {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
   }
 }
