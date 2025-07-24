@@ -36,7 +36,7 @@
     <!-- Ultra-compact mobile navbar -->
     <nav class="nav-modern" id="main-nav">
         <div class="container-custom">
-            <div class="flex items-center justify-between py-1 sm:py-3 lg:py-4">
+            <div class="flex items-center justify-between py-2 sm:py-4 lg:py-5">
                 <!-- Logo - responsive sizing -->
                 <a href="/" class="flex items-center space-x-1.5 sm:space-x-3 group">
                     <div class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold text-xs sm:text-base lg:text-lg transform group-hover:scale-110 transition-transform duration-200">
@@ -341,14 +341,22 @@
             nav.style.transform = 'translateY(0)';
         });
 
-        // Ensure floating navigation works on mobile
+        // Ensure floating navigation works on mobile - FORCE RIGHT SIDE POSITIONING  
         const floatingNav = document.getElementById('floating-nav');
         if (floatingNav) {
-            // Force visibility and positioning on mobile/iPhone
+            // Force right side positioning and visibility
+            floatingNav.style.position = 'fixed';
+            floatingNav.style.right = '1.5rem';
+            floatingNav.style.top = '50%';
+            floatingNav.style.transform = 'translateY(-50%)';
+            floatingNav.style.bottom = 'auto';
+            floatingNav.style.left = 'auto';
             floatingNav.style.display = 'flex';
+            floatingNav.style.flexDirection = 'column';
             floatingNav.style.visibility = 'visible';
             floatingNav.style.opacity = '1';
             floatingNav.style.pointerEvents = 'auto';
+            floatingNav.style.zIndex = '99998';
             
             // Add mobile-specific positioning
             if (window.innerWidth <= 768) {

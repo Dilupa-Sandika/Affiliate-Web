@@ -293,6 +293,9 @@
   /* Force above any potential overlays */
   will-change: transform !important;
   -webkit-transform: translateY(-50%) !important;
+  /* Ensure it's not positioned at bottom */
+  bottom: auto !important;
+  left: auto !important;
 }
 
 #floating-nav a {
@@ -435,15 +438,15 @@
 
 /* Mobile optimizations - compact navigation */
 @media (max-width: 767px) {
-  /* Ultra-compact mobile navbar */
+  /* Mobile navbar with increased size */
   .nav-modern {
     min-height: auto;
     padding: 0;
   }
   
   .nav-modern .container-custom {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
   
   /* Ensure hamburger button is visible and properly styled */
@@ -608,6 +611,9 @@
     -webkit-transform: translate3d(0, -50%, 0) !important;
     transform: translate3d(0, -50%, 0) !important;
     will-change: transform !important;
+    /* Ensure not at bottom */
+    bottom: auto !important;
+    left: auto !important;
   }
   
   #floating-nav a {
