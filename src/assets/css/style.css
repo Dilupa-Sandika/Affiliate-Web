@@ -365,7 +365,7 @@
        (-webkit-min-device-pixel-ratio: 2) and (max-width: 375px),
        (device-width: 375px) and (device-height: 667px) {
   
-  /* ULTRA-VISIBLE hamburger for iPhone 8 */
+  /* FIXED hamburger for iPhone 8 - 3 horizontal lines */
   #mobile-menu-btn {
     display: block !important;
     visibility: visible !important;
@@ -384,19 +384,32 @@
     /* Force above everything */
     -webkit-transform: translateZ(0) !important;
     transform: translateZ(0) !important;
-    /* High contrast for iPhone 8 */
-    backdrop-filter: blur(4px) !important;
-    -webkit-backdrop-filter: blur(4px) !important;
   }
   
-  #mobile-menu-btn > div > div {
+  /* iPhone 8 hamburger lines - ensure 3 lines show */
+  #mobile-menu-btn span {
     background-color: white !important;
-    width: 2rem !important;
-    height: 0.25rem !important;
-    margin: 0.25rem 0 !important;
+    width: 1.5rem !important;
+    height: 0.125rem !important;
     display: block !important;
+    position: absolute !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
-    border-radius: 9999px !important;
+    border-radius: 2px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    -webkit-transform: translateX(-50%) !important;
+  }
+  
+  #mobile-menu-btn span:nth-child(2) {
+    top: 0.5rem !important;
+  }
+  
+  #mobile-menu-btn span:nth-child(3) {
+    top: 1rem !important;
+  }
+  
+  #mobile-menu-btn span:nth-child(4) {
+    top: 1.5rem !important;
   }
   
   #floating-nav {
@@ -461,15 +474,15 @@
     align-items: center !important;
   }
   
-  /* ULTRA-VISIBLE hamburger button */
+  /* FIXED hamburger button with 3 horizontal lines */
   #mobile-menu-btn {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     background-color: rgba(255, 255, 255, 0.3) !important;
-    border: 3px solid rgba(255, 255, 255, 0.6) !important;
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-    padding: 0.75rem !important;
+    padding: 1rem !important;
     border-radius: 0.5rem !important;
     position: relative !important;
     z-index: 1000 !important;
@@ -482,18 +495,18 @@
   
   #mobile-menu-btn:hover {
     background-color: rgba(255, 255, 255, 0.4) !important;
-    border-color: rgba(255, 255, 255, 0.8) !important;
-    transform: scale(1.05) !important;
+    border-color: rgba(255, 255, 255, 0.7) !important;
   }
   
-  #mobile-menu-btn > div > div {
+  /* Hamburger lines - ensure 3 horizontal lines show */
+  #mobile-menu-btn span {
     background-color: white !important;
-    width: 1.75rem !important;
-    height: 0.25rem !important;
-    border-radius: 9999px !important;
+    width: 1.5rem !important;
+    height: 0.125rem !important;
     display: block !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    position: absolute !important;
     transition: all 0.3s ease !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
   }
   
   /* Mobile menu positioning - ENHANCED FUNCTIONALITY */
@@ -518,6 +531,17 @@
     pointer-events: auto !important;
   }
   
+  /* SOLID mobile menu - NO TRANSPARENCY */
+  #mobile-menu {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+  }
+  
+  #mobile-menu-panel {
+    pointer-events: auto !important;
+    background-color: #1e293b !important; /* Solid slate-800 */
+    border-left: 4px solid #3b82f6 !important;
+  }
+  
   /* Enhanced mobile menu links - FULLY FUNCTIONAL */
   #mobile-menu a {
     pointer-events: auto !important;
@@ -526,21 +550,22 @@
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2) !important;
     display: flex !important;
     text-decoration: none !important;
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: white !important;
     padding: 1rem !important;
+    margin: 0.25rem !important;
     border-radius: 0.75rem !important;
     transition: all 0.3s ease !important;
+    background-color: transparent !important;
   }
   
   #mobile-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(59, 130, 246, 0.2) !important;
     color: white !important;
     transform: translateX(-4px) !important;
   }
   
-  #mobile-menu-panel {
-    pointer-events: auto !important;
-    background-color: rgb(15, 23, 42) !important; /* Solid slate-900 */
+  #mobile-menu a:active {
+    background-color: rgba(59, 130, 246, 0.3) !important;
   }
   
   /* Force floating navigation to be visible on mobile */
