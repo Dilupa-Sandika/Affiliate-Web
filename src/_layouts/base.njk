@@ -77,13 +77,12 @@
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
 
-                <!-- Mobile Menu Button - FIXED HAMBURGER LINES -->
-                <button type="button" class="lg:hidden bg-white/30 border-2 border-white/50 p-4 rounded-lg hover:bg-white/40 focus:outline-none shadow-lg" id="mobile-menu-btn">
-                    <span class="sr-only">Open main menu</span>
-                    <div class="w-6 h-6 relative">
-                        <span class="absolute top-0 left-0 w-6 h-0.5 bg-white rounded-sm block"></span>
-                        <span class="absolute top-2.5 left-0 w-6 h-0.5 bg-white rounded-sm block"></span>
-                        <span class="absolute bottom-0 left-0 w-6 h-0.5 bg-white rounded-sm block"></span>
+                <!-- Mobile Menu Button - 3 HAMBURGER LINES -->
+                <button type="button" class="lg:hidden bg-white/20 border-2 border-white/40 p-3 rounded-lg hover:bg-white/30 focus:outline-none" id="mobile-menu-btn">
+                    <div class="w-6 h-5 flex flex-col justify-between">
+                        <div class="w-6 h-0.5 bg-white rounded"></div>
+                        <div class="w-6 h-0.5 bg-white rounded"></div>
+                        <div class="w-6 h-0.5 bg-white rounded"></div>
                     </div>
                 </button>
             </div>
@@ -116,13 +115,13 @@
         </a>
     </div>
     
-    <!-- Mobile Menu - COMPLETELY SOLID BACKGROUND -->
-    <div class="fixed inset-0 lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none; display: none;">
-        <!-- Solid Black Backdrop -->
-        <div class="absolute inset-0 bg-black opacity-75" id="mobile-menu-backdrop"></div>
+    <!-- Mobile Menu - DROPDOWN STYLE -->
+    <div class="fixed inset-0 lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
+        <!-- Background Overlay -->
+        <div class="absolute inset-0 bg-black bg-opacity-50" id="mobile-menu-backdrop"></div>
         
-        <!-- Solid Menu Panel -->
-        <div class="absolute top-0 right-0 h-full w-80 max-w-[85vw] shadow-2xl transform translate-x-full transition-transform duration-300" id="mobile-menu-panel" style="background-color: #1e293b; border-left: 4px solid #3b82f6;">
+        <!-- Menu Panel - Slide from Right -->
+        <div class="absolute top-0 right-0 h-full w-80 max-w-[90vw] bg-slate-800 shadow-2xl transform translate-x-full transition-transform duration-300" id="mobile-menu-panel">
             <!-- Menu Header -->
             <div class="flex items-center justify-between p-6 border-b border-white/10">
                 <div class="flex items-center space-x-3">
@@ -280,153 +279,77 @@
     </footer>
 
     <script>
-        // PRODUCTION-READY mobile menu functionality
-        (function() {
-            'use strict';
+        // SIMPLE MOBILE MENU - WORKS ON ALL DEVICES
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const panel = document.getElementById('mobile-menu-panel');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
+            const closeBtn = document.getElementById('mobile-menu-close');
             
-            // Multiple initialization attempts for production reliability
-            function initializeMobileMenu() {
-                const btn = document.getElementById('mobile-menu-btn');
-                const menu = document.getElementById('mobile-menu');
-                const panel = document.getElementById('mobile-menu-panel');
-                const backdrop = document.getElementById('mobile-menu-backdrop');
-                const closeBtn = document.getElementById('mobile-menu-close');
-                
-                // Enhanced element checking
-                if (!btn || !menu || !panel || !backdrop) {
-                    console.warn('Mobile menu elements not found, retrying...');
-                    return false;
-                }
-                
-                // Prevent double initialization
-                if (btn.dataset.initialized === 'true') {
-                    return true;
-                }
-                
-                function openMenu(e) {
-                    if (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                    }
-                    
-                    console.log('Opening mobile menu...');
-                    
-                    // Ensure menu is visible and interactive
-                    menu.style.display = 'block';
-                    menu.classList.remove('opacity-0', 'invisible');
-                    menu.style.pointerEvents = 'auto';
-                    menu.style.visibility = 'visible';
-                    menu.style.opacity = '1';
-                    
-                    // Force reflow and trigger animation
-                    menu.offsetHeight;
-                    
-                    setTimeout(() => {
-                        panel.classList.remove('translate-x-full');
-                    }, 10);
-                    
-                    document.body.style.overflow = 'hidden';
-                    console.log('Mobile menu opened successfully');
-                }
-                
-                function closeMenu(e) {
-                    if (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                    }
-                    
-                    console.log('Closing mobile menu...');
-                    panel.classList.add('translate-x-full');
-                    
-                    setTimeout(() => {
-                        menu.classList.add('opacity-0', 'invisible');
-                        menu.style.pointerEvents = 'none';
-                        menu.style.visibility = 'hidden';
-                        menu.style.opacity = '0';
-                        menu.style.display = 'none';
-                        document.body.style.overflow = '';
-                        console.log('Mobile menu closed successfully');
-                    }, 300);
-                }
-                
-                // Enhanced event listeners with error handling
-                try {
-                    btn.addEventListener('click', openMenu, { passive: false });
-                    btn.addEventListener('touchstart', openMenu, { passive: false });
-                    
-                    if (closeBtn) {
-                        closeBtn.addEventListener('click', closeMenu, { passive: false });
-                    }
-                    
-                    backdrop.addEventListener('click', closeMenu, { passive: false });
-                    
-                    // Enhanced menu link handling - NETLIFY COMPATIBLE
-                    menu.querySelectorAll('a').forEach(function(link) {
-                        link.addEventListener('click', function(e) {
-                            // Close menu first, then navigate
-                            closeMenu();
-                            
-                            // Force navigation on Netlify
-                            const href = this.getAttribute('href');
-                            if (href && href !== '#') {
-                                setTimeout(() => {
-                                    window.location.href = href;
-                                }, 300);
-                            }
-                        }, { passive: false });
-                        
-                        // Also handle touch events for mobile
-                        link.addEventListener('touchend', function(e) {
-                            e.preventDefault();
-                            closeMenu();
-                            
-                            const href = this.getAttribute('href');
-                            if (href && href !== '#') {
-                                setTimeout(() => {
-                                    window.location.href = href;
-                                }, 300);
-                            }
-                        }, { passive: false });
-                    });
-                    
-                    // Mark as initialized
-                    btn.dataset.initialized = 'true';
-                    console.log('Mobile menu initialized successfully');
-                    return true;
-                    
-                } catch (error) {
-                    console.error('Mobile menu initialization error:', error);
-                    return false;
-                }
+            if (!btn || !menu || !panel || !backdrop) {
+                console.error('Mobile menu elements not found');
+                return;
             }
             
-            // Multiple initialization strategies
-            function tryInitialization() {
-                if (initializeMobileMenu()) {
-                    return;
-                }
+            console.log('Mobile menu elements found, initializing...');
+            
+            function openMenu() {
+                console.log('Opening mobile menu');
+                menu.style.pointerEvents = 'auto';
+                menu.classList.remove('opacity-0', 'invisible');
+                document.body.style.overflow = 'hidden';
                 
-                // Retry after short delay
+                // Trigger slide animation
                 setTimeout(() => {
-                    if (initializeMobileMenu()) {
-                        return;
-                    }
-                    
-                    // Final retry after longer delay
-                    setTimeout(initializeMobileMenu, 1000);
-                }, 100);
+                    panel.classList.remove('translate-x-full');
+                }, 10);
             }
             
-            // Initialize on DOM ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', tryInitialization);
-            } else {
-                tryInitialization();
+            function closeMenu() {
+                console.log('Closing mobile menu');
+                panel.classList.add('translate-x-full');
+                
+                setTimeout(() => {
+                    menu.classList.add('opacity-0', 'invisible');
+                    menu.style.pointerEvents = 'none';
+                    document.body.style.overflow = '';
+                }, 300);
             }
             
-            // Backup initialization on window load
-            window.addEventListener('load', tryInitialization);
-        })();
+            // Button click handler
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Hamburger button clicked');
+                openMenu();
+            });
+            
+            // Close button handler
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    closeMenu();
+                });
+            }
+            
+            // Backdrop click handler
+            backdrop.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeMenu();
+            });
+            
+            // Navigation links handler
+            const menuLinks = menu.querySelectorAll('a');
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    console.log('Menu link clicked:', this.href);
+                    closeMenu();
+                    // Let normal navigation happen
+                });
+            });
+            
+            console.log('Mobile menu initialized successfully');
+        });
 
         // Static navbar scroll effect (no hiding)
         const nav = document.getElementById('main-nav');
