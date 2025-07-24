@@ -93,25 +93,25 @@
         {{ content | safe }}
     </main>
     
-    <!-- Fixed Floating Navigation Circles - Always visible in same screen position -->
-    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4" style="z-index: 99998; pointer-events: auto;" id="floating-nav">
-        <a href="/" class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Home">
-            <span class="text-xl">🏠</span>
+    <!-- Fixed Floating Navigation Circles - Bottom of screen -->
+    <div class="fixed bottom-4 right-4 flex flex-row space-x-3" style="z-index: 99998; pointer-events: auto;" id="floating-nav">
+        <a href="/" class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Home">
+            <span class="text-sm">🏠</span>
         </a>
-        <a href="/smart-cameras/" class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Security Cameras">
-            <span class="text-xl">📹</span>
+        <a href="/smart-cameras/" class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Security Cameras">
+            <span class="text-sm">📹</span>
         </a>
-        <a href="/smart-locks/" class="w-14 h-14 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Smart Locks">
-            <span class="text-xl">🔒</span>
+        <a href="/smart-locks/" class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Smart Locks">
+            <span class="text-sm">🔒</span>
         </a>
-        <a href="/smart-lighting/" class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Smart Lighting">
-            <span class="text-xl">💡</span>
+        <a href="/smart-lighting/" class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Smart Lighting">
+            <span class="text-sm">💡</span>
         </a>
-        <a href="/services/" class="w-14 h-14 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Las Vegas Services">
-            <span class="text-xl">🔧</span>
+        <a href="/services/" class="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Las Vegas Services">
+            <span class="text-sm">🔧</span>
         </a>
-        <a href="/contact/" class="w-14 h-14 bg-gradient-to-br from-slate-500 to-gray-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Contact">
-            <span class="text-xl">📞</span>
+        <a href="/contact/" class="w-10 h-10 bg-gradient-to-br from-slate-500 to-gray-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Contact">
+            <span class="text-sm">📞</span>
         </a>
     </div>
     
@@ -341,34 +341,30 @@
             nav.style.transform = 'translateY(0)';
         });
 
-        // Ensure floating navigation works on mobile - FORCE RIGHT SIDE POSITIONING  
+        // Ensure floating navigation works on mobile - BOTTOM POSITIONING  
         const floatingNav = document.getElementById('floating-nav');
         if (floatingNav) {
-            // Force right side positioning and visibility
+            // Force bottom positioning and visibility
             floatingNav.style.position = 'fixed';
-            floatingNav.style.right = '1.5rem';
-            floatingNav.style.top = '50%';
-            floatingNav.style.transform = 'translateY(-50%)';
-            floatingNav.style.bottom = 'auto';
+            floatingNav.style.bottom = '1rem';
+            floatingNav.style.right = '1rem';
+            floatingNav.style.top = 'auto';
+            floatingNav.style.transform = 'none';
             floatingNav.style.left = 'auto';
             floatingNav.style.display = 'flex';
-            floatingNav.style.flexDirection = 'column';
+            floatingNav.style.flexDirection = 'row';
             floatingNav.style.visibility = 'visible';
             floatingNav.style.opacity = '1';
             floatingNav.style.pointerEvents = 'auto';
             floatingNav.style.zIndex = '99998';
+            floatingNav.style.gap = '0.75rem';
             
-            // Add mobile-specific positioning
-            if (window.innerWidth <= 768) {
-                floatingNav.style.right = '1rem';
-                floatingNav.style.gap = '0.75rem';
-                
-                floatingNav.querySelectorAll('a').forEach(link => {
-                    link.style.width = '3rem';
-                    link.style.height = '3rem';
-                    link.style.borderRadius = '50%';
-                });
-            }
+            // Ensure all circles are smaller
+            floatingNav.querySelectorAll('a').forEach(link => {
+                link.style.width = '2.5rem';
+                link.style.height = '2.5rem';
+                link.style.borderRadius = '50%';
+            });
         }
 
         // Smooth scroll for anchor links
