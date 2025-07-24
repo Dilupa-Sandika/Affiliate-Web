@@ -33,19 +33,16 @@
     {% endif %}
 </head>
 <body class="bg-neutral-50 antialiased">
-    <!-- Ultra-compact mobile navbar -->
     <nav class="nav-modern" id="main-nav">
         <div class="container-custom">
-            <div class="flex items-center justify-between py-1 sm:py-3 lg:py-4">
-                <!-- Logo - responsive sizing -->
-                <a href="/" class="flex items-center space-x-1.5 sm:space-x-3 group">
-                    <div class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold text-xs sm:text-base lg:text-lg transform group-hover:scale-110 transition-transform duration-200">
+            <div class="flex items-center justify-between py-4">
+                <a href="/" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center text-white font-bold text-lg transform group-hover:scale-110 transition-transform duration-200">
                         S
                     </div>
-                    <span class="text-white font-display font-bold text-sm sm:text-lg lg:text-xl">Smart Home Authority</span>
+                    <span class="text-white font-display font-bold text-xl">Smart Home Authority</span>
                 </a>
 
-                <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <a href="/" class="nav-item">Home</a>
                     <div class="relative group">
@@ -77,24 +74,31 @@
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
 
-                <!-- Mobile Menu Button - Visible on mobile -->
-                <button type="button" class="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors focus:outline-none" id="mobile-menu-btn">
-                    <div class="w-6 h-6 flex flex-col justify-center space-y-1.5">
-                        <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
-                        <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
-                        <div class="w-6 h-0.5 bg-white rounded-full transition-all duration-300"></div>
-                    </div>
+                <button class="lg:hidden text-white" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
                 </button>
             </div>
         </div>
+
+        <div class="lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu">
+            <div class="glass-dark mx-4 rounded-2xl p-6 mb-4">
+                <div class="space-y-4">
+                    <a href="/" class="block text-white/90 hover:text-white transition-colors">Home</a>
+                    <a href="/smart-cameras/" class="block text-white/90 hover:text-white transition-colors">Security Cameras</a>
+                    <a href="/smart-locks/" class="block text-white/90 hover:text-white transition-colors">Smart Locks</a>
+                    <a href="/smart-lighting/" class="block text-white/90 hover:text-white transition-colors">Smart Lighting</a>
+                    <a href="/services/" class="block text-white/90 hover:text-white transition-colors">Las Vegas Services</a>
+                    <a href="/contact/" class="block text-white/90 hover:text-white transition-colors">Contact</a>
+                    <a href="/contact/" class="btn-primary text-sm mt-4 inline-block">Get Free Quote</a>
+                </div>
+            </div>
+        </div>
     </nav>
-    
-    <main>
-        {{ content | safe }}
-    </main>
-    
+
     <!-- Fixed Floating Navigation Circles - Always visible in same screen position -->
-    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4" style="z-index: 99998; pointer-events: auto;" id="floating-nav">
+    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4" style="z-index: 9998; pointer-events: auto;" id="floating-nav">
         <a href="/" class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Home">
             <span class="text-xl">🏠</span>
         </a>
@@ -114,65 +118,10 @@
             <span class="text-xl">📞</span>
         </a>
     </div>
-    
-    <!-- Right-to-Left Sliding Mobile Menu -->
-    <div class="fixed inset-0 lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300" id="mobile-menu-backdrop"></div>
-        
-        <!-- Sliding Menu Panel -->
-        <div class="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300" id="mobile-menu-panel">
-            <!-- Menu Header -->
-            <div class="flex items-center justify-between p-6 border-b border-white/10">
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                        S
-                    </div>
-                    <span class="text-white font-display font-bold text-lg">Menu</span>
-                </div>
-                <button type="button" class="text-white/60 hover:text-white p-2" id="mobile-menu-close">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            
-            <!-- Menu Items -->
-            <div class="p-6 space-y-4">
-                <a href="/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center text-lg">🏠</span>
-                    <span class="font-medium text-lg">Home</span>
-                </a>
-                <a href="/smart-cameras/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center text-lg">📹</span>
-                    <span class="font-medium text-lg">Security Cameras</span>
-                </a>
-                <a href="/smart-locks/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-yellow-500/20 rounded-lg flex items-center justify-center text-lg">🔒</span>
-                    <span class="font-medium text-lg">Smart Locks</span>
-                </a>
-                <a href="/smart-lighting/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center text-lg">💡</span>
-                    <span class="font-medium text-lg">Smart Lighting</span>
-                </a>
-                <a href="/services/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center text-lg">🔧</span>
-                    <span class="font-medium text-lg">Las Vegas Services</span>
-                </a>
-                <a href="/contact/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-slate-500/20 rounded-lg flex items-center justify-center text-lg">📞</span>
-                    <span class="font-medium text-lg">Contact</span>
-                </a>
-                
-                <!-- CTA Button -->
-                <div class="pt-6 border-t border-white/10">
-                    <a href="/contact/" class="btn-primary w-full text-center py-4 text-lg font-semibold">
-                        Get Free Quote
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <main class="min-h-screen">
+        {{ content | safe }}
+    </main>
 
     <footer class="bg-neutral-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
@@ -278,150 +227,66 @@
         </div>
     </footer>
 
-    <script>
-        // Right-to-left sliding mobile menu
-        window.addEventListener('load', function() {
-            const btn = document.getElementById('mobile-menu-btn');
-            const menu = document.getElementById('mobile-menu');
-            const panel = document.getElementById('mobile-menu-panel');
-            const backdrop = document.getElementById('mobile-menu-backdrop');
-            const closeBtn = document.getElementById('mobile-menu-close');
+    <script type="module">
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            const isVisible = !mobileMenu.classList.contains('opacity-0');
             
-            if (!btn || !menu || !panel || !backdrop) {
-                console.error('Mobile menu elements missing');
-                return;
+            if (isVisible) {
+                mobileMenu.classList.add('opacity-0', 'invisible');
+            } else {
+                mobileMenu.classList.remove('opacity-0', 'invisible');
             }
-            
-            function openMenu() {
-                console.log('Opening mobile menu');
-                menu.classList.remove('opacity-0', 'invisible');
-                menu.style.pointerEvents = 'auto';
-                menu.style.visibility = 'visible';
-                panel.style.pointerEvents = 'auto';
-                setTimeout(() => {
-                    panel.classList.remove('translate-x-full');
-                }, 10);
-                document.body.style.overflow = 'hidden';
-            }
-            
-            function closeMenu() {
-                panel.classList.add('translate-x-full');
-                setTimeout(() => {
-                    menu.classList.add('opacity-0', 'invisible');
-                    menu.style.pointerEvents = 'none';
-                    document.body.style.overflow = '';
-                }, 300);
-            }
-            
-            // Open menu
-            btn.onclick = function(e) {
-                console.log('Hamburger button clicked');
-                e.preventDefault();
-                openMenu();
-            };
-            
-            // Close menu handlers
-            if (closeBtn) closeBtn.onclick = closeMenu;
-            backdrop.onclick = closeMenu;
-            
-            // Close menu on link click but allow natural navigation
-            menu.querySelectorAll('a').forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    console.log('Menu link clicked:', this.href);
-                    // Close menu after a very short delay to allow click to register
-                    setTimeout(() => {
-                        closeMenu();
-                    }, 50);
-                });
-            });
         });
 
-        // Static navbar scroll effect (no hiding)
+        // Ensure floating navigation works on all devices
+        const floatingNav = document.getElementById('floating-nav');
+        if (floatingNav) {
+            // Force visibility
+            floatingNav.style.display = 'flex';
+            floatingNav.style.visibility = 'visible';
+            floatingNav.style.opacity = '1';
+            floatingNav.style.pointerEvents = 'auto';
+            
+            // Add mobile-specific positioning
+            if (window.innerWidth <= 768) {
+                floatingNav.style.right = '1rem';
+                floatingNav.style.gap = '0.75rem';
+                
+                floatingNav.querySelectorAll('a').forEach(link => {
+                    link.style.width = '3rem';
+                    link.style.height = '3rem';
+                    link.style.fontSize = '0.875rem';
+                });
+            }
+        }
+
+        // Navbar scroll effect
         const nav = document.getElementById('main-nav');
-        
+        let lastScrollY = window.scrollY;
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
             
             if (currentScrollY > 100) {
                 nav.classList.add('backdrop-blur-xl');
-                nav.style.background = 'rgba(15, 23, 42, 0.95)';
+                nav.style.background = 'rgba(15, 23, 42, 0.9)';
             } else {
                 nav.classList.remove('backdrop-blur-xl');
                 nav.style.background = 'rgba(15, 23, 42, 0.8)';
             }
             
-            // Keep navbar always visible (no hiding)
-            nav.style.transform = 'translateY(0)';
+            // Hide/show navbar based on scroll direction
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
         });
-
-        // Ensure floating navigation works on mobile - iPhone 8 specific fixes
-        const floatingNav = document.getElementById('floating-nav');
-        if (floatingNav) {
-            // Force visibility and positioning on mobile/iPhone
-            floatingNav.style.display = 'flex';
-            floatingNav.style.visibility = 'visible';
-            floatingNav.style.opacity = '1';
-            floatingNav.style.pointerEvents = 'auto';
-            floatingNav.style.position = 'fixed';
-            floatingNav.style.zIndex = '99998';
-            floatingNav.style.right = window.innerWidth <= 480 ? '0.5rem' : '0.75rem';
-            floatingNav.style.top = '50%';
-            floatingNav.style.transform = 'translateY(-50%)';
-            floatingNav.style.webkitTransform = 'translate3d(0, -50%, 0)';
-            floatingNav.style.flexDirection = 'column';
-            floatingNav.style.gap = window.innerWidth <= 480 ? '0.4rem' : '0.75rem';
-            
-            // Force circular shape on each link
-            floatingNav.querySelectorAll('a').forEach((link, index) => {
-                const size = window.innerWidth <= 480 ? '2.5rem' : '3rem';
-                link.style.width = size;
-                link.style.height = size;
-                link.style.minWidth = size;
-                link.style.minHeight = size;
-                link.style.borderRadius = '50%';
-                link.style.webkitBorderRadius = '50%';
-                link.style.display = 'flex';
-                link.style.alignItems = 'center';
-                link.style.justifyContent = 'center';
-                link.style.touchAction = 'manipulation';
-                link.style.webkitTapHighlightColor = 'transparent';
-                link.style.webkitTouchCallout = 'none';
-                link.style.webkitUserSelect = 'none';
-                link.style.overflow = 'hidden';
-                
-                // Add touch event handling for iPhone
-                link.addEventListener('touchstart', function(e) {
-                    this.style.transform = 'scale(0.9)';
-                    this.style.webkitTransform = 'scale(0.9)';
-                }, { passive: true });
-                
-                link.addEventListener('touchend', function(e) {
-                    this.style.transform = 'scale(1)';
-                    this.style.webkitTransform = 'scale(1)';
-                }, { passive: true });
-                
-                link.addEventListener('touchcancel', function(e) {
-                    this.style.transform = 'scale(1)';
-                    this.style.webkitTransform = 'scale(1)';
-                }, { passive: true });
-                
-                // Ensure span inside has proper styling
-                const span = link.querySelector('span');
-                if (span) {
-                    span.style.fontSize = window.innerWidth <= 480 ? '0.7rem' : '0.875rem';
-                    span.style.lineHeight = '1';
-                    span.style.pointerEvents = 'none';
-                }
-            });
-            
-            // Force repaint on iPhone
-            setTimeout(() => {
-                floatingNav.style.display = 'none';
-                floatingNav.offsetHeight; // Trigger reflow
-                floatingNav.style.display = 'flex';
-            }, 100);
-        }
-
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
