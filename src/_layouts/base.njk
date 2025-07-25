@@ -33,8 +33,8 @@
     {% endif %}
 </head>
 <body class="bg-neutral-50 antialiased">
-    <!-- Ultra-compact mobile navbar -->
-    <nav class="nav-modern" id="main-nav">
+    <!-- Modern mobile navbar -->
+    <nav class="nav-modern relative" id="main-nav">
         <div class="container-custom">
             <div class="flex items-center justify-between py-3 sm:py-4 lg:py-5 min-h-[4rem] sm:min-h-[5rem] lg:min-h-[6rem]">
                 <!-- Logo - responsive sizing -->
@@ -77,14 +77,56 @@
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
 
-                <!-- Mobile Menu Button - PERFECT HAMBURGER -->
-                <button type="button" class="lg:hidden bg-white/25 border-2 border-white/50 p-4 rounded-lg hover:bg-white/35 focus:outline-none shadow-lg" id="mobile-menu-btn">
-                    <div class="w-6 h-4 flex flex-col justify-between">
-                        <span class="w-6 h-0.5 bg-white rounded-sm block shadow-sm"></span>
-                        <span class="w-6 h-0.5 bg-white rounded-sm block shadow-sm"></span>
-                        <span class="w-6 h-0.5 bg-white rounded-sm block shadow-sm"></span>
+                <!-- Mobile Menu Button - CLEAN DESIGN -->
+                <button type="button" class="md:hidden relative w-10 h-10 bg-white/20 rounded-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50" id="mobile-menu-btn">
+                    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <div class="w-5 h-3.5 relative">
+                            <div class="absolute top-0 left-0 w-5 h-0.5 bg-white rounded-full transform transition-all duration-300"></div>
+                            <div class="absolute top-1.5 left-0 w-5 h-0.5 bg-white rounded-full transform transition-all duration-300"></div>
+                            <div class="absolute bottom-0 left-0 w-5 h-0.5 bg-white rounded-full transform transition-all duration-300"></div>
+                        </div>
                     </div>
                 </button>
+            </div>
+            
+            <!-- Mobile Dropdown Menu - INSIDE NAV -->
+            <div class="md:hidden absolute top-full left-0 w-full transform translate-y-0 opacity-0 invisible transition-all duration-200 ease-out" id="mobile-menu" style="z-index: 9999;">
+                <div class="mx-4 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
+                    <!-- Menu Items -->
+                    <div class="py-2">
+                        <a href="/" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="w-6 h-6 bg-blue-100 rounded-md flex items-center justify-center text-sm mr-3">🏠</span>
+                            <span class="font-medium">Home</span>
+                        </a>
+                        <a href="/smart-cameras/" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="w-6 h-6 bg-blue-100 rounded-md flex items-center justify-center text-sm mr-3">📹</span>
+                            <span class="font-medium">Security Cameras</span>
+                        </a>
+                        <a href="/smart-locks/" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="w-6 h-6 bg-yellow-100 rounded-md flex items-center justify-center text-sm mr-3">🔒</span>
+                            <span class="font-medium">Smart Locks</span>
+                        </a>
+                        <a href="/smart-lighting/" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="w-6 h-6 bg-green-100 rounded-md flex items-center justify-center text-sm mr-3">💡</span>
+                            <span class="font-medium">Smart Lighting</span>
+                        </a>
+                        <a href="/services/" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="w-6 h-6 bg-purple-100 rounded-md flex items-center justify-center text-sm mr-3">🔧</span>
+                            <span class="font-medium">Las Vegas Services</span>
+                        </a>
+                        <a href="/contact/" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="w-6 h-6 bg-gray-100 rounded-md flex items-center justify-center text-sm mr-3">📞</span>
+                            <span class="font-medium">Contact</span>
+                        </a>
+                        
+                        <!-- CTA Button -->
+                        <div class="px-4 py-3 border-t border-gray-100">
+                            <a href="/contact/" class="btn-primary w-full text-center py-3 text-sm font-semibold rounded-lg">
+                                Get Free Quote
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -113,65 +155,6 @@
         <a href="/contact/" class="w-10 h-10 bg-gradient-to-br from-slate-500 to-gray-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Contact">
             <span class="text-sm">📞</span>
         </a>
-    </div>
-    
-    <!-- Mobile Menu - COMPLETELY SOLID -->
-    <div class="fixed inset-0 lg:hidden opacity-0 invisible transition-all duration-300" id="mobile-menu" style="z-index: 99999; pointer-events: none;">
-        <!-- Solid Background Overlay -->
-        <div class="absolute inset-0" id="mobile-menu-backdrop" style="background-color: rgba(0, 0, 0, 0.75);"></div>
-        
-        <!-- Solid Menu Panel -->
-        <div class="absolute top-0 right-0 h-full w-80 max-w-[90vw] shadow-2xl transform translate-x-full transition-transform duration-300" id="mobile-menu-panel" style="background-color: #1e293b; border-left: 4px solid #3b82f6;">
-            <!-- Menu Header -->
-            <div class="flex items-center justify-between p-6 border-b border-white/10">
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                        S
-                    </div>
-                    <span class="text-white font-display font-bold text-lg">Menu</span>
-                </div>
-                <button type="button" class="text-white/60 hover:text-white p-2" id="mobile-menu-close">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            
-            <!-- Menu Items -->
-            <div class="p-6 space-y-4">
-                <a href="/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center text-lg">🏠</span>
-                    <span class="font-medium text-lg">Home</span>
-                </a>
-                <a href="/smart-cameras/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center text-lg">📹</span>
-                    <span class="font-medium text-lg">Security Cameras</span>
-                </a>
-                <a href="/smart-locks/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-yellow-500/20 rounded-lg flex items-center justify-center text-lg">🔒</span>
-                    <span class="font-medium text-lg">Smart Locks</span>
-                </a>
-                <a href="/smart-lighting/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center text-lg">💡</span>
-                    <span class="font-medium text-lg">Smart Lighting</span>
-                </a>
-                <a href="/services/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center text-lg">🔧</span>
-                    <span class="font-medium text-lg">Las Vegas Services</span>
-                </a>
-                <a href="/contact/" class="flex items-center space-x-4 text-white/90 hover:text-white transition-colors p-3 rounded-xl hover:bg-white/10">
-                    <span class="w-8 h-8 bg-slate-500/20 rounded-lg flex items-center justify-center text-lg">📞</span>
-                    <span class="font-medium text-lg">Contact</span>
-                </a>
-                
-                <!-- CTA Button -->
-                <div class="pt-6 border-t border-white/10">
-                    <a href="/contact/" class="btn-primary w-full text-center py-4 text-lg font-semibold">
-                        Get Free Quote
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
 
     <footer class="bg-neutral-900 text-white relative overflow-hidden">
@@ -279,90 +262,58 @@
     </footer>
 
     <script>
-        // SIMPLE MOBILE MENU - WORKS ON ALL DEVICES
+        // SIMPLE DROPDOWN MENU - NETLIFY COMPATIBLE
         document.addEventListener('DOMContentLoaded', function() {
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
-            const panel = document.getElementById('mobile-menu-panel');
-            const backdrop = document.getElementById('mobile-menu-backdrop');
-            const closeBtn = document.getElementById('mobile-menu-close');
             
-            if (!btn || !menu || !panel || !backdrop) {
-                console.error('Mobile menu elements not found');
+            if (!btn || !menu) {
+                console.log('Mobile menu elements not found');
                 return;
             }
             
-            console.log('Mobile menu elements found, initializing...');
+            console.log('Mobile menu initialized');
+            let isOpen = false;
             
-            function openMenu() {
-                console.log('Opening mobile menu');
-                
-                // Make menu completely visible
-                menu.style.display = 'block';
-                menu.style.pointerEvents = 'auto';
-                menu.style.visibility = 'visible';
-                menu.style.opacity = '1';
-                menu.classList.remove('opacity-0', 'invisible');
-                
-                // Prevent body scroll
-                document.body.style.overflow = 'hidden';
-                
-                // Force reflow then slide in
-                menu.offsetHeight;
-                requestAnimationFrame(() => {
-                    panel.classList.remove('translate-x-full');
-                });
-                
-                console.log('Mobile menu should now be visible');
-            }
-            
-            function closeMenu() {
-                console.log('Closing mobile menu');
-                panel.classList.add('translate-x-full');
-                
-                setTimeout(() => {
+            function toggleMenu() {
+                if (isOpen) {
+                    // Close menu
                     menu.classList.add('opacity-0', 'invisible');
-                    menu.style.pointerEvents = 'none';
-                    menu.style.visibility = 'hidden';
-                    menu.style.opacity = '0';
-                    menu.style.display = 'none';
-                    document.body.style.overflow = '';
-                    console.log('Mobile menu closed');
-                }, 300);
+                    menu.classList.remove('opacity-100', 'visible');
+                    isOpen = false;
+                    console.log('Menu closed');
+                } else {
+                    // Open menu
+                    menu.classList.remove('opacity-0', 'invisible');
+                    menu.classList.add('opacity-100', 'visible');
+                    isOpen = true;
+                    console.log('Menu opened');
+                }
             }
             
-            // Button click handler
+            // Toggle on button click
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                console.log('Hamburger button clicked');
-                openMenu();
+                e.stopPropagation();
+                toggleMenu();
             });
             
-            // Close button handler
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    closeMenu();
-                });
-            }
-            
-            // Backdrop click handler
-            backdrop.addEventListener('click', function(e) {
-                e.preventDefault();
-                closeMenu();
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (isOpen && !menu.contains(e.target) && !btn.contains(e.target)) {
+                    toggleMenu();
+                }
             });
             
-            // Navigation links handler
+            // Handle navigation links
             const menuLinks = menu.querySelectorAll('a');
             menuLinks.forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    console.log('Menu link clicked:', this.href);
-                    closeMenu();
-                    // Let normal navigation happen
+                link.addEventListener('click', function() {
+                    if (isOpen) {
+                        toggleMenu();
+                    }
                 });
             });
-            
-            console.log('Mobile menu initialized successfully');
         });
 
         // Static navbar scroll effect (no hiding)
