@@ -77,15 +77,11 @@
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
 
-                <!-- Mobile Menu Button - CLEAN DESIGN -->
-                <button type="button" class="md:hidden relative w-10 h-10 bg-white/20 rounded-md border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50" id="mobile-menu-btn">
-                    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <div class="w-5 h-3.5 relative">
-                            <div class="absolute top-0 left-0 w-5 h-0.5 bg-white rounded-full transform transition-all duration-300"></div>
-                            <div class="absolute top-1.5 left-0 w-5 h-0.5 bg-white rounded-full transform transition-all duration-300"></div>
-                            <div class="absolute bottom-0 left-0 w-5 h-0.5 bg-white rounded-full transform transition-all duration-300"></div>
-                        </div>
-                    </div>
+                <!-- Mobile Menu Button - NAVIGATION ICON -->
+                <button type="button" class="md:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-white/50" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
                 </button>
             </div>
             
@@ -316,12 +312,17 @@
             });
         });
 
-        // Static navbar scroll effect (no hiding)
+        // FACEBOOK-STYLE SCROLL BEHAVIOR
         const nav = document.getElementById('main-nav');
+        const floatingNav = document.getElementById('floating-nav');
+        let lastScrollY = window.scrollY;
+        let ticking = false;
         
-        window.addEventListener('scroll', () => {
+        function updateScrollBehavior() {
             const currentScrollY = window.scrollY;
+            const scrollDifference = currentScrollY - lastScrollY;
             
+            // Background effect for navbar
             if (currentScrollY > 100) {
                 nav.classList.add('backdrop-blur-xl');
                 nav.style.background = 'rgba(15, 23, 42, 0.95)';
@@ -330,34 +331,45 @@
                 nav.style.background = 'rgba(15, 23, 42, 0.8)';
             }
             
-            // Keep navbar always visible (no hiding)
-            nav.style.transform = 'translateY(0)';
-        });
-
-        // Ensure floating navigation works on mobile - BOTTOM POSITIONING  
-        const floatingNav = document.getElementById('floating-nav');
-        if (floatingNav) {
-            // Force bottom positioning and visibility
-            floatingNav.style.position = 'fixed';
-            floatingNav.style.bottom = '1rem';
-            floatingNav.style.right = '1rem';
-            floatingNav.style.top = 'auto';
-            floatingNav.style.transform = 'none';
-            floatingNav.style.left = 'auto';
-            floatingNav.style.display = 'flex';
-            floatingNav.style.flexDirection = 'row';
-            floatingNav.style.visibility = 'visible';
-            floatingNav.style.opacity = '1';
-            floatingNav.style.pointerEvents = 'auto';
-            floatingNav.style.zIndex = '99998';
-            floatingNav.style.gap = '0.75rem';
+            // Facebook-style hide/show behavior
+            if (window.innerWidth <= 768) { // Mobile only
+                if (currentScrollY < 50) {
+                    // Always show at top of page
+                    nav.style.transform = 'translateY(0)';
+                    if (floatingNav) floatingNav.style.transform = 'translateY(0)';
+                } else if (scrollDifference > 5 && currentScrollY > 100) {
+                    // Scrolling down - hide both
+                    nav.style.transform = 'translateY(-100%)';
+                    if (floatingNav) floatingNav.style.transform = 'translateY(100px)';
+                } else if (scrollDifference < -5) {
+                    // Scrolling up - show both
+                    nav.style.transform = 'translateY(0)';
+                    if (floatingNav) floatingNav.style.transform = 'translateY(0)';
+                }
+            } else {
+                // Desktop - always visible
+                nav.style.transform = 'translateY(0)';
+                if (floatingNav) floatingNav.style.transform = 'translateY(0)';
+            }
             
-            // Ensure all circles are smaller
-            floatingNav.querySelectorAll('a').forEach(link => {
-                link.style.width = '2.5rem';
-                link.style.height = '2.5rem';
-                link.style.borderRadius = '50%';
-            });
+            lastScrollY = currentScrollY;
+            ticking = false;
+        }
+        
+        function requestScrollUpdate() {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollBehavior);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestScrollUpdate, { passive: true });
+
+        // Initialize floating navigation positioning
+        if (floatingNav) {
+            // Set initial styles for floating navigation
+            floatingNav.style.transition = 'transform 0.3s ease-in-out';
+            floatingNav.style.transform = 'translateY(0)';
         }
 
         // Smooth scroll for anchor links
