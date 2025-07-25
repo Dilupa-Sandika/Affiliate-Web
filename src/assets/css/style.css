@@ -282,7 +282,7 @@
   bottom: 1rem !important;
   right: 1rem !important;
   top: auto !important;
-  transform: none !important;
+  left: auto !important;
   z-index: 99998 !important;
   pointer-events: auto !important;
   display: flex !important;
@@ -293,12 +293,16 @@
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   user-select: none !important;
-  /* Force above any potential overlays */
-  will-change: transform !important;
-  left: auto !important;
+  /* Force above any potential overlays and enable smooth transitions */
+  will-change: transform, opacity !important;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out !important;
+  /* Initial position - visible */
+  transform: translateY(0) !important;
 }
 
 #floating-nav a {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
   border-radius: 50% !important;
   display: flex !important;
   align-items: center !important;
@@ -306,6 +310,9 @@
   touch-action: manipulation !important;
   -webkit-tap-highlight-color: transparent !important;
   cursor: pointer !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
 }
 
 /* Ensure floating circles stay fixed on all screen sizes */
