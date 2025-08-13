@@ -3,9 +3,10 @@ const { DateTime } = require("luxon");
 module.exports = function(eleventyConfig) {
   // Passthrough copy for static assets that don't need processing
   eleventyConfig.addPassthroughCopy("src/assets/images");
-  eleventyConfig.addPassthroughCopy("src/assets/js"); // Correctly copies your JS files
+  eleventyConfig.addPassthroughCopy("src/assets/js");
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
+  eleventyConfig.addPassthroughCopy("src/content/**/*.{jpg,jpeg,png,gif,webp,svg}"); // Copy content images
   
   // Watch for changes in the compiled CSS file for live browser refreshes
   eleventyConfig.addWatchTarget("./_site/assets/css/");
@@ -72,7 +73,10 @@ module.exports = function(eleventyConfig) {
   
   // Collections
   eleventyConfig.addCollection("reviews", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("./src/reviews/*.md");
+    return collectionApi.getFilteredByGlob("./src/content/reviews/*/index.md")
+      .sort(function(a, b) {
+        return b.date - a.date;
+      });
   });
   
   eleventyConfig.addCollection("services", function(collectionApi) {
@@ -81,14 +85,22 @@ module.exports = function(eleventyConfig) {
     });
   });
   
-  // Blog collection - all posts from blog directory sorted by date (newest first)
+  // Blog collection - all posts from content/blog directory sorted by date (newest first)
   eleventyConfig.addCollection("blog", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("./src/blog/*.md")
-      .filter(function(item) {
-        return item.inputPath !== "./src/blog/index.njk"; // Exclude the main blog index page
-      })
+    return collectionApi.getFilteredByGlob("./src/content/blog/*/index.md")
       .sort(function(a, b) {
         return b.date - a.date; // Sort by date descending (newest first)
+      });
+  });
+  
+  // Featured blog posts collection
+  eleventyConfig.addCollection("featuredBlog", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("./src/content/blog/*/index.md")
+      .filter(function(item) {
+        return item.data.featured === true;
+      })
+      .sort(function(a, b) {
+        return b.date - a.date;
       });
   });
   

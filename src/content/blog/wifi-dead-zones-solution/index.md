@@ -4,7 +4,10 @@ title: "My Smart Home Devices Keep Disconnecting: The $200 Wi-Fi Solution That F
 description: "After months of smart devices randomly going offline, I discovered the real culprit wasn't the devices - it was my Wi-Fi coverage. Here's how I solved it permanently."
 date: 2025-08-10
 tags: ["blog", "wifi", "smart-home", "network", "problem-solving"]
-featuredImage: "/assets/images/blog/wifi-mesh-solution.jpg"
+featuredImage: "/content/blog/wifi-dead-zones-solution/wifi-mesh-solution.jpg"
+featured: false
+author: "Vegas Tech Hub Team"
+readingTime: "8 min read"
 ---
 
 # The Mysterious Case of the Disappearing Smart Devices

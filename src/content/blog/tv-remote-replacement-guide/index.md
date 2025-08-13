@@ -4,7 +4,10 @@ title: "My TV Remote Broke: How I Survived with a Mobile App and Found the Best 
 description: "A real-world guide to what to do when your TV remote breaks. From using the Google TV app to comparing cheap AliExpress options against reliable Amazon replacements."
 date: 2025-08-13
 tags: ["blog", "hometech", "diy", "remote", "problem-solving"]
-featuredImage: "/assets/images/blog/tv-remote-broken.jpg"
+featuredImage: "/content/blog/tv-remote-replacement-guide/tv-remote-broken.jpg"
+featured: true
+author: "Vegas Tech Hub Team"
+readingTime: "6 min read"
 ---
 
 # The Moment Every Parent Dreads
@@ -61,8 +64,6 @@ Once the immediate crisis was solved, I started looking at replacement options. 
 - **No guarantees** - if it doesn't work with your specific model, good luck with returns
 - **Programming complexity** - some required manual code entry
 
-[*Sample AliExpress Universal Remote - $4.99 with 2-week shipping*](https://example-affiliate-link.com)
-
 I almost ordered one out of curiosity, but the shipping time was a deal-breaker for our immediate needs.
 
 ## **The Amazon Solution: Fast, Reliable, Worth It**
@@ -77,8 +78,6 @@ I found the **official Samsung replacement remote** for $28 with Prime delivery.
 **Next-day delivery:** Ordered Tuesday night, arrived Wednesday afternoon
 **Perfect functionality:** Every button worked exactly like the original
 **Build quality:** Felt solid and durable - likely to survive future drops better than the original
-
-[*Official Samsung Replacement Remote - $28 with Prime shipping*](https://example-affiliate-link-amazon.com)
 
 ### The Amazon Advantage
 
