@@ -89,7 +89,13 @@ description: "Personal experiences and practical solutions for common tech probl
         </div>
         
         <!-- Featured/Latest Post -->
-        {% set featuredPost = (collections.featuredBlog and collections.featuredBlog.length > 0) ? collections.featuredBlog[0] : (collections.blog and collections.blog.length > 0 ? collections.blog[0] : null) %}
+        {% if collections.featuredBlog and collections.featuredBlog.length > 0 %}
+            {% set featuredPost = collections.featuredBlog[0] %}
+        {% elif collections.blog and collections.blog.length > 0 %}
+            {% set featuredPost = collections.blog[0] %}
+        {% else %}
+            {% set featuredPost = null %}
+        {% endif %}
         {% if featuredPost %}
         <div class="max-w-6xl mx-auto mb-16">
             <article class="review-card hover-lift overflow-hidden">
