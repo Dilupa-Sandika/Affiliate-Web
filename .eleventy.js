@@ -22,6 +22,25 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj).toISO();
   });
   
+  // Additional filters for blog functionality
+  eleventyConfig.addFilter("wordcount", (content) => {
+    const words = content.split(/\s+/).filter(word => word.length > 0);
+    return words.length;
+  });
+  
+  eleventyConfig.addFilter("striptags", (content) => {
+    return content.replace(/<[^>]*>/g, '');
+  });
+  
+  eleventyConfig.addFilter("truncate", (text, length = 100) => {
+    if (text.length <= length) return text;
+    return text.substring(0, length).trim() + '...';
+  });
+  
+  eleventyConfig.addFilter("limit", (array, limit) => {
+    return array.slice(0, limit);
+  });
+  
   // URL filters
   eleventyConfig.addFilter("absoluteUrl", (url, base) => {
     try {
@@ -43,13 +62,24 @@ module.exports = function(eleventyConfig) {
     });
   });
   
+  // Blog collection - all posts from blog directory sorted by date (newest first)
+  eleventyConfig.addCollection("blog", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("./src/blog/*.md")
+      .filter(function(item) {
+        return item.inputPath !== "./src/blog/index.njk"; // Exclude the main blog index page
+      })
+      .sort(function(a, b) {
+        return b.date - a.date; // Sort by date descending (newest first)
+      });
+  });
+  
   // Global data
   eleventyConfig.addGlobalData("metadata", {
-    title: "Smart Home Authority & Las Vegas Installation Services",
-    url: "https://yourdomain.com", // Remember to change this to your actual domain
-    description: "Expert smart home device reviews and professional installation services in Las Vegas.",
+    title: "Vegas Tech Hub & Las Vegas Installation Services",
+    url: "https://lasvegashometech.netlify.app", // Updated to match your domain
+    description: "Real tech experiences and professional installation services in Las Vegas. Personal problem-solving stories from Vegas homeowners.",
     language: "en",
-    author: "Smart Home Authority"
+    author: "Vegas Tech Hub"
   });
   
   // Set directories
