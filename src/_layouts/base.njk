@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if title %}{{ title }} | {% endif %}Smart Home Authority & Las Vegas Installation Services</title>
+    <title>{% if title %}{{ title }} | {% endif %}Vegas Tech Hub & Las Vegas Installation Services</title>
     <meta name="description" content="{{ description or 'Expert smart home device reviews and professional installation services in Las Vegas. Find the best smart cameras, locks, and lighting solutions.' }}">
     
-    <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}Smart Home Authority">
+    <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}Vegas Tech Hub">
     <meta property="og:description" content="{{ description or 'Expert smart home device reviews and professional installation services in Las Vegas.' }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ page.url | url | absoluteUrl(metadata.url) }}">
     <meta property="og:image" content="{{ metadata.url }}/assets/images/og-image.jpg">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{% if title %}{{ title }} | {% endif %}Smart Home Authority">
+    <meta name="twitter:title" content="{% if title %}{{ title }} | {% endif %}Vegas Tech Hub">
     <meta name="twitter:description" content="{{ description or 'Expert smart home device reviews and professional installation services in Las Vegas.' }}">
     <meta name="twitter:image" content="{{ metadata.url }}/assets/images/og-image.jpg">
     
@@ -42,7 +42,7 @@
                     <div class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold text-xs sm:text-base lg:text-lg transform group-hover:scale-110 transition-transform duration-200">
                         S
                     </div>
-                    <span class="text-white font-display font-bold text-sm sm:text-lg lg:text-xl">Smart Home Authority</span>
+                    <span class="text-white font-display font-bold text-sm sm:text-lg lg:text-xl">Vegas Tech Hub</span>
                 </a>
 
                 <!-- Desktop Navigation -->
@@ -73,6 +73,7 @@
                         </div>
                     </div>
                     <a href="/services/" class="nav-item">Las Vegas Services</a>
+                    <a href="/blog/" class="nav-item">Tech Blog</a>
                     <a href="/contact/" class="nav-item">Contact</a>
                     <a href="/contact/" class="btn-primary text-sm px-6 py-3">Get Free Quote</a>
                 </div>
@@ -109,6 +110,10 @@
                         <a href="/services/" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
                             <span class="w-6 h-6 bg-purple-100 rounded-md flex items-center justify-center text-sm mr-3">🔧</span>
                             <span class="font-medium">Las Vegas Services</span>
+                        </a>
+                        <a href="/blog/" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="w-6 h-6 bg-orange-100 rounded-md flex items-center justify-center text-sm mr-3">📝</span>
+                            <span class="font-medium">Tech Blog</span>
                         </a>
                         <a href="/contact/" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
                             <span class="w-6 h-6 bg-gray-100 rounded-md flex items-center justify-center text-sm mr-3">📞</span>
@@ -148,6 +153,9 @@
         <a href="/services/" class="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Las Vegas Services">
             <span class="text-sm">🔧</span>
         </a>
+        <a href="/blog/" class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Tech Blog">
+            <span class="text-sm">📝</span>
+        </a>
         <a href="/contact/" class="w-10 h-10 bg-gradient-to-br from-slate-500 to-gray-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-white/20" title="Contact">
             <span class="text-sm">📞</span>
         </a>
@@ -166,7 +174,7 @@
                         <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
                             S
                         </div>
-                        <span class="text-white font-display font-bold text-xl">Smart Home Authority</span>
+                        <span class="text-white font-display font-bold text-xl">Vegas Tech Hub</span>
                     </div>
                     <p class="text-neutral-400 mb-6">Expert smart home device reviews and professional installation services throughout Las Vegas and Nevada.</p>
                     <div class="flex space-x-4">
@@ -196,8 +204,8 @@
                         <li><a href="/smart-lighting/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
                             <span>💡</span><span>Smart Lighting</span>
                         </a></li>
-                        <li><a href="/guides/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
-                            <span>📚</span><span>Buying Guides</span>
+                        <li><a href="/blog/" class="text-neutral-400 hover:text-white transition-colors flex items-center space-x-2">
+                            <span>📝</span><span>Tech Experience Blog</span>
                         </a></li>
                     </ul>
                 </div>
@@ -246,7 +254,7 @@
 
             <div class="border-t border-neutral-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                 <p class="text-neutral-400 text-sm">
-                    &copy; {{ "now" | date("yyyy") }} Smart Home Authority. All rights reserved. As an Amazon Associate, we earn from qualifying purchases.
+                    &copy; {{ "now" | date("yyyy") }} Vegas Tech Hub. All rights reserved. As an Amazon Associate, we earn from qualifying purchases.
                 </p>
                 <div class="flex items-center space-x-6 text-sm text-neutral-400">
                     <a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a>
