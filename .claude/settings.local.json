@@ -20,7 +20,12 @@
       "Bash(npx eleventy:*)",
       "Bash(grep:*)",
       "Bash(curl:*)",
-      "Bash(npx @11ty/eleventy:*)"
+      "Bash(npx @11ty/eleventy:*)",
+      "Bash(cp:*)",
+      "Bash(for dir in */)",
+      "Bash(do mkdir -p \"../../reviews/$dir\")",
+      "Bash(true)",
+      "Bash(done)"
     ],
     "deny": []
   }
