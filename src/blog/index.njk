@@ -2,11 +2,6 @@
 layout: base.njk
 title: "Tech Experience Blog - Real Problems, Real Solutions"
 description: "Personal experiences and practical solutions for common tech problems. Learn from real Vegas homeowners who've solved the same issues you're facing."
-pagination:
-  data: collections.blog
-  size: 6
-  alias: posts
-  reverse: true
 ---
 
 <!-- Hero Section -->
@@ -172,7 +167,7 @@ pagination:
         
         {% if collections.blog.length > 1 %}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for post in posts %}
+            {% for post in collections.blog %}
                 {% if loop.index > 1 %} <!-- Skip first post as it's featured above -->
                 <article class="card-premium hover-lift">
                     <!-- Image -->
@@ -233,28 +228,6 @@ pagination:
             {% endfor %}
         </div>
         
-        <!-- Pagination -->
-        {% if pagination.pages.length > 1 %}
-        <div class="mt-16 flex justify-center">
-            <nav class="flex space-x-2">
-                {% if pagination.previousPageHref %}
-                <a href="{{ pagination.previousPageHref }}" class="btn-outline px-4 py-2">
-                    <span class="mr-2">←</span>Previous
-                </a>
-                {% endif %}
-                
-                <span class="flex items-center px-4 py-2 text-neutral-600">
-                    Page {{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }}
-                </span>
-                
-                {% if pagination.nextPageHref %}
-                <a href="{{ pagination.nextPageHref }}" class="btn-outline px-4 py-2">
-                    Next<span class="ml-2">→</span>
-                </a>
-                {% endif %}
-            </nav>
-        </div>
-        {% endif %}
         
         {% elif collections.blog.length == 1 %}
         <div class="text-center py-16">
@@ -290,32 +263,28 @@ pagination:
                 <div class="feature-icon mx-auto mb-4 bg-gradient-to-br from-blue-500 to-indigo-600">🔧</div>
                 <h3 class="text-xl font-semibold text-neutral-900 mb-2">Hardware Fixes</h3>
                 <p class="text-neutral-600 text-sm mb-4">Physical device problems and repair solutions</p>
-                {% set hardwareCount = collections.blog | selectattr("data.tags", "includes", "diy") | list | length %}
-                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{{ hardwareCount }} Stories</span>
+                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{{ collections.blog.length }} Stories</span>
             </div>
             
             <div class="card-premium text-center hover-lift">
                 <div class="feature-icon mx-auto mb-4 bg-gradient-to-br from-green-500 to-emerald-600">📶</div>
                 <h3 class="text-xl font-semibold text-neutral-900 mb-2">Network Issues</h3>
                 <p class="text-neutral-600 text-sm mb-4">Wi-Fi, connectivity, and smart home network problems</p>
-                {% set networkCount = collections.blog | selectattr("data.tags", "includes", "wifi") | list | length %}
-                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">{{ networkCount }} Stories</span>
+                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">{{ collections.blog.length }} Stories</span>
             </div>
             
             <div class="card-premium text-center hover-lift">
                 <div class="feature-icon mx-auto mb-4 bg-gradient-to-br from-purple-500 to-violet-600">💡</div>
                 <h3 class="text-xl font-semibold text-neutral-900 mb-2">Smart Home</h3>
                 <p class="text-neutral-600 text-sm mb-4">Automation, app issues, and device integration</p>
-                {% set smarthomeCount = collections.blog | selectattr("data.tags", "includes", "hometech") | list | length %}
-                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">{{ smarthomeCount }} Stories</span>
+                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">{{ collections.blog.length }} Stories</span>
             </div>
             
             <div class="card-premium text-center hover-lift">
                 <div class="feature-icon mx-auto mb-4 bg-gradient-to-br from-orange-500 to-red-600">💰</div>
                 <h3 class="text-xl font-semibold text-neutral-900 mb-2">Money Saving</h3>
                 <p class="text-neutral-600 text-sm mb-4">Avoiding expensive repairs and unnecessary purchases</p>
-                {% set savingsCount = collections.blog | selectattr("data.tags", "includes", "problem-solving") | list | length %}
-                <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">{{ savingsCount }} Stories</span>
+                <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">{{ collections.blog.length }} Stories</span>
             </div>
         </div>
     </div>

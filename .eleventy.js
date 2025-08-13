@@ -41,6 +41,25 @@ module.exports = function(eleventyConfig) {
     return array.slice(0, limit);
   });
   
+  eleventyConfig.addFilter("url_encode", (str) => {
+    return encodeURIComponent(str);
+  });
+  
+  eleventyConfig.addFilter("selectattr", (arr, attr, op, value) => {
+    if (!arr || !Array.isArray(arr)) return [];
+    return arr.filter(item => {
+      const attrValue = attr.split('.').reduce((obj, key) => obj && obj[key], item);
+      if (op === 'includes' && Array.isArray(attrValue)) {
+        return attrValue.includes(value);
+      }
+      return false;
+    });
+  });
+  
+  eleventyConfig.addFilter("list", (arr) => {
+    return Array.isArray(arr) ? arr : [];
+  });
+  
   // URL filters
   eleventyConfig.addFilter("absoluteUrl", (url, base) => {
     try {

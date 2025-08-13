@@ -131,6 +131,7 @@ layout: base.njk
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Related posts would be populated here via Eleventy collections -->
                 {% set relatedPosts = collections.blog | reverse | limit(4) %}
+                {% if relatedPosts and relatedPosts.length > 0 %}
                 {% for post in relatedPosts %}
                     {% if post.url != page.url %}
                     <article class="card-premium hover-lift">
@@ -158,6 +159,7 @@ layout: base.njk
                     </article>
                     {% endif %}
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -182,9 +184,7 @@ layout: base.njk
             <div class="bg-neutral-50 rounded-2xl p-8">
                 <script src="https://giscus.app/client.js"
                         data-repo="Dilupa-Sandika/Affiliate-Web"
-                        data-repo-id="R_kgDONXQhbw"
                         data-category="Announcements"
-                        data-category-id="DIC_kwDONXQhb84ClDJt"
                         data-mapping="pathname"
                         data-strict="0"
                         data-reactions-enabled="1"
