@@ -80,6 +80,13 @@ module.exports = function(eleventyConfig) {
         return b.date - a.date;
       });
   });
+
+  eleventyConfig.addCollection("guides", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("./src/guides/*/index.md")
+      .sort(function(a, b) {
+        return b.date - a.date;
+      });
+  });
   
   eleventyConfig.addCollection("services", function(collectionApi) {
     return collectionApi.getFilteredByGlob("./src/services/*.njk").filter(function(item) {
