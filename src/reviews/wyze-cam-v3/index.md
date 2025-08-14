@@ -20,7 +20,7 @@ permalink: "/reviews/wyze-cam-v3/"
 
 After 7 months of testing the Wyze Cam v3 in Las Vegas, here's my honest review of what might be the best value security camera available. At just $35, it punches well above its weight class, though it's not without limitations.
 
-![Wyze Cam v3 installed](/content/reviews/wyze-cam-v3/wyze-cam-hero.jpg)
+![Wyze Cam v3 installed](/reviews/wyze-cam-v3/wyze-cam-hero.jpg)
 
 ## **Quick Verdict**
 
@@ -63,7 +63,7 @@ At $35, the Wyze Cam v3 costs less than one month's subscription for premium cam
 
 **Night Vision Winner:** Better color night vision than cameras costing 5x more.
 
-![Night vision comparison](/content/reviews/wyze-cam-v3/night-vision-samples.jpg)
+![Night vision comparison](/reviews/wyze-cam-v3/night-vision-samples.jpg)
 
 ---
 

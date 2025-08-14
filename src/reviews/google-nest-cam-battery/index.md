@@ -20,7 +20,7 @@ permalink: "/reviews/google-nest-cam-battery/"
 
 After 5 months of testing the Google Nest Cam Battery in Las Vegas conditions, here's my comprehensive review of Google's entry into the wireless security camera market. At $179, it offers impressive AI features but makes some compromises to hit that price point.
 
-![Google Nest Cam Battery installed](/content/reviews/google-nest-cam-battery/installed-camera.jpg)
+![Google Nest Cam Battery installed](/reviews/google-nest-cam-battery/installed-camera.jpg)
 
 ## **Quick Verdict**
 
@@ -115,7 +115,7 @@ Google's AI is genuinely superior to most competitors - fewer false alerts and m
 
 **Time to Install:** 15 minutes from unboxing to recording.
 
-![Installation steps](/content/reviews/google-nest-cam-battery/installation-process.jpg)
+![Installation steps](/reviews/google-nest-cam-battery/installation-process.jpg)
 
 ---
 
