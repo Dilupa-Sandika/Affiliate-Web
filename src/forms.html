@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hidden Forms for Netlify Detection</title>
+</head>
+<body style="display: none;">
+    <!-- Hidden form for Netlify detection -->
+    <form name="vegas-tech-hub-contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <select name="service">
+            <option value="smart-lock-installation">Smart Lock Installation</option>
+            <option value="security-camera-installation">Security Camera Installation</option>
+            <option value="smart-lighting-installation">Smart Lighting Installation</option>
+            <option value="complete-smart-home-setup">Complete Smart Home Setup</option>
+            <option value="consultation-only">Consultation Only</option>
+            <option value="other">Other</option>
+        </select>
+        <select name="location">
+            <option value="las-vegas">Las Vegas</option>
+            <option value="henderson">Henderson</option>
+            <option value="north-las-vegas">North Las Vegas</option>
+            <option value="boulder-city">Boulder City</option>
+            <option value="summerlin">Summerlin</option>
+            <option value="green-valley">Green Valley</option>
+            <option value="anthem">Anthem</option>
+            <option value="other-nevada">Other Nevada Location</option>
+        </select>
+        <select name="timeline">
+            <option value="asap">As soon as possible</option>
+            <option value="1-week">Within 1 week</option>
+            <option value="2-4-weeks">2-4 weeks</option>
+            <option value="1-3-months">1-3 months</option>
+            <option value="planning-stage">Just planning/researching</option>
+        </select>
+        <select name="budget">
+            <option value="under-500">Under $500</option>
+            <option value="500-1000">$500 - $1,000</option>
+            <option value="1000-2500">$1,000 - $2,500</option>
+            <option value="2500-5000">$2,500 - $5,000</option>
+            <option value="over-5000">Over $5,000</option>
+            <option value="not-sure">Not sure yet</option>
+        </select>
+        <textarea name="message"></textarea>
+        <input type="checkbox" name="newsletter" value="yes" />
+    </form>
+</body>
+</html>
