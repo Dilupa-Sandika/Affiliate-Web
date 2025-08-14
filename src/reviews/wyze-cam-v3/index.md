@@ -4,7 +4,7 @@ title: "Wyze Cam v3: Complete Review After 7 Months in Las Vegas"
 description: "Detailed review of the Wyze Cam v3 after 7 months of use in Las Vegas. Budget security camera with color night vision and local storage testing."
 date: 2025-08-04
 tags: ["review", "camera", "wyze", "security", "vegas", "budget", "value"]
-featuredImage: "/content/reviews/wyze-cam-v3/wyze-cam-hero.jpg"
+featuredImage: "/reviews/wyze-cam-v3/wyze-cam-hero.jpg"
 featured: false
 author: "Vegas Tech Hub Team"
 readingTime: "8 min read"
@@ -13,6 +13,7 @@ rating: 4.1
 price: "$35"
 pros: ["Extremely affordable", "Color night vision", "Local storage option", "Good video quality for price", "Continuous recording", "Weather resistant"]
 cons: ["Requires power outlet", "Basic app interface", "Limited cloud storage", "No battery option", "Subscription for advanced features"]
+permalink: "/reviews/wyze-cam-v3/"
 ---
 
 # Wyze Cam v3: Incredible Value Security Camera

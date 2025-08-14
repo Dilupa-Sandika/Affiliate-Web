@@ -4,7 +4,7 @@ title: "Arlo Pro 4 Spotlight: Complete Review After 4 Months in Las Vegas"
 description: "Detailed review of the Arlo Pro 4 Spotlight Camera after 4 months of use in Las Vegas. 4K video quality, battery life, and smart detection features tested."
 date: 2025-08-07
 tags: ["review", "camera", "arlo", "security", "vegas", "4k"]
-featuredImage: "/content/reviews/arlo-pro-4-spotlight/arlo-pro-4-hero.jpg"
+featuredImage: "/reviews/arlo-pro-4-spotlight/arlo-pro-4-hero.jpg"
 featured: false
 author: "Vegas Tech Hub Team"
 readingTime: "10 min read"
@@ -13,13 +13,14 @@ rating: 4.4
 price: "$299"
 pros: ["Excellent 4K video quality", "Color night vision", "Smart detection features", "Weather resistant", "Flexible installation"]
 cons: ["Higher price point", "Battery life varies", "Requires subscription for features", "Large 4K file sizes", "Hub dependency for some features"]
+permalink: "/reviews/arlo-pro-4-spotlight/"
 ---
 
 # Arlo Pro 4 Spotlight: Premium 4K Security Camera
 
 After 4 months of testing the Arlo Pro 4 Spotlight through Las Vegas extremes, here's my honest assessment of this premium wireless security camera. At $299, it's not cheap, but the 4K video quality and advanced features justify the cost for those who want the best.
 
-![Arlo Pro 4 Spotlight installed](/content/reviews/arlo-pro-4-spotlight/installed-camera.jpg)
+![Arlo Pro 4 Spotlight installed](/reviews/arlo-pro-4-spotlight/installed-camera.jpg)
 
 ## **Quick Verdict**
 

@@ -4,7 +4,7 @@ title: "Google Nest Cam Battery: Complete Review After 5 Months in Las Vegas"
 description: "Detailed review of the Google Nest Cam Battery after 5 months of use in Las Vegas heat. Smart detection, Google integration, and real-world performance tested."
 date: 2025-08-06
 tags: ["review", "camera", "google", "nest", "security", "vegas", "smart"]
-featuredImage: "/content/reviews/google-nest-cam-battery/nest-cam-hero.jpg"
+featuredImage: "/reviews/google-nest-cam-battery/nest-cam-hero.jpg"
 featured: false
 author: "Vegas Tech Hub Team"
 readingTime: "9 min read"
@@ -13,6 +13,7 @@ rating: 4.2
 price: "$179"
 pros: ["Excellent smart detection", "Google Assistant integration", "Local storage option", "Easy setup", "Good value for features"]
 cons: ["Limited battery life", "Requires Google account", "No built-in spotlight", "Basic night vision", "Subscription for advanced features"]
+permalink: "/reviews/google-nest-cam-battery/"
 ---
 
 # Google Nest Cam Battery: Smart AI in a Budget Package
