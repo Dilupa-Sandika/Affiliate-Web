@@ -176,98 +176,29 @@ description: "Contact Smart Home Authority for expert advice and professional in
             <!-- Contact Form -->
             <div class="card-premium">
                 <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Request Free Consultation</h3>
-                <form name="vegas-tech-hub-contact" method="POST" netlify netlify-honeypot="bot-field" action="/thank-you/" class="space-y-6">
-                    <!-- Hidden fields for Netlify Forms -->
-                    <input type="hidden" name="form-name" value="vegas-tech-hub-contact" />
-                    <p hidden>
-                        <label>Don't fill this out: <input name="bot-field" /></label>
-                    </p>
+                <form name="contact" method="POST" data-netlify="true" action="/thank-you/" class="space-y-6">
+                    <!-- Hidden field for Netlify Forms -->
+                    <input type="hidden" name="form-name" value="contact" />
                     
                     <div class="space-y-4">
                         <div>
-                            <label for="name" class="block text-sm font-semibold text-neutral-700 mb-2">Full Name *</label>
+                            <label for="name" class="block text-sm font-semibold text-neutral-700 mb-2">Your Name *</label>
                             <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" required>
                         </div>
                         
                         <div>
-                            <label for="email" class="block text-sm font-semibold text-neutral-700 mb-2">Email Address *</label>
+                            <label for="email" class="block text-sm font-semibold text-neutral-700 mb-2">Your Email *</label>
                             <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" required>
                         </div>
                         
                         <div>
-                            <label for="phone" class="block text-sm font-semibold text-neutral-700 mb-2">Phone Number (Optional - for faster response)</label>
-                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="We can respond via email if you prefer">
-                        </div>
-                        
-                        <div>
-                            <label for="service" class="block text-sm font-semibold text-neutral-700 mb-2">Service Required *</label>
-                            <select id="service" name="service" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" required>
-                                <option value="">Select a service...</option>
-                                <option value="smart-lock-installation">Smart Lock Installation</option>
-                                <option value="security-camera-installation">Security Camera Installation</option>
-                                <option value="smart-lighting-installation">Smart Lighting Installation</option>
-                                <option value="complete-smart-home-setup">Complete Smart Home Setup</option>
-                                <option value="consultation-only">Consultation Only</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="location" class="block text-sm font-semibold text-neutral-700 mb-2">Location</label>
-                                <select id="location" name="location" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
-                                    <option value="">Select your city...</option>
-                                    <option value="las-vegas">Las Vegas</option>
-                                    <option value="henderson">Henderson</option>
-                                    <option value="north-las-vegas">North Las Vegas</option>
-                                    <option value="boulder-city">Boulder City</option>
-                                    <option value="summerlin">Summerlin</option>
-                                    <option value="green-valley">Green Valley</option>
-                                    <option value="anthem">Anthem</option>
-                                    <option value="other-nevada">Other Nevada Location</option>
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label for="timeline" class="block text-sm font-semibold text-neutral-700 mb-2">Project Timeline</label>
-                                <select id="timeline" name="timeline" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
-                                    <option value="">When do you need this completed?</option>
-                                    <option value="asap">As soon as possible</option>
-                                    <option value="1-week">Within 1 week</option>
-                                    <option value="2-4-weeks">2-4 weeks</option>
-                                    <option value="1-3-months">1-3 months</option>
-                                    <option value="planning-stage">Just planning/researching</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label for="budget" class="block text-sm font-semibold text-neutral-700 mb-2">Estimated Budget</label>
-                            <select id="budget" name="budget" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
-                                <option value="">Select budget range...</option>
-                                <option value="under-500">Under $500</option>
-                                <option value="500-1000">$500 - $1,000</option>
-                                <option value="1000-2500">$1,000 - $2,500</option>
-                                <option value="2500-5000">$2,500 - $5,000</option>
-                                <option value="over-5000">Over $5,000</option>
-                                <option value="not-sure">Not sure yet</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="message" class="block text-sm font-semibold text-neutral-700 mb-2">How Can We Help? *</label>
+                            <label for="message" class="block text-sm font-semibold text-neutral-700 mb-2">Message *</label>
                             <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="Describe your tech problem, project goals, or questions. We'll connect you with the right solution or professional service." required></textarea>
                         </div>
                         
-                        <div class="flex items-center space-x-3">
-                            <input type="checkbox" id="newsletter" name="newsletter" value="yes" class="w-4 h-4 text-primary-600 focus:ring-primary-500 border-neutral-300 rounded">
-                            <label for="newsletter" class="text-sm text-neutral-600">Send me smart home tips and product recommendations</label>
-                        </div>
-                        
-                        
                         <button type="submit" class="btn-primary w-full text-lg py-4 relative" id="submit-btn">
-                            <span class="submit-text">Get Free Consultation</span>
-                            <span class="loading-text hidden">Sending Request...</span>
+                            <span class="submit-text">Send Message</span>
+                            <span class="loading-text hidden">Sending...</span>
                         </button>
                     </div>
                 </form>
