@@ -9,9 +9,6 @@
 # Form notifications and settings
 [[forms]]
   name = "vegas-tech-hub-contact"
-  
-[[forms]]
-  name = "form-test"
 
 # Redirect rules for form submissions
 [[redirects]]
