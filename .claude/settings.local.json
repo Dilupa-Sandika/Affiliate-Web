@@ -26,7 +26,8 @@
       "Bash(do mkdir -p \"../../reviews/$dir\")",
       "Bash(true)",
       "Bash(done)",
-      "Bash(timeout 30s npm run build:eleventy)"
+      "Bash(timeout 30s npm run build:eleventy)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }
