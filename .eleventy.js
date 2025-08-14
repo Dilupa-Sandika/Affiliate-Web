@@ -121,6 +121,10 @@ module.exports = function(eleventyConfig) {
     language: "en",
     author: "Vegas Tech Hub"
   });
+
+  // Ignore email templates to prevent build errors
+  eleventyConfig.ignores.add("**/email-template.*");
+  eleventyConfig.ignores.add("**/email-templates/**");
   
   // Set directories
   return {
