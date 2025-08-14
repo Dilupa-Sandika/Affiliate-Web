@@ -177,7 +177,8 @@ description: "Contact Smart Home Authority for expert advice and professional in
             <div class="card-premium">
                 <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Request Free Consultation</h3>
                 <form name="vegas-tech-hub-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you/" data-netlify-recaptcha="true" class="space-y-6">
-                    <!-- Hidden field to prevent spam -->
+                    <!-- Hidden fields for Netlify Forms -->
+                    <input type="hidden" name="form-name" value="vegas-tech-hub-contact" />
                     <p hidden>
                         <label>Don't fill this out: <input name="bot-field" /></label>
                     </p>
