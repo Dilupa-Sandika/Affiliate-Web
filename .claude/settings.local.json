@@ -27,7 +27,8 @@
       "Bash(true)",
       "Bash(done)",
       "Bash(timeout 30s npm run build:eleventy)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(find:*)"
     ],
     "deny": []
   }

@@ -71,8 +71,8 @@ permalink: "/reviews/"
             
             <div class="flex items-center justify-between text-sm text-gray-400 mb-4">
               <span>{{ review.data.readingTime }}</span>
-              <time datetime="{{ review.date | date: '%Y-%m-%d' }}">
-                {{ review.date | date: '%B %d, %Y' }}
+              <time datetime="{{ review.date | date('%Y-%m-%d') }}">
+                {{ review.date | date('%B %d, %Y') }}
               </time>
             </div>
 

@@ -7,6 +7,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   eleventyConfig.addPassthroughCopy("src/content/**/*.{jpg,jpeg,png,gif,webp,svg}"); // Copy content images
+  eleventyConfig.addPassthroughCopy("src/reviews/**/*.{jpg,jpeg,png,gif,webp,svg}"); // Copy review images
+  eleventyConfig.addPassthroughCopy("src/guides/**/*.{jpg,jpeg,png,gif,webp,svg}"); // Copy guide images
   
   // Watch for changes in the compiled CSS file for live browser refreshes
   eleventyConfig.addWatchTarget("./_site/assets/css/");
@@ -73,7 +75,7 @@ module.exports = function(eleventyConfig) {
   
   // Collections
   eleventyConfig.addCollection("reviews", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("./src/content/reviews/*/index.md")
+    return collectionApi.getFilteredByGlob("./src/reviews/*/index.md")
       .sort(function(a, b) {
         return b.date - a.date;
       });
