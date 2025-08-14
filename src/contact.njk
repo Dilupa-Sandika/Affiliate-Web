@@ -176,7 +176,7 @@ description: "Contact Smart Home Authority for expert advice and professional in
             <!-- Contact Form -->
             <div class="card-premium">
                 <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Request Free Consultation</h3>
-                <form name="vegas-tech-hub-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you/" class="space-y-6">
+                <form name="vegas-tech-hub-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you/" data-netlify-recaptcha="true" class="space-y-6">
                     <!-- Hidden field to prevent spam -->
                     <p hidden>
                         <label>Don't fill this out: <input name="bot-field" /></label>
@@ -259,12 +259,16 @@ description: "Contact Smart Home Authority for expert advice and professional in
                         </div>
                         
                         <div class="flex items-center space-x-3">
-                            <input type="checkbox" name="newsletter" value="yes" class="w-4 h-4 text-primary-600 focus:ring-primary-500 border-neutral-300 rounded">
-                            <label class="text-sm text-neutral-600">Send me smart home tips and product recommendations</label>
+                            <input type="checkbox" id="newsletter" name="newsletter" value="yes" class="w-4 h-4 text-primary-600 focus:ring-primary-500 border-neutral-300 rounded">
+                            <label for="newsletter" class="text-sm text-neutral-600">Send me smart home tips and product recommendations</label>
                         </div>
                         
-                        <button type="submit" class="btn-primary w-full text-lg py-4">
-                            Get Free Consultation
+                        <!-- Netlify reCAPTCHA -->
+                        <div data-netlify-recaptcha="true"></div>
+                        
+                        <button type="submit" class="btn-primary w-full text-lg py-4 relative" id="submit-btn">
+                            <span class="submit-text">Get Free Consultation</span>
+                            <span class="loading-text hidden">Sending Request...</span>
                         </button>
                     </div>
                 </form>
@@ -417,5 +421,60 @@ document.addEventListener('DOMContentLoaded', () => {
   if (contactContainer && window.HeroAnimation) {
     new window.HeroAnimation(contactContainer);
   }
+});
+</script>
+
+<!-- Form Enhancement Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form[name="vegas-tech-hub-contact"]');
+    const submitBtn = document.getElementById('submit-btn');
+    const submitText = submitBtn.querySelector('.submit-text');
+    const loadingText = submitBtn.querySelector('.loading-text');
+    
+    // Form submission handler
+    form.addEventListener('submit', function(e) {
+        // Show loading state
+        submitBtn.disabled = true;
+        submitText.classList.add('hidden');
+        loadingText.classList.remove('hidden');
+        submitBtn.classList.add('opacity-75');
+        
+        // Add analytics tracking if available
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'form_submit', {
+                'event_category': 'Contact',
+                'event_label': 'Vegas Tech Hub Contact Form'
+            });
+        }
+    });
+    
+    // Reset form state if submission fails
+    window.addEventListener('beforeunload', function() {
+        submitBtn.disabled = false;
+        submitText.classList.remove('hidden');
+        loadingText.classList.add('hidden');
+        submitBtn.classList.remove('opacity-75');
+    });
+    
+    // Auto-focus first field for better UX
+    const firstInput = form.querySelector('input[type="text"]');
+    if (firstInput) {
+        firstInput.focus();
+    }
+    
+    // Enhanced validation feedback
+    const requiredFields = form.querySelectorAll('[required]');
+    requiredFields.forEach(field => {
+        field.addEventListener('blur', function() {
+            if (!this.value.trim()) {
+                this.classList.add('border-red-300', 'focus:ring-red-500');
+                this.classList.remove('border-neutral-300', 'focus:ring-primary-500');
+            } else {
+                this.classList.remove('border-red-300', 'focus:ring-red-500');
+                this.classList.add('border-neutral-300', 'focus:ring-primary-500');
+            }
+        });
+    });
 });
 </script>

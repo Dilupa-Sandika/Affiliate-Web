@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>New Vegas Tech Hub Contact Form Submission</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 20px; border-radius: 10px 10px 0 0; }
+        .content { background: #f8fafc; padding: 20px; border: 1px solid #e2e8f0; }
+        .footer { background: #334155; color: white; padding: 15px; border-radius: 0 0 10px 10px; }
+        .field { margin-bottom: 15px; }
+        .label { font-weight: bold; color: #475569; }
+        .value { background: white; padding: 10px; border-radius: 5px; border: 1px solid #cbd5e1; }
+        .priority { background: #fef3c7; padding: 10px; border-radius: 5px; border-left: 4px solid #f59e0b; margin: 20px 0; }
+        .badge { display: inline-block; background: #1e40af; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 Vegas Tech Hub - New Contact Form Submission</h1>
+            <p>A new consultation request has been submitted through your website.</p>
+        </div>
+        
+        <div class="content">
+            <div class="priority">
+                <strong>⚡ Action Required:</strong> New customer inquiry received. Respond within 24 hours for best conversion rates.
+            </div>
+            
+            <div class="field">
+                <div class="label">Customer Name:</div>
+                <div class="value">{{ name }}</div>
+            </div>
+            
+            <div class="field">
+                <div class="label">Email Address:</div>
+                <div class="value">{{ email }}</div>
+            </div>
+            
+            <div class="field">
+                <div class="label">Phone Number:</div>
+                <div class="value">{{ phone || "Not provided" }}</div>
+            </div>
+            
+            <div class="field">
+                <div class="label">Service Required:</div>
+                <div class="value">
+                    <span class="badge">{{ service }}</span>
+                </div>
+            </div>
+            
+            <div class="field">
+                <div class="label">Location:</div>
+                <div class="value">{{ location || "Not specified" }}</div>
+            </div>
+            
+            <div class="field">
+                <div class="label">Project Timeline:</div>
+                <div class="value">{{ timeline || "Not specified" }}</div>
+            </div>
+            
+            <div class="field">
+                <div class="label">Estimated Budget:</div>
+                <div class="value">{{ budget || "Not specified" }}</div>
+            </div>
+            
+            <div class="field">
+                <div class="label">Customer Message:</div>
+                <div class="value">{{ message }}</div>
+            </div>
+            
+            <div class="field">
+                <div class="label">Newsletter Signup:</div>
+                <div class="value">{{ newsletter === "yes" ? "✅ Yes, wants updates" : "❌ No newsletter" }}</div>
+            </div>
+            
+            <div class="field">
+                <div class="label">Submission Time:</div>
+                <div class="value">{{ created_at }}</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h3>📋 Next Steps:</h3>
+            <ol>
+                <li>Review the customer's requirements and timeline</li>
+                <li>Call or email the customer within 24 hours</li>
+                <li>Schedule a free consultation if qualified</li>
+                <li>Prepare a custom quote based on their needs</li>
+            </ol>
+            
+            <p><strong>Quick Actions:</strong></p>
+            <p>
+                📞 <a href="tel:{{ phone }}" style="color: #93c5fd;">Call {{ phone }}</a> |
+                📧 <a href="mailto:{{ email }}" style="color: #93c5fd;">Email {{ email }}</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -4,6 +4,11 @@
 
 [build.environment]
   NODE_ENV = "production"
+  NODE_VERSION = "18"
+
+# Form notifications
+[[forms]]
+  name = "vegas-tech-hub-contact"
 
 [[headers]]
   for = "/assets/css/*"
